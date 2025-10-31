@@ -1,9 +1,6 @@
 let quizzes = [];
 let currentIndex = 0;
 let answersVisible = false;
-let editionsPage = 0;
-const editionsPerPage = 12; // 4 columns x 3 rows
-let sortOrder = 'newest'; // 'newest' or 'oldest'
 
 // Initialize app
 async function init() {
@@ -92,7 +89,7 @@ async function loadQuizzes() {
                 quizDate.setHours(0, 0, 0, 0);
                 return quizDate <= today;
             })
-            .sort((a, b) => new Date(a.date) - new Date(b.date));
+            .sort((a, b) => new Date(b.date) - new Date(a.date)); // Newest first
         
         const hiddenCount = allQuizzes.length - quizzes.length;
         if (hiddenCount > 0) {
@@ -188,43 +185,10 @@ function createStars() {
 // Setup event listeners
 function setupEventListeners() {
     const themeToggle = document.getElementById('themeToggle');
-    const sortOrderBtn = document.getElementById('sortOrderBtn');
-    const editionsDropdown = document.getElementById('editionsDropdown');
 
     if (themeToggle) {
         themeToggle.addEventListener('click', toggleTheme);
     }
-
-    if (sortOrderBtn) {
-        sortOrderBtn.addEventListener('click', toggleSortOrder);
-    }
-
-    if (editionsDropdown) {
-        editionsDropdown.addEventListener('change', (e) => {
-            const selectedIndex = parseInt(e.target.value);
-            if (selectedIndex !== -1 && selectedIndex < quizzes.length) {
-                currentIndex = selectedIndex;
-                answersVisible = false;
-                updateUI();
-            }
-        });
-    }
-
-    setupEditionsPagination();
-}
-
-// Toggle sort order (newest/oldest)
-function toggleSortOrder() {
-    sortOrder = sortOrder === 'newest' ? 'oldest' : 'newest';
-    const sortBtn = document.getElementById('sortOrderBtn');
-    if (sortBtn) {
-        sortBtn.innerHTML = sortOrder === 'newest' 
-            ? '<i data-lucide="arrow-down-up" class="icon-inline"></i> Nyeste først'
-            : '<i data-lucide="arrow-down-up" class="icon-inline"></i> Eldste først';
-        lucide.createIcons();
-    }
-    editionsPage = 0; // Reset to first page when sorting
-    updateEditionsSidebar();
 }
 
 // Update UI with current quiz
@@ -234,25 +198,11 @@ function updateUI() {
         if (container) {
             container.innerHTML = '<div class="error">Ingen quizutgaver er tilgjengelige akkurat nå. Sjekk tilbake senere!</div>';
         }
-        // Hide editions section if no quizzes
-        const editionsSection = document.getElementById('editionsSection');
-        if (editionsSection) {
-            editionsSection.style.display = 'none';
-        }
         return;
-    }
-
-    // Show editions section if it was hidden
-    const editionsSection = document.getElementById('editionsSection');
-    if (editionsSection) {
-        editionsSection.style.display = '';
     }
 
     const quiz = quizzes[currentIndex];
     const container = document.getElementById('quizContainer');
-
-    // Update editions grid
-    updateEditionsSidebar();
 
     // Display quiz
     container.innerHTML = renderQuiz(quiz);
@@ -271,24 +221,9 @@ function updateUI() {
     
     if (prevBtn) {
         prevBtn.addEventListener('click', () => {
-            if (currentIndex > 0) {
-                currentIndex--;
+            if (currentIndex < quizzes.length - 1) {
+                currentIndex++; // Go to older quiz (back in time)
                 answersVisible = false;
-                // Find and switch to page containing this quiz in sorted order
-                const sortedQuizzes = [...quizzes];
-                if (sortOrder === 'newest') {
-                    sortedQuizzes.sort((a, b) => new Date(b.date) - new Date(a.date));
-                } else {
-                    sortedQuizzes.sort((a, b) => new Date(a.date) - new Date(b.date));
-                }
-                const currentQuizId = quizzes[currentIndex]?.id;
-                const sortedIndex = sortedQuizzes.findIndex(q => q.id === currentQuizId);
-                if (sortedIndex !== -1) {
-                    const quizPage = Math.floor(sortedIndex / editionsPerPage);
-                    if (quizPage !== editionsPage) {
-                        editionsPage = quizPage;
-                    }
-                }
                 updateUI();
             }
         });
@@ -296,142 +231,15 @@ function updateUI() {
 
     if (nextBtn) {
         nextBtn.addEventListener('click', () => {
-            if (currentIndex < quizzes.length - 1) {
-                currentIndex++;
+            if (currentIndex > 0) {
+                currentIndex--; // Go to newer quiz (forward in time)
                 answersVisible = false;
-                // Find and switch to page containing this quiz in sorted order
-                const sortedQuizzes = [...quizzes];
-                if (sortOrder === 'newest') {
-                    sortedQuizzes.sort((a, b) => new Date(b.date) - new Date(a.date));
-                } else {
-                    sortedQuizzes.sort((a, b) => new Date(a.date) - new Date(b.date));
-                }
-                const currentQuizId = quizzes[currentIndex]?.id;
-                const sortedIndex = sortedQuizzes.findIndex(q => q.id === currentQuizId);
-                if (sortedIndex !== -1) {
-                    const quizPage = Math.floor(sortedIndex / editionsPerPage);
-                    if (quizPage !== editionsPage) {
-                        editionsPage = quizPage;
-                    }
-                }
                 updateUI();
             }
         });
     }
 }
 
-
-// Update editions grid and dropdown
-function updateEditionsSidebar() {
-    const editionsList = document.getElementById('editionsList');
-    const editionsDropdown = document.getElementById('editionsDropdown');
-    if (!editionsList || !editionsDropdown) return;
-
-    // Sort quizzes based on sort order
-    const sortedQuizzes = [...quizzes];
-    if (sortOrder === 'newest') {
-        sortedQuizzes.sort((a, b) => new Date(b.date) - new Date(a.date));
-    } else {
-        sortedQuizzes.sort((a, b) => new Date(a.date) - new Date(b.date));
-    }
-
-    // Find current quiz index in sorted array
-    const currentQuizId = quizzes[currentIndex]?.id;
-    const sortedCurrentIndex = sortedQuizzes.findIndex(q => q.id === currentQuizId);
-
-    // Update dropdown for mobile
-    editionsDropdown.innerHTML = '';
-    sortedQuizzes.forEach((quiz, index) => {
-        const originalIndex = quizzes.findIndex(q => q.id === quiz.id);
-        const option = document.createElement('option');
-        option.value = originalIndex;
-        option.textContent = `Utgave ${quiz.edition} - ${formatDate(quiz.date)}`;
-        if (originalIndex === currentIndex) {
-            option.selected = true;
-        }
-        editionsDropdown.appendChild(option);
-    });
-
-    // Calculate pagination for desktop grid
-    const totalPages = Math.ceil(sortedQuizzes.length / editionsPerPage);
-    const startIndex = editionsPage * editionsPerPage;
-    const endIndex = Math.min(startIndex + editionsPerPage, sortedQuizzes.length);
-    const currentPageQuizzes = sortedQuizzes.slice(startIndex, endIndex);
-
-    // Update page info
-    const pageInfo = document.getElementById('editionsPageInfo');
-    const prevPageBtn = document.getElementById('editionsPrevPage');
-    const nextPageBtn = document.getElementById('editionsNextPage');
-
-    if (pageInfo) {
-        pageInfo.textContent = `${editionsPage + 1} / ${totalPages || 1}`;
-    }
-
-    if (prevPageBtn) {
-        prevPageBtn.disabled = editionsPage === 0;
-    }
-
-    if (nextPageBtn) {
-        nextPageBtn.disabled = editionsPage >= totalPages - 1;
-    }
-
-    // Render current page items for desktop grid
-    editionsList.innerHTML = '';
-    currentPageQuizzes.forEach((quiz, localIndex) => {
-        const globalIndex = startIndex + localIndex;
-        const originalIndex = quizzes.findIndex(q => q.id === quiz.id);
-        const isActive = originalIndex === currentIndex;
-        
-        const item = document.createElement('div');
-        item.className = `edition-item ${isActive ? 'active' : ''}`;
-        item.innerHTML = `
-            <div>
-                <span class="edition-item-number">Utgave ${quiz.edition}</span>
-            </div>
-            <div class="edition-item-date">${formatDate(quiz.date)}</div>
-        `;
-        item.addEventListener('click', () => {
-            currentIndex = originalIndex;
-            answersVisible = false;
-            updateUI();
-            // Switch to page containing this quiz if needed
-            const quizPage = Math.floor(globalIndex / editionsPerPage);
-            if (quizPage !== editionsPage) {
-                editionsPage = quizPage;
-                updateEditionsSidebar();
-            }
-        });
-        editionsList.appendChild(item);
-    });
-    
-    // Reinitialize icons after updating grid
-    lucide.createIcons();
-}
-
-// Pagination event listeners
-function setupEditionsPagination() {
-    const prevPageBtn = document.getElementById('editionsPrevPage');
-    const nextPageBtn = document.getElementById('editionsNextPage');
-
-    if (prevPageBtn) {
-        prevPageBtn.addEventListener('click', () => {
-            if (editionsPage > 0) {
-                editionsPage--;
-                updateEditionsSidebar();
-            }
-        });
-    }
-
-    if (nextPageBtn) {
-        nextPageBtn.addEventListener('click', () => {
-            const totalPages = Math.ceil(quizzes.length / editionsPerPage);
-            if (editionsPage < totalPages - 1) {
-                editionsPage++;
-                updateEditionsSidebar();
-            }
-        });
-    }
-}
 
 // Format date for display
 function formatDate(dateString) {
@@ -515,7 +323,7 @@ function renderQuiz(quiz) {
                             `).join('')}
                         </ol>
                         <div class="quiz-actions">
-                            <button id="prevBtn" class="nav-btn desktop-nav" ${currentIndex === 0 ? 'disabled' : ''}>
+                            <button id="prevBtn" class="nav-btn desktop-nav" ${currentIndex === quizzes.length - 1 ? 'disabled' : ''}>
                                 <i data-lucide="chevron-left" class="icon-inline"></i>
                                 Forrige
                             </button>
@@ -523,7 +331,7 @@ function renderQuiz(quiz) {
                                 <i data-lucide="${answersVisible ? 'eye-off' : 'eye'}" class="icon-inline"></i>
                                 ${answersVisible ? 'Skjul svar' : 'Svar'}
                             </button>
-                            <button id="nextBtn" class="nav-btn desktop-nav" ${currentIndex === quizzes.length - 1 ? 'disabled' : ''}>
+                            <button id="nextBtn" class="nav-btn desktop-nav" ${currentIndex === 0 ? 'disabled' : ''}>
                                 Neste
                                 <i data-lucide="chevron-right" class="icon-inline"></i>
                             </button>
