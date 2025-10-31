@@ -624,7 +624,6 @@ main {
     gap: 30px;
     align-items: start;
     min-height: 700px;
-    height: 700px;
     width: 100%;
     box-sizing: border-box;
 }
@@ -641,10 +640,9 @@ main {
     display: flex;
     flex-direction: column;
     min-height: 700px;
-    height: 700px;
     width: 100%;
     box-sizing: border-box;
-    overflow-y: auto;
+    overflow-y: visible;
 }
 
 .questions-list,
@@ -665,7 +663,6 @@ main {
 
 .answers-list {
     min-height: 700px;
-    height: 700px;
     transition: visibility 0.3s, opacity 0.3s;
     width: 100%;
     box-sizing: border-box;
@@ -674,14 +671,13 @@ main {
     overflow-wrap: break-word;
     word-wrap: break-word;
     word-break: break-word;
-    overflow-y: auto;
+    overflow-y: visible;
 }
 
 .answers-list.hidden {
     visibility: hidden;
     opacity: 0;
     min-height: 700px;
-    height: 700px;
 }
 
 .answers-list:not(.hidden) {
