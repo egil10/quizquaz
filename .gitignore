@@ -1,8 +1,5 @@
 # Git ignore file for QuizQuaz
 
-# Admin API Key (keep private)
-docs/ADMIN_API_KEY.md
-
 # Node modules (if using npm)
 node_modules/
 

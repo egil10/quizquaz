@@ -69,28 +69,9 @@ async function loadFunFact() {
     }
 }
 
-// Load quizzes - tries Firestore first, falls back to JSON file
+// Load quizzes from JSON file
 async function loadQuizzes() {
     try {
-        // Try Firestore first if configured
-        if (typeof isFirebaseConfigured !== 'undefined' && isFirebaseConfigured()) {
-            try {
-                const firestoreQuizzes = await loadQuizzesFromFirestore();
-                console.log('Loaded quizzes from Firestore');
-                
-                // If Firestore has quizzes, use them
-                if (firestoreQuizzes && firestoreQuizzes.length > 0) {
-                    quizzes = firestoreQuizzes;
-                    return;
-                } else {
-                    console.log('Firestore is empty, falling back to JSON');
-                }
-            } catch (error) {
-                console.warn('Firestore load failed, falling back to JSON:', error);
-            }
-        }
-        
-        // Fallback to JSON file
         const response = await fetch('data/quizzes.json');
         if (!response.ok) {
             throw new Error('Failed to load quizzes');

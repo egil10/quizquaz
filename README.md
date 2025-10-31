@@ -14,8 +14,6 @@ A modern quiz publication platform with edition-based navigation. Display quizze
 - **Dark Mode**: Light and dark theme support with animated starry background in dark mode
 - **Responsive Design**: Fully optimized for desktop, tablet, and mobile devices
 - **Mobile-First**: Touch-friendly interface with slide-out sidebar drawer on mobile
-- **Firebase Integration**: Cloud-based quiz storage for easy content management without manual commits
-- **Admin Panel**: Simple web-based interface for adding new quizzes
 
 ## Quick Start
 
@@ -45,40 +43,21 @@ php -S localhost:8000
 ```
 quizquaz/
 ├── index.html              # Main application page
-├── admin.html              # Admin panel for adding quizzes
 ├── styles/
-│   ├── main.css           # Main application styling
-│   └── admin.css          # Admin panel styling
+│   └── main.css           # Main application styling
 ├── js/
-│   ├── app.js             # Main application logic
-│   ├── admin.js           # Admin panel logic
-│   ├── firebase.js        # Firebase integration
-│   └── firebase-config.js # Firebase configuration
+│   └── app.js             # Main application logic
 ├── data/
-│   └── quizzes.json       # Quiz data storage (fallback)
+│   ├── quizzes.json       # Quiz data storage
+│   └── funfacts.json      # Fun facts for tagline
 ├── assets/
 │   └── favicon.svg        # Application favicon
 ├── docs/
-│   ├── ADMIN_API_KEY.md   # Admin API key documentation
-│   ├── FIREBASE_SETUP.md  # Firebase setup guide
 │   └── REPOSITORY.md      # Repository documentation
 └── README.md              # This file
 ```
 
 ## Adding a New Quiz
-
-### Via Admin Panel (Recommended)
-
-1. Navigate to `admin.html`
-2. Enter your 16-character API key
-3. Fill in the quiz form:
-   - Date (required)
-   - Title (required)
-   - Edition number (required)
-   - 12 questions and answers (all required)
-4. Click "Publiser til Firebase" to publish instantly
-
-### Via JSON File (Manual)
 
 Edit `data/quizzes.json` and add a new quiz object to the `quizzes` array:
 
@@ -136,8 +115,7 @@ QuizQuaz is designed with simplicity and readability in mind:
 - **HTML5**: Semantic markup with proper language attributes
 - **CSS3**: Modern styling with CSS variables, flexbox, grid, and responsive design
 - **Vanilla JavaScript**: ES6+ JavaScript with async/await, no frameworks
-- **Firebase Firestore**: Cloud database for quiz storage and real-time updates
-- **JSON**: Fallback data storage format
+- **JSON**: Data storage format
 - **Lucide Icons**: Modern icon library for UI elements
 
 ## Browser Support
@@ -163,14 +141,6 @@ The application is fully optimized for mobile devices:
 - Prevented zoom on input focus
 - Optimized loading screen
 - Full-width layout on small screens
-
-## Firebase Setup
-
-For cloud-based quiz storage, Firebase Firestore integration is available. See `docs/FIREBASE_SETUP.md` for detailed setup instructions.
-
-## Admin Access
-
-The admin panel uses a simple API key authentication system. The API key is documented in `docs/ADMIN_API_KEY.md` (not tracked in git for security).
 
 ## License
 

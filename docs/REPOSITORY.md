@@ -2,7 +2,7 @@
 
 ## Overview
 
-QuizQuaz is a web-based quiz application that displays quiz editions in a newspaper-style format. The application allows users to browse through quiz editions, view questions and answers, and includes an admin interface for adding new quizzes.
+QuizQuaz is a web-based quiz application that displays quiz editions in a newspaper-style format. The application allows users to browse through quiz editions and view questions and answers.
 
 **Live Site:** https://egil10.github.io/quizquaz/
 
@@ -11,22 +11,17 @@ QuizQuaz is a web-based quiz application that displays quiz editions in a newspa
 ```
 quizquaz/
 ├── index.html              # Main application page
-├── admin.html              # Admin authentication and quiz form
 ├── assets/
 │   └── favicon.svg         # Website favicon (black text on transparent)
 ├── data/
-│   └── quizzes.json        # Quiz data (fallback if Firebase not configured)
+│   ├── quizzes.json        # Quiz data storage
+│   └── funfacts.json       # Fun facts for tagline
 ├── docs/
-│   ├── FIREBASE_SETUP.md  # Firebase setup instructions
-│   └── REPOSITORY.md      # This file
+│   └── REPOSITORY.md       # This file
 ├── js/
-│   ├── app.js             # Main application logic
-│   ├── admin.js           # Admin panel functionality
-│   ├── firebase-config.js # Firebase configuration
-│   └── firebase.js        # Firebase Firestore helper functions
+│   └── app.js             # Main application logic
 ├── styles/
-│   ├── main.css           # Main application styles
-│   └── admin.css          # Admin panel styles
+│   └── main.css           # Main application styles
 └── README.md              # Project README
 ```
 
@@ -35,7 +30,7 @@ quizquaz/
 - **HTML5** - Structure
 - **CSS3** - Styling with CSS variables for theming
 - **Vanilla JavaScript** - No frameworks, pure JS
-- **Firebase Firestore** - Database for quiz storage
+- **JSON** - Data storage format
 - **Lucide Icons** - SVG icon library
 - **GitHub Pages** - Hosting
 
@@ -50,7 +45,7 @@ quizquaz/
 
 2. **Quiz Navigation**
    - Previous/Next buttons for sequential navigation
-   - Sidebar with paginated editions list (8 per page)
+   - Sidebar with paginated editions list (6 per page)
    - Clickable edition items to jump to specific quizzes
    - Toggle button to show/hide sidebar
 
@@ -70,18 +65,9 @@ quizquaz/
    - Sidebar collapses on smaller screens
    - Adaptive grid layouts
 
-### Admin Features
-
-1. **Authentication**
-   - 16-character API key protection
-   - Simple login screen
-   - Session-based authentication
-
-2. **Quiz Management**
-   - Add new quizzes with 12 questions
-   - Automatic draft saving every 30 seconds
-   - Firebase integration for instant publishing
-   - No GitHub commits needed
+6. **Dynamic Fun Facts**
+   - Random fun fact displayed in tagline on each page load
+   - Loaded from `data/funfacts.json`
 
 ## File Descriptions
 
@@ -92,40 +78,16 @@ Main application page. Contains:
 - Editions sidebar (right side)
 - Footer with links
 
-### `admin.html`
-Admin interface page. Contains:
-- Simple login screen (API key input)
-- Full admin form (shown after authentication)
-- Quiz entry form with 12 question/answer pairs
-
 ### `js/app.js`
 Core application logic:
 - `init()` - Initializes the app
-- `loadQuizzes()` - Loads quizzes from Firebase or JSON fallback
+- `loadQuizzes()` - Loads quizzes from JSON file
+- `loadFunFact()` - Loads random fun fact from JSON
 - `updateUI()` - Updates the display with current quiz
 - `renderQuiz()` - Renders quiz in newspaper format
 - `toggleAnswers()` - Shows/hides answers
 - `updateEditionsSidebar()` - Updates sidebar with pagination
 - Theme management functions
-
-### `js/admin.js`
-Admin panel functionality:
-- API key authentication
-- Quiz form handling
-- Firebase publishing (`saveQuizToFirestore`)
-- Draft management (localStorage)
-- Form validation
-
-### `js/firebase-config.js`
-Firebase configuration:
-- Contains Firebase project credentials
-- `isFirebaseConfigured()` - Checks if Firebase is set up
-
-### `js/firebase.js`
-Firebase Firestore helpers:
-- `loadQuizzesFromFirestore()` - Loads all quizzes
-- `saveQuizToFirestore()` - Saves a new quiz
-- `deleteQuizFromFirestore()` - Deletes a quiz
 
 ### `styles/main.css`
 Main application styles:
@@ -136,12 +98,16 @@ Main application styles:
 - Fixed sidebar height (600px)
 - Consistent quiz container sizing
 
-### `styles/admin.css`
-Admin panel specific styles:
-- Form layouts
-- Button styles
-- Success/error messages
-- Info boxes
+### `data/quizzes.json`
+Quiz data storage:
+- Contains array of quiz objects
+- Each quiz has: id, date, title, edition, questions array
+- Questions array contains 12 question objects with number, question, and answer
+
+### `data/funfacts.json`
+Fun facts data:
+- Array of strings containing fun facts in Norwegian
+- One fact is randomly selected and displayed on page load
 
 ## Data Structure
 
@@ -149,9 +115,9 @@ Admin panel specific styles:
 
 ```json
 {
-  "id": "edition-1",
+  "id": "2024-01-01",
   "date": "2024-01-01",
-  "title": "January 1, 2024",
+  "title": "1. januar 2024",
   "edition": 1,
   "questions": [
     {
@@ -164,60 +130,17 @@ Admin panel specific styles:
 }
 ```
 
-### Firestore Structure
-
-Quizzes are stored in Firestore as:
-```
-quizzes/
-  edition-1/
-    {quiz data}
-  edition-2/
-    {quiz data}
-  ...
-```
-
-## Configuration
-
-### Firebase Setup
-
-1. Create a Firebase project at https://console.firebase.google.com/
-2. Enable Firestore Database
-3. Set security rules (see `docs/FIREBASE_SETUP.md`)
-4. Get web app config
-5. Add config to `js/firebase-config.js`
-
-See `docs/FIREBASE_SETUP.md` for detailed instructions.
-
-### Admin API Key
-
-Default API key: `QUIZQUAZ2024API`
-
-To change it:
-1. Edit `js/admin.js` - Change `ADMIN_API_KEY` constant
-2. Update the hash function if needed
-
 ## Adding Quizzes
-
-### Via Admin Panel
-
-1. Navigate to `admin.html`
-2. Enter API key: `QUIZQUAZ2024API`
-3. Fill out the form:
-   - Date (auto-filled to today)
-   - Title (e.g., "January 1, 2024")
-   - Edition number
-   - 12 questions and answers
-4. Click "Publish to Firebase"
-5. Quiz appears instantly on the site
 
 ### Direct JSON Editing
 
 1. Edit `data/quizzes.json`
 2. Add quiz object following the format above
-3. Commit and push to GitHub
-4. GitHub Pages will rebuild automatically
+3. Ensure the quiz has exactly 12 questions numbered 1-12
+4. Commit and push to GitHub
+5. GitHub Pages will rebuild automatically
 
-**Note:** Firebase takes precedence. If Firebase is configured, quizzes load from Firestore. JSON is only used as fallback.
+**Important:** Each quiz must contain exactly 12 questions numbered 1 through 12.
 
 ## Deployment
 
@@ -266,7 +189,8 @@ All buttons follow consistent styling:
 - Black border (2px solid `#000`)
 - Black text (`#000`)
 - Height: 40px
-- Border radius: 6px
+- Border radius: 2px (more square)
+- No outlines on focus
 - Hover: Inverts to black bg, white text
 
 ## Browser Support
@@ -285,23 +209,15 @@ Potential enhancements:
 - Print-friendly format
 - Export to PDF
 - Quiz statistics/analytics
-- Comments/discussion features
 
 ## Troubleshooting
 
 ### Quizzes Not Loading
 
 1. Check browser console for errors
-2. Verify Firebase config in `js/firebase-config.js`
-3. Check Firestore security rules
-4. Verify `data/quizzes.json` exists and is valid JSON
-
-### Admin Panel Not Working
-
-1. Check API key is correct (16 characters)
-2. Verify sessionStorage is enabled
-3. Check browser console for JavaScript errors
-4. Ensure Firebase is configured if publishing
+2. Verify `data/quizzes.json` exists and is valid JSON
+3. Ensure all quizzes have exactly 12 questions
+4. Check that JSON structure matches expected format
 
 ### Styling Issues
 
@@ -326,4 +242,3 @@ All rights reserved. QuizQuaz project.
 
 Repository: https://github.com/egil10/quizquaz
 Live Site: https://egil10.github.io/quizquaz/
-

@@ -5,6 +5,15 @@
     box-sizing: border-box;
 }
 
+button {
+    outline: none;
+}
+
+button:focus,
+button:focus-visible {
+    outline: none !important;
+}
+
 :root {
     --bg-color: #f5f5f0;
     --text-color: #333;
@@ -220,6 +229,15 @@ body.dark-mode .moon-icon {
     justify-content: center;
     transition: all 0.3s ease;
     flex-shrink: 0;
+    outline: none;
+}
+
+.toggle-sidebar-btn:focus {
+    outline: none;
+}
+
+.toggle-sidebar-btn:focus-visible {
+    outline: none;
 }
 
 .toggle-sidebar-btn:hover {
@@ -300,78 +318,100 @@ body.sidebar-hidden .toggle-sidebar-btn:hover {
 }
 
 .edition-item {
-    padding: 10px 12px;
+    padding: 12px 14px;
     cursor: pointer;
-    border-left: 3px solid transparent;
-    transition: all 0.2s;
+    border: 2px solid var(--border-color);
+    border-radius: 2px;
+    transition: all 0.2s ease;
     font-size: 0.9em;
     flex-shrink: 0;
+    background-color: #fff;
+    color: var(--text-color);
+    margin-bottom: 6px;
 }
 
 .editions-pagination {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
-    margin-top: 15px;
-    padding-top: 15px;
-    border-top: 1px solid var(--border-color);
+    gap: 12px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 2px solid var(--border-color);
     flex-shrink: 0;
 }
 
 .pagination-btn {
-    width: 32px;
-    height: 32px;
+    width: 40px;
+    height: 40px;
     padding: 0;
-    background-color: var(--accent-color);
-    color: #fff;
-    border: none;
-    border-radius: 4px;
+    background-color: #fff;
+    color: #000;
+    border: 2px solid #000;
+    border-radius: 2px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background-color 0.3s;
+    transition: all 0.2s ease;
+    outline: none;
 }
 
 .pagination-btn:hover:not(:disabled) {
-    background-color: var(--accent-hover);
+    background-color: #000;
+    color: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .pagination-btn:disabled {
-    background-color: var(--disabled-color);
+    background-color: #fff;
+    color: #999;
+    border-color: #ccc;
     cursor: not-allowed;
     opacity: 0.6;
 }
 
+.pagination-btn:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
 .page-info {
-    font-size: 0.85em;
-    color: var(--meta-color);
+    font-size: 0.9em;
+    color: var(--text-color);
     min-width: 50px;
     text-align: center;
+    font-weight: 500;
 }
 
 .edition-item:hover {
-    background-color: var(--hover-bg);
-    border-left-color: var(--accent-color);
+    background-color: #000;
+    color: #fff;
+    border-color: #000;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .edition-item.active {
-    background-color: var(--accent-color);
+    background-color: #000;
     color: #fff;
-    border-left-color: var(--accent-color);
+    border-color: #000;
     font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
 }
 
 .edition-item-number {
     font-weight: bold;
     margin-right: 8px;
+    display: block;
+    margin-bottom: 2px;
 }
 
 .edition-item-date {
     font-size: 0.85em;
     color: var(--meta-color);
-    margin-top: 3px;
+    margin-top: 0;
 }
 
 .edition-item.active .edition-item-date {
@@ -408,6 +448,19 @@ body.sidebar-hidden .toggle-sidebar-btn:hover {
     min-width: 90px;
     height: 40px;
     font-weight: 500;
+    outline: none;
+}
+
+.nav-btn:focus,
+.toggle-answers-btn:focus,
+.pagination-btn:focus {
+    outline: none;
+}
+
+.nav-btn:focus-visible,
+.toggle-answers-btn:focus-visible,
+.pagination-btn:focus-visible {
+    outline: none;
 }
 
 .pagination-btn {
@@ -496,6 +549,15 @@ main {
     justify-content: center;
     transition: all 0.2s ease;
     flex-shrink: 0;
+    outline: none;
+}
+
+.quiz-header .toggle-sidebar-btn:focus {
+    outline: none;
+}
+
+.quiz-header .toggle-sidebar-btn:focus-visible {
+    outline: none;
 }
 
 .quiz-header .toggle-sidebar-btn:hover {
@@ -569,6 +631,15 @@ body:not(.sidebar-hidden) .quiz-header .sidebar-icon-close {
     box-sizing: border-box;
 }
 
+.questions-column,
+.answers-list {
+    min-width: 0;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+}
+
 @media (max-width: 768px) {
     .quiz-columns {
         grid-template-columns: 1fr;
@@ -605,6 +676,9 @@ body:not(.sidebar-hidden) .quiz-header .sidebar-icon-close {
     counter-increment: question-counter;
     font-size: 0.95em;
     min-height: 1.5em;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
 }
 
 .answers-list.hidden {
@@ -636,6 +710,10 @@ body:not(.sidebar-hidden) .quiz-header .sidebar-icon-close {
 .answer-text {
     display: block;
     margin-left: 5px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
 }
 
 .separator {
@@ -844,13 +922,26 @@ body.dark-mode {
     --shadow: rgba(0,0,0,0.5);
 }
 
-body.dark-mode .edition-item.active {
-    background-color: #333;
+body.dark-mode .edition-item {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+    color: var(--text-color);
+}
+
+body.dark-mode .edition-item:hover {
+    background-color: #000;
+    border-color: #000;
     color: #fff;
 }
 
+body.dark-mode .edition-item.active {
+    background-color: #000;
+    color: #fff;
+    border-color: #000;
+}
+
 body.dark-mode .edition-item.active .edition-item-date {
-    color: #aaa;
+    color: #ccc;
 }
 
 body.dark-mode .nav-btn,
