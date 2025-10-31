@@ -17,9 +17,16 @@ async function loadQuizzes() {
         // Try Firestore first if configured
         if (typeof isFirebaseConfigured !== 'undefined' && isFirebaseConfigured()) {
             try {
-                quizzes = await loadQuizzesFromFirestore();
+                const firestoreQuizzes = await loadQuizzesFromFirestore();
                 console.log('Loaded quizzes from Firestore');
-                return;
+                
+                // If Firestore has quizzes, use them
+                if (firestoreQuizzes && firestoreQuizzes.length > 0) {
+                    quizzes = firestoreQuizzes;
+                    return;
+                } else {
+                    console.log('Firestore is empty, falling back to JSON');
+                }
             } catch (error) {
                 console.warn('Firestore load failed, falling back to JSON:', error);
             }
