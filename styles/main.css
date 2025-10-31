@@ -38,7 +38,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    zoom: 0.8;
+    zoom: 0.7;
     transform-origin: top left;
     font-size: 1.25em;
 }
@@ -657,7 +657,7 @@ main {
 .questions-list li,
 .answers-list li {
     position: relative;
-    padding-left: 35px;
+    padding-left: 40px;
     margin-bottom: 15px;
     line-height: 1.6;
     font-size: 1.15em;
@@ -694,7 +694,10 @@ main {
     position: absolute;
     left: 0;
     font-weight: bold;
-    width: 30px;
+    width: 35px;
+    text-align: right;
+    white-space: nowrap;
+    display: inline-block;
 }
 
 .question-text,
@@ -1262,14 +1265,17 @@ body.dark-mode .sort-order-btn:hover {
         font-size: 1em;
         line-height: 1.7;
         margin-bottom: 16px;
-        padding-left: 32px;
+        padding-left: 37px;
         min-height: auto;
     }
     
     .question-number,
     .answer-number {
         font-size: 1.15em;
-        width: 28px;
+        width: 32px;
+        text-align: right;
+        white-space: nowrap;
+        display: inline-block;
     }
     
     /* Buttons - Large touch targets (minimum 48px) */
