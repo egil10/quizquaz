@@ -3,148 +3,182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QuizQuaz Admin - Add New Quiz</title>
+    <title>QuizQuaz Admin</title>
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/admin.css">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
-    <header>
-        <div class="header-content">
-            <h1>QuizQuaz Admin</h1>
-            <a href="index.html" class="back-link">
-                <i data-lucide="arrow-left" class="icon-inline"></i>
-                Back to Site
-            </a>
+    <div id="loginScreen" style="display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px;">
+        <div class="admin-simple">
+            <h1>Admin Access</h1>
+            <input type="password" id="apiKeyInput" placeholder="Enter 16-character API key" maxlength="16" autocomplete="off">
+            <button id="apiKeySubmit">Authenticate</button>
+            <div id="apiKeyError" class="error-message" style="display: none;"></div>
+            <a href="https://egil10.github.io/quizquaz/">Home</a>
         </div>
-        <p class="tagline">Add New Quiz Edition</p>
-    </header>
+    </div>
 
-    <div class="stars-container" id="starsContainer"></div>
-
-    <div class="admin-container">
-        <div id="apiKeyScreen" class="admin-section">
-            <div class="admin-card">
-                <h2>
-                    <i data-lucide="lock" class="icon-inline"></i>
-                    Admin Access
-                </h2>
-                <p>Enter your API key to access the admin panel:</p>
-                <div class="form-group">
-                    <input type="password" id="apiKeyInput" placeholder="Enter 16-character API key" maxlength="16" class="form-input">
-                    <button id="apiKeySubmit" class="btn btn-primary">
-                        <i data-lucide="key" class="icon-inline"></i>
-                        Authenticate
-                    </button>
-                </div>
-                <div id="apiKeyError" class="error-message" style="display: none;"></div>
+    <div id="adminFormScreen" style="display: none;">
+        <header>
+            <div class="header-content">
+                <h1>QuizQuaz Admin</h1>
+                <a href="https://egil10.github.io/quizquaz/" class="back-link">Home</a>
             </div>
-        </div>
+            <p class="tagline">Add New Quiz Edition</p>
+        </header>
 
-        <div id="firebaseSetup" class="admin-section" style="display: none;">
-            <div class="admin-card">
-                <h2>
-                    <i data-lucide="database" class="icon-inline"></i>
-                    Firebase Setup (One-Time)
-                </h2>
-                <p>Set up Firebase to publish quizzes instantly without GitHub commits! This only needs to be done once.</p>
-                
-                <div class="info-box">
-                    <i data-lucide="info" class="icon-inline"></i>
-                    <div>
-                        <p><strong>Steps to set up:</strong></p>
-                        <ol style="margin-left: 20px; margin-top: 10px;">
-                            <li>Go to <a href="https://console.firebase.google.com/" target="_blank">Firebase Console</a></li>
-                            <li>Create a new project (or use existing)</li>
-                            <li>Enable Firestore Database</li>
-                            <li>Go to Project Settings > Your apps > Web app</li>
-                            <li>Copy the config values</li>
-                            <li>Edit <code>js/firebase-config.js</code> with your values</li>
-                            <li>Refresh this page</li>
-                        </ol>
+        <div class="stars-container" id="starsContainer"></div>
+
+        <div class="admin-container">
+            <div id="adminForm" class="admin-section">
+                <div class="admin-card">
+                    <h2>Add New Quiz</h2>
+                    
+                    <div id="firebaseConnected" class="success-box" style="display: none;">
+                        Connected to Firebase - Quiz will publish instantly!
                     </div>
-                </div>
-                
-                <div class="info-box" style="background-color: #fff3cd; border-left-color: #ffc107;">
-                    <i data-lucide="zap" class="icon-inline"></i>
-                    <p><strong>Why Firebase?</strong> No GitHub commits needed! Quizzes publish instantly and work from anywhere. Free tier is generous for this use case.</p>
-                </div>
-                
-                <div id="firebaseStatus" class="status-message" style="display: none;"></div>
-            </div>
-        </div>
-
-        <div id="adminForm" class="admin-section" style="display: none;">
-            <div class="admin-card">
-                <h2>
-                    <i data-lucide="plus-circle" class="icon-inline"></i>
-                    Add New Quiz
-                </h2>
-                
-                <div id="firebaseConnected" class="success-box" style="display: none;">
-                    <i data-lucide="check-circle" class="icon-inline"></i>
-                    <span>Connected to Firebase - Quiz will publish instantly!</span>
-                </div>
-                
-                <form id="quizForm">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="quizDate">Date <span class="required">*</span></label>
-                            <input type="date" id="quizDate" required class="form-input">
+                    
+                    <form id="quizForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="quizDate">Date <span class="required">*</span></label>
+                                <input type="date" id="quizDate" required class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label for="quizTitle">Title <span class="required">*</span></label>
+                                <input type="text" id="quizTitle" placeholder="January 1, 2024" required class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label for="quizEdition">Edition Number <span class="required">*</span></label>
+                                <input type="number" id="quizEdition" min="1" required class="form-input">
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="quizTitle">Title <span class="required">*</span></label>
-                            <input type="text" id="quizTitle" placeholder="January 1, 2024" required class="form-input">
+
+                        <div class="questions-container">
+                            <h3>Questions (12 required)</h3>
+                            <div id="questionsList"></div>
                         </div>
-                        <div class="form-group">
-                            <label for="quizEdition">Edition Number <span class="required">*</span></label>
-                            <input type="number" id="quizEdition" min="1" required class="form-input">
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary btn-large">
+                                <span id="submitText">Publish to Firebase</span>
+                            </button>
+                            <button type="button" id="saveDraftBtn" class="btn btn-secondary">
+                                Save Draft
+                            </button>
+                            <button type="button" id="loadDraftBtn" class="btn btn-secondary" style="display: none;">
+                                Load Draft
+                            </button>
                         </div>
+                    </form>
+
+                    <div id="successMessage" class="success-message" style="display: none;">
+                        Quiz published successfully!
+                    </div>
+                    
+                    <div id="errorMessage" class="error-message" style="display: none;">
+                        <span></span>
                     </div>
 
-                    <div class="questions-container">
-                        <h3>Questions (12 required)</h3>
-                        <div id="questionsList"></div>
+                    <div id="loadingIndicator" class="loading-indicator" style="display: none;">
+                        Publishing to Firebase...
                     </div>
-
-                    <div class="form-actions">
-                        <button type="submit" class="btn btn-primary btn-large">
-                            <i data-lucide="send" class="icon-inline"></i>
-                            <span id="submitText">Publish to Firebase</span>
-                        </button>
-                        <button type="button" id="saveDraftBtn" class="btn btn-secondary">
-                            <i data-lucide="save" class="icon-inline"></i>
-                            Save Draft
-                        </button>
-                        <button type="button" id="loadDraftBtn" class="btn btn-secondary" style="display: none;">
-                            <i data-lucide="download" class="icon-inline"></i>
-                            Load Draft
-                        </button>
-                    </div>
-                    <div class="info-box">
-                        <i data-lucide="smartphone" class="icon-inline"></i>
-                        <p><strong>Mobile-Friendly:</strong> Fill out the form on your phone, hit publish, and your quiz goes live instantly! Auto-saves drafts so you can finish later.</p>
-                    </div>
-                </form>
-
-                <div id="successMessage" class="success-message" style="display: none;">
-                    <i data-lucide="check-circle" class="icon-inline"></i>
-                    <span>Quiz published successfully!</span>
-                </div>
-                
-                <div id="errorMessage" class="error-message" style="display: none;">
-                    <i data-lucide="alert-circle" class="icon-inline"></i>
-                    <span></span>
-                </div>
-
-                <div id="loadingIndicator" class="loading-indicator" style="display: none;">
-                    <i data-lucide="loader-2" class="icon-inline spinning"></i>
-                        <span>Publishing to Firebase...</span>
                 </div>
             </div>
         </div>
     </div>
+
+    <style>
+        .admin-simple {
+            max-width: 400px;
+            width: 100%;
+            background-color: var(--card-bg);
+            padding: 40px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px var(--shadow);
+        }
+        
+        .admin-simple h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+        
+        .admin-simple input {
+            width: 100%;
+            padding: 12px;
+            font-size: 1em;
+            border: 2px solid var(--border-color);
+            border-radius: 6px;
+            margin-bottom: 20px;
+            font-family: 'Georgia', serif;
+            text-align: center;
+            letter-spacing: 2px;
+            box-sizing: border-box;
+        }
+        
+        .admin-simple input:focus {
+            outline: none;
+            border-color: #000;
+        }
+        
+        .admin-simple button {
+            width: 100%;
+            padding: 12px;
+            font-size: 1em;
+            background-color: #fff;
+            color: #000;
+            border: 2px solid #000;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: 'Georgia', serif;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        
+        .admin-simple button:hover {
+            background-color: #000;
+            color: #fff;
+        }
+        
+        .admin-simple a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+        
+        .admin-simple a:hover {
+            text-decoration: underline;
+        }
+        
+        .error-message {
+            color: #d32f2f;
+            text-align: center;
+            margin-top: 15px;
+            font-size: 0.9em;
+        }
+        
+        body.dark-mode .admin-simple input {
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            border-color: #333;
+        }
+        
+        body.dark-mode .admin-simple input:focus {
+            border-color: #e0e0e0;
+        }
+        
+        body.dark-mode .admin-simple button {
+            background-color: #fff;
+            color: #000;
+        }
+    </style>
 
     <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
@@ -157,12 +191,73 @@
     <!-- Admin Script -->
     <script src="js/admin.js"></script>
     <script>
-        // Set current year in footer
-        document.getElementById('currentYear')?.textContent = new Date().getFullYear();
+        // Simple API key authentication
+        const ADMIN_API_KEY = 'QUIZQUAZ2024API';
+        
+        function hashApiKey(key) {
+            let hash = 0;
+            for (let i = 0; i < key.length; i++) {
+                const char = key.charCodeAt(i);
+                hash = ((hash << 5) - hash) + char;
+                hash = hash & hash;
+            }
+            return hash.toString();
+        }
+        
+        const STORED_HASH = hashApiKey(ADMIN_API_KEY);
+        const loginScreen = document.getElementById('loginScreen');
+        const adminFormScreen = document.getElementById('adminFormScreen');
+        
+        // Check if already authenticated
+        if (sessionStorage.getItem('adminAuthenticated') === 'true') {
+            loginScreen.style.display = 'none';
+            adminFormScreen.style.display = 'block';
+            if (typeof initAdmin === 'function') {
+                initAdmin();
+            }
+        } else {
+            document.getElementById('apiKeySubmit').addEventListener('click', function() {
+                const input = document.getElementById('apiKeyInput');
+                const errorDiv = document.getElementById('apiKeyError');
+                const enteredKey = input.value.trim();
+                
+                if (enteredKey.length !== 16) {
+                    errorDiv.textContent = 'API key must be 16 characters';
+                    errorDiv.style.display = 'block';
+                    return;
+                }
+                
+                if (hashApiKey(enteredKey) === STORED_HASH || enteredKey === ADMIN_API_KEY) {
+                    sessionStorage.setItem('adminAuthenticated', 'true');
+                    loginScreen.style.display = 'none';
+                    adminFormScreen.style.display = 'block';
+                    if (typeof initAdmin === 'function') {
+                        initAdmin();
+                    }
+                } else {
+                    errorDiv.textContent = 'Invalid API key';
+                    errorDiv.style.display = 'block';
+                    input.value = '';
+                }
+            });
+            
+            document.getElementById('apiKeyInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    document.getElementById('apiKeySubmit').click();
+                }
+            });
+        }
+        
+        // Initialize theme and stars
+        if (typeof initTheme === 'function') {
+            initTheme();
+        }
+        if (typeof createStars === 'function') {
+            createStars();
+        }
         
         // Initialize Lucide icons
         lucide.createIcons();
     </script>
 </body>
 </html>
-

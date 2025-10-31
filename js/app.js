@@ -11,6 +11,18 @@ async function init() {
     setupEventListeners();
     createStars();
     updateUI();
+    
+    // Hide loading screen after everything is loaded
+    setTimeout(() => {
+        const loadingScreen = document.getElementById('loadingScreen');
+        const layoutContainer = document.querySelector('.layout-container');
+        if (loadingScreen) {
+            loadingScreen.classList.add('hidden');
+        }
+        if (layoutContainer) {
+            layoutContainer.classList.add('loaded');
+        }
+    }, 500);
 }
 
 // Load quizzes - tries Firestore first, falls back to JSON file
@@ -139,9 +151,6 @@ function updateUI() {
     // Reinitialize icons after rendering
     lucide.createIcons();
     
-    // Sync sidebar height with main content
-    syncSidebarHeight();
-    
     // Attach toggle button listeners
     const toggleBtn = document.getElementById('toggleAnswersBtn');
     if (toggleBtn) {
@@ -182,17 +191,6 @@ function updateUI() {
     }
 }
 
-// Sync sidebar height with main content
-function syncSidebarHeight() {
-    const mainContent = document.querySelector('main');
-    const sidebar = document.getElementById('editionsSidebar');
-    
-    if (mainContent && sidebar && !sidebar.classList.contains('hidden')) {
-        // Remove dynamic height - let sticky positioning handle it naturally
-        sidebar.style.height = '';
-        sidebar.style.maxHeight = 'calc(100vh - 40px)';
-    }
-}
 
 // Update editions sidebar
 function updateEditionsSidebar() {
@@ -316,8 +314,7 @@ function toggleAnswers() {
         }
         lucide.createIcons(); // Reinitialize icons
         
-        // Resync sidebar height after content changes
-        setTimeout(() => syncSidebarHeight(), 100);
+        // No need to sync height - sidebar has fixed height
     }
 }
 
