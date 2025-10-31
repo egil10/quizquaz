@@ -20,7 +20,7 @@
                 <i data-lucide="moon" class="theme-icon moon-icon"></i>
             </button>
         </div>
-        <p class="tagline">Quizutgaver</p>
+        <p class="tagline" id="funFact">...</p>
     </header>
 
     <div class="stars-container" id="starsContainer"></div>
@@ -49,10 +49,6 @@
                     <i data-lucide="book-open" class="icon-inline"></i>
                     Utgaver
                 </h3>
-                <button id="toggleSidebarBtn" class="toggle-sidebar-btn">
-                    <i data-lucide="x" class="icon-inline sidebar-icon-close"></i>
-                    <i data-lucide="menu" class="icon-inline sidebar-icon-open"></i>
-                </button>
             </div>
             <div id="editionsList" class="editions-list">
                 <!-- Editions will be populated here -->
@@ -103,6 +99,11 @@
     <!-- Main App -->
     <script src="js/app.js"></script>
     <script>
+        // Ensure page starts at top
+        window.addEventListener('load', function() {
+            window.scrollTo(0, 0);
+        });
+        
         // Set current year in footer
         document.getElementById('currentYear').textContent = new Date().getFullYear();
         

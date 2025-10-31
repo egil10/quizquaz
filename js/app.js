@@ -2,11 +2,15 @@ let quizzes = [];
 let currentIndex = 0;
 let answersVisible = false;
 let editionsPage = 0;
-const editionsPerPage = 8;
+const editionsPerPage = 6;
 
 // Initialize app
 async function init() {
+    // Scroll to top immediately
+    window.scrollTo(0, 0);
+    
     await loadQuizzes();
+    await loadFunFact();
     initTheme();
     setupEventListeners();
     createStars();
@@ -31,7 +35,38 @@ async function init() {
         if (footer) {
             footer.classList.add('loaded');
         }
+        
+        // Ensure scroll to top after loading screen is hidden
+        setTimeout(() => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 100);
     }, 500);
+}
+
+// Load and display a random fun fact
+async function loadFunFact() {
+    try {
+        const response = await fetch('data/funfacts.json');
+        if (!response.ok) {
+            throw new Error('Failed to load fun facts');
+        }
+        const data = await response.json();
+        const funFacts = data.funfacts;
+        
+        if (funFacts && funFacts.length > 0) {
+            const randomIndex = Math.floor(Math.random() * funFacts.length);
+            const funFactElement = document.getElementById('funFact');
+            if (funFactElement) {
+                funFactElement.textContent = funFacts[randomIndex];
+            }
+        }
+    } catch (error) {
+        console.error('Error loading fun facts:', error);
+        const funFactElement = document.getElementById('funFact');
+        if (funFactElement) {
+            funFactElement.textContent = 'Spennende quizutgaver venter på deg!';
+        }
+    }
 }
 
 // Load quizzes - tries Firestore first, falls back to JSON file
@@ -186,6 +221,12 @@ function updateUI() {
     
     // Reinitialize icons after rendering
     lucide.createIcons();
+    
+    // Reattach sidebar toggle button listener (since it's now in the quiz content)
+    const toggleSidebarBtn = document.getElementById('toggleSidebarBtn');
+    if (toggleSidebarBtn) {
+        toggleSidebarBtn.addEventListener('click', toggleSidebar);
+    }
     
     // Attach toggle button listeners
     const toggleBtn = document.getElementById('toggleAnswersBtn');
@@ -362,7 +403,13 @@ function renderQuiz(quiz) {
     return `
         <div class="quiz-newspaper">
             <div class="quiz-header">
-                <h2>${titleDate}</h2>
+                <div class="quiz-header-top">
+                    <h2>${titleDate}</h2>
+                    <button id="toggleSidebarBtn" class="toggle-sidebar-btn" aria-label="Toggle editions sidebar">
+                        <i data-lucide="menu" class="icon-inline sidebar-icon-open"></i>
+                        <i data-lucide="x" class="icon-inline sidebar-icon-close"></i>
+                    </button>
+                </div>
                 <div class="quiz-meta">
                     <span class="edition">Utgave ${quiz.edition}</span>
                 </div>

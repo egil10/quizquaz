@@ -1,27 +1,26 @@
-# QuizQuaz 📰
+# QuizQuaz
 
-**[🌐 View Live Site](https://egil10.github.io/quizquaz/)**
+**Live Site:** [https://egil10.github.io/quizquaz/](https://egil10.github.io/quizquaz/)
 
-A weekly quiz publication system with calendar and edition navigation. Display quizzes in a clean, newspaper-style format with numbered questions and answers—perfect for daily or weekly quiz challenges.
+A modern quiz publication platform with edition-based navigation. Display quizzes in a clean, newspaper-style format with numbered questions and answers—perfect for daily or weekly quiz challenges.
 
----
+## Features
 
-## ✨ Features
+- **Edition Navigation**: Browse quizzes by edition using a paginated sidebar with intuitive navigation
+- **Previous/Next Navigation**: Quick navigation buttons to move between quizzes seamlessly
+- **Newspaper Style Layout**: Classic newspaper aesthetic with numbered questions and answers displayed in columns
+- **12 Questions Standard**: Each quiz contains exactly 12 numbered questions
+- **Show/Hide Answers**: Toggle answers visibility with a single button click
+- **Dark Mode**: Light and dark theme support with animated starry background in dark mode
+- **Responsive Design**: Fully optimized for desktop, tablet, and mobile devices
+- **Mobile-First**: Touch-friendly interface with slide-out sidebar drawer on mobile
+- **Firebase Integration**: Cloud-based quiz storage for easy content management without manual commits
+- **Admin Panel**: Simple web-based interface for adding new quizzes
 
-- **📅 Calendar Navigation**: Browse quizzes by date using an intuitive date picker
-- **📚 Edition Navigation**: Navigate between quiz editions using a dropdown menu
-- **⬅️➡️ Previous/Next Navigation**: Quick navigation buttons to move between quizzes seamlessly
-- **📰 Newspaper Style**: Classic newspaper aesthetic with numbered questions and answers
-- **🔢 12 Questions Standard**: Each quiz contains exactly 12 numbered questions
-- **📱 Responsive Design**: Works beautifully on desktop, tablet, and mobile devices
-- **🎨 Clean Interface**: Simple, distraction-free reading experience
-
----
-
-## 🚀 Quick Start
+## Quick Start
 
 ### View Online
-Simply visit **[https://egil10.github.io/quizquaz/](https://egil10.github.io/quizquaz/)** to start browsing quizzes!
+Visit [https://egil10.github.io/quizquaz/](https://egil10.github.io/quizquaz/) to start browsing quizzes.
 
 ### Run Locally
 
@@ -41,33 +40,53 @@ php -S localhost:8000
 
 3. Open your browser and navigate to `http://localhost:8000`
 
----
-
-## 📁 Project Structure
+## Project Structure
 
 ```
 quizquaz/
-├── index.html          # Main application page
+├── index.html              # Main application page
+├── admin.html              # Admin panel for adding quizzes
 ├── styles/
-│   └── main.css       # Newspaper-style styling
+│   ├── main.css           # Main application styling
+│   └── admin.css          # Admin panel styling
 ├── js/
-│   └── app.js         # Application logic and navigation
+│   ├── app.js             # Main application logic
+│   ├── admin.js           # Admin panel logic
+│   ├── firebase.js        # Firebase integration
+│   └── firebase-config.js # Firebase configuration
 ├── data/
-│   └── quizzes.json   # Quiz data storage (JSON format)
-└── README.md          # This file
+│   └── quizzes.json       # Quiz data storage (fallback)
+├── assets/
+│   └── favicon.svg        # Application favicon
+├── docs/
+│   ├── ADMIN_API_KEY.md   # Admin API key documentation
+│   ├── FIREBASE_SETUP.md  # Firebase setup guide
+│   └── REPOSITORY.md      # Repository documentation
+└── README.md              # This file
 ```
 
----
+## Adding a New Quiz
 
-## 📝 Adding a New Quiz
+### Via Admin Panel (Recommended)
 
-To add a new quiz edition, simply edit `data/quizzes.json` and add a new quiz object to the `quizzes` array:
+1. Navigate to `admin.html`
+2. Enter your 16-character API key
+3. Fill in the quiz form:
+   - Date (required)
+   - Title (required)
+   - Edition number (required)
+   - 12 questions and answers (all required)
+4. Click "Publiser til Firebase" to publish instantly
+
+### Via JSON File (Manual)
+
+Edit `data/quizzes.json` and add a new quiz object to the `quizzes` array:
 
 ```json
 {
   "id": "2024-01-15",
   "date": "2024-01-15",
-  "title": "Weekly Quiz - January 15, 2024",
+  "title": "January 15, 2024",
   "edition": 3,
   "questions": [
     {
@@ -79,7 +98,7 @@ To add a new quiz edition, simply edit `data/quizzes.json` and add a new quiz ob
       "number": 2,
       "question": "Who wrote Romeo and Juliet?",
       "answer": "William Shakespeare"
-    },
+    }
     // ... continue with questions 3-12
   ]
 }
@@ -91,7 +110,7 @@ To add a new quiz edition, simply edit `data/quizzes.json` and add a new quiz ob
 |-------|------|-------------|---------|
 | `id` | string | Unique identifier (typically matches the date) | `"2024-01-15"` |
 | `date` | string | Quiz date in YYYY-MM-DD format | `"2024-01-15"` |
-| `title` | string | Display title for the quiz | `"Weekly Quiz - January 15, 2024"` |
+| `title` | string | Display title (formatted as "Monthname dd, yyyy") | `"January 15, 2024"` |
 | `edition` | number | Sequential edition number | `3` |
 | `questions` | array | Array of exactly 12 question objects | See below |
 
@@ -102,58 +121,65 @@ Each question object must have:
 
 **Important**: Each quiz must contain exactly 12 questions numbered 1 through 12.
 
----
-
-## 🎨 Design Philosophy
+## Design Philosophy
 
 QuizQuaz is designed with simplicity and readability in mind:
 
-- **📖 Newspaper Aesthetic**: Inspired by traditional print media, with clean typography and a classic layout
-- **🚫 No Interactive Elements**: Questions and answers are displayed as static text—no clicking, no multiple choice forms, just pure reading
-- **📱 Mobile-Friendly**: Responsive design ensures a great experience on all devices
-- **♿ Accessible**: Semantic HTML and clear structure for screen readers and accessibility tools
-- **🎯 Focused**: Distraction-free interface that lets you focus on the content
+- **Newspaper Aesthetic**: Inspired by traditional print media, with clean typography and a classic two-column layout
+- **Static Display**: Questions and answers are displayed as static text—no interactive forms, just pure reading
+- **Mobile-First**: Responsive design ensures optimal experience on all devices with touch-friendly controls
+- **Accessible**: Semantic HTML and clear structure for screen readers and accessibility tools
+- **Focused**: Distraction-free interface that emphasizes content over decoration
 
----
+## Technology Stack
 
-## 🛠️ Technology Stack
+- **HTML5**: Semantic markup with proper language attributes
+- **CSS3**: Modern styling with CSS variables, flexbox, grid, and responsive design
+- **Vanilla JavaScript**: ES6+ JavaScript with async/await, no frameworks
+- **Firebase Firestore**: Cloud database for quiz storage and real-time updates
+- **JSON**: Fallback data storage format
+- **Lucide Icons**: Modern icon library for UI elements
 
-- **HTML5**: Semantic markup
-- **CSS3**: Modern styling with flexbox and responsive design
-- **Vanilla JavaScript**: No frameworks, just pure ES6+ JavaScript
-- **JSON**: Simple data storage format
-
----
-
-## 🌐 Browser Support
+## Browser Support
 
 QuizQuaz works in all modern browsers that support:
 - ES6 JavaScript (async/await, fetch API)
-- CSS Flexbox and modern CSS features
-- HTML5 date input
+- CSS Flexbox and Grid
+- CSS Custom Properties (variables)
+- HTML5 semantic elements
 
 Tested and working on:
-- ✅ Chrome/Edge (latest)
-- ✅ Firefox (latest)
-- ✅ Safari (latest)
-- ✅ Opera (latest)
+- Chrome/Edge (latest)
+- Firefox (latest)
+- Safari (latest)
+- Opera (latest)
 
----
+## Mobile Optimization
 
-## 📄 License
+The application is fully optimized for mobile devices:
+- Touch-friendly buttons (minimum 48px height)
+- Slide-out sidebar drawer with overlay
+- Responsive typography and spacing
+- Prevented zoom on input focus
+- Optimized loading screen
+- Full-width layout on small screens
+
+## Firebase Setup
+
+For cloud-based quiz storage, Firebase Firestore integration is available. See `docs/FIREBASE_SETUP.md` for detailed setup instructions.
+
+## Admin Access
+
+The admin panel uses a simple API key authentication system. The API key is documented in `docs/ADMIN_API_KEY.md` (not tracked in git for security).
+
+## License
 
 This project is open source and available for personal and educational use.
 
----
+## Contributing
 
-## 🤝 Contributing
+Found a bug or have a suggestion? Feel free to open an issue or submit a pull request.
 
-Found a bug or have a suggestion? Feel free to open an issue or submit a pull request!
+## Questions?
 
----
-
-## 📧 Questions?
-
-Visit the **[live site](https://egil10.github.io/quizquaz/)** to see QuizQuaz in action, or check out the code to understand how it works.
-
-Happy quizzing! 🎯
+Visit the [live site](https://egil10.github.io/quizquaz/) to see QuizQuaz in action, or check out the code to understand how it works.

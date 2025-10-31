@@ -217,9 +217,14 @@
         if (sessionStorage.getItem('adminAuthenticated') === 'true') {
             loginScreen.style.display = 'none';
             adminFormScreen.style.display = 'block';
-            if (typeof initAdmin === 'function') {
-                initAdmin();
-            }
+            // Wait for scripts to load before calling initAdmin
+            setTimeout(() => {
+                if (typeof initAdmin === 'function') {
+                    initAdmin();
+                } else {
+                    console.error('initAdmin function not found');
+                }
+            }, 100);
         } else {
             document.getElementById('apiKeySubmit').addEventListener('click', function() {
                 const input = document.getElementById('apiKeyInput');
@@ -236,9 +241,14 @@
                     sessionStorage.setItem('adminAuthenticated', 'true');
                     loginScreen.style.display = 'none';
                     adminFormScreen.style.display = 'block';
-                    if (typeof initAdmin === 'function') {
-                        initAdmin();
-                    }
+                    // Wait a moment for display to update
+                    setTimeout(() => {
+                        if (typeof initAdmin === 'function') {
+                            initAdmin();
+                        } else {
+                            console.error('initAdmin function not found');
+                        }
+                    }, 100);
                 } else {
                     errorDiv.textContent = 'Ugyldig API-nøkkel';
                     errorDiv.style.display = 'block';

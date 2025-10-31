@@ -240,16 +240,7 @@ body.sidebar-hidden .sidebar-icon-open {
 }
 
 body.sidebar-hidden .toggle-sidebar-btn {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    width: 45px;
-    height: 45px;
-    background-color: #fff;
-    border: 2px solid #000;
-    border-radius: 6px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
+    /* Button is now always in quiz header, no special positioning needed */
 }
 
 body.sidebar-hidden .toggle-sidebar-btn:hover {
@@ -401,12 +392,12 @@ body.sidebar-hidden .toggle-sidebar-btn:hover {
 .nav-btn,
 .toggle-answers-btn,
 .pagination-btn {
-    padding: 10px 20px;
+    padding: 10px 16px;
     font-size: 0.9em;
     background-color: #fff;
     color: #000;
     border: 2px solid #000;
-    border-radius: 6px;
+    border-radius: 2px;
     cursor: pointer;
     font-family: 'Georgia', serif;
     transition: all 0.2s ease;
@@ -414,7 +405,7 @@ body.sidebar-hidden .toggle-sidebar-btn:hover {
     align-items: center;
     justify-content: center;
     gap: 6px;
-    min-width: 120px;
+    min-width: 90px;
     height: 40px;
     font-weight: 500;
 }
@@ -457,11 +448,15 @@ main {
     margin-bottom: 30px;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
     flex: 1;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /* Quiz newspaper style */
 .quiz-newspaper {
     font-size: 0.95em;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .quiz-header {
@@ -471,11 +466,57 @@ main {
     border-bottom: 2px solid var(--accent-color);
 }
 
+.quiz-header-top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+    margin-bottom: 8px;
+}
+
 .quiz-header h2 {
     font-size: 1.5em;
-    margin-bottom: 8px;
+    margin: 0;
     text-transform: uppercase;
     letter-spacing: 1px;
+}
+
+.quiz-header .toggle-sidebar-btn {
+    position: absolute;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+    border: 2px solid #000;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.quiz-header .toggle-sidebar-btn:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+body.sidebar-hidden .quiz-header .sidebar-icon-close {
+    display: none;
+}
+
+body.sidebar-hidden .quiz-header .sidebar-icon-open {
+    display: inline-block;
+}
+
+body:not(.sidebar-hidden) .quiz-header .sidebar-icon-open {
+    display: none;
+}
+
+body:not(.sidebar-hidden) .quiz-header .sidebar-icon-close {
+    display: inline-block;
 }
 
 .quiz-meta {
@@ -488,6 +529,8 @@ main {
 
 .quiz-content {
     margin-top: 20px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .quiz-columns-header {
@@ -497,6 +540,8 @@ main {
     margin-bottom: 12px;
     border-bottom: 1px solid var(--border-color);
     padding-bottom: 8px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .questions-header,
@@ -508,7 +553,8 @@ main {
 }
 
 .answers-header.hidden {
-    display: none;
+    visibility: hidden;
+    opacity: 0;
 }
 
 /* toggle-answers-btn styles are now in the unified button styles above */
@@ -519,6 +565,8 @@ main {
     gap: 30px;
     align-items: start;
     min-height: 500px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 @media (max-width: 768px) {
@@ -532,11 +580,15 @@ main {
     display: flex;
     flex-direction: column;
     min-height: 500px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .answers-list {
     min-height: 500px;
     transition: visibility 0.3s, opacity 0.3s;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .questions-list,
@@ -558,11 +610,14 @@ main {
 .answers-list.hidden {
     visibility: hidden;
     opacity: 0;
+    min-height: 500px;
 }
 
 .answers-list {
     min-height: 500px;
     transition: visibility 0.3s, opacity 0.3s;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .answers-list:not(.hidden) {
@@ -930,9 +985,11 @@ body.sidebar-hidden body.dark-mode .toggle-sidebar-btn {
         font-size: 1.1em;
     }
     
-    .toggle-sidebar-btn {
-        width: 36px;
-        height: 36px;
+    .quiz-header .toggle-sidebar-btn {
+        width: 44px;
+        height: 44px;
+        position: absolute;
+        right: 0;
     }
     
     .editions-list {
@@ -1036,7 +1093,9 @@ body.sidebar-hidden body.dark-mode .toggle-sidebar-btn {
     }
     
     .answers-list.hidden {
-        display: none;
+        visibility: hidden;
+        opacity: 0;
+        min-height: auto;
     }
     
     .questions-list li,
@@ -1058,11 +1117,12 @@ body.sidebar-hidden body.dark-mode .toggle-sidebar-btn {
     .nav-btn,
     .toggle-answers-btn {
         min-height: 48px;
-        padding: 14px 24px;
+        padding: 14px 16px;
         font-size: 1.05em;
         min-width: 100%;
         touch-action: manipulation;
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+        border-radius: 2px;
     }
     
     .pagination-btn {
@@ -1207,8 +1267,9 @@ body.sidebar-hidden body.dark-mode .toggle-sidebar-btn {
     
     .nav-btn,
     .toggle-answers-btn {
-        min-width: 160px;
+        min-width: 100px;
         min-height: 48px;
+        border-radius: 2px;
     }
     
     footer {
@@ -1235,6 +1296,7 @@ body.sidebar-hidden body.dark-mode .toggle-sidebar-btn {
     
     .nav-btn,
     .toggle-answers-btn {
-        min-width: 140px;
+        min-width: 100px;
+        border-radius: 2px;
     }
 }

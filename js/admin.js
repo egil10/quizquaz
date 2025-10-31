@@ -19,22 +19,12 @@ let isAuthenticated = false;
 
 // Initialize admin page
 function initAdmin() {
-    // Load Firebase config
-    loadFirebaseConfig();
-    
-    // Check if already authenticated
-    const authStatus = sessionStorage.getItem('adminAuthenticated');
-    if (authStatus === 'true') {
-        if (isFirebaseConfigured()) {
-            showAdminForm();
-        } else {
-            showFirebaseSetup();
-        }
-    } else {
-        setupApiKeyScreen();
-    }
+    // Initialize theme and stars
     initTheme();
     createStars();
+    
+    // Show admin form directly (authentication already handled in HTML)
+    showAdminForm();
 }
 
 // Load Firebase configuration
@@ -128,14 +118,6 @@ function setupFirebaseConfig() {
 
 // Show admin form
 function showAdminForm() {
-    const apiKeyScreen = document.getElementById('apiKeyScreen');
-    const adminForm = document.getElementById('adminForm');
-    const firebaseSetup = document.getElementById('firebaseSetup');
-    
-    apiKeyScreen.style.display = 'none';
-    if (firebaseSetup) firebaseSetup.style.display = 'none';
-    adminForm.style.display = 'block';
-    
     // Show Firebase connected status
     if (isFirebaseConfigured()) {
         const connectedDiv = document.getElementById('firebaseConnected');
@@ -451,11 +433,15 @@ function downloadJSONFile(jsonContent, filename) {
 function showSuccess(message) {
     const successMsg = document.getElementById('successMessage');
     const errorMsg = document.getElementById('errorMessage');
-    successMsg.querySelector('span').textContent = message;
-    successMsg.style.display = 'flex';
-    errorMsg.style.display = 'none';
+    if (successMsg) {
+        successMsg.textContent = message;
+        successMsg.style.display = 'block';
+    }
+    if (errorMsg) {
+        errorMsg.style.display = 'none';
+    }
     setTimeout(() => {
-        successMsg.style.display = 'none';
+        if (successMsg) successMsg.style.display = 'none';
     }, 5000);
 }
 
@@ -463,11 +449,20 @@ function showSuccess(message) {
 function showError(message) {
     const successMsg = document.getElementById('successMessage');
     const errorMsg = document.getElementById('errorMessage');
-    errorMsg.querySelector('span').textContent = message;
-    errorMsg.style.display = 'flex';
-    successMsg.style.display = 'none';
+    if (errorMsg) {
+        const errorSpan = errorMsg.querySelector('span');
+        if (errorSpan) {
+            errorSpan.textContent = message;
+        } else {
+            errorMsg.textContent = message;
+        }
+        errorMsg.style.display = 'block';
+    }
+    if (successMsg) {
+        successMsg.style.display = 'none';
+    }
     setTimeout(() => {
-        errorMsg.style.display = 'none';
+        if (errorMsg) errorMsg.style.display = 'none';
     }, 5000);
 }
 
@@ -504,9 +499,5 @@ function createStars() {
     }
 }
 
-// Initialize when DOM is ready
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initAdmin);
-} else {
-    initAdmin();
-}
+// Note: initAdmin is called from admin.html after authentication
+// Do not auto-initialize here since authentication is handled in HTML
