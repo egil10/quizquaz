@@ -2,7 +2,8 @@ let quizzes = [];
 let currentIndex = 0;
 let answersVisible = false;
 let editionsPage = 0;
-const editionsPerPage = 6;
+const editionsPerPage = 9; // 3 columns x 3 rows
+let sortOrder = 'newest'; // 'newest' or 'oldest'
 
 // Initialize app
 async function init() {
@@ -138,53 +139,43 @@ function createStars() {
 // Setup event listeners
 function setupEventListeners() {
     const themeToggle = document.getElementById('themeToggle');
-    const toggleSidebarBtn = document.getElementById('toggleSidebarBtn');
+    const sortOrderBtn = document.getElementById('sortOrderBtn');
+    const editionsDropdown = document.getElementById('editionsDropdown');
 
     if (themeToggle) {
         themeToggle.addEventListener('click', toggleTheme);
     }
 
-    if (toggleSidebarBtn) {
-        toggleSidebarBtn.addEventListener('click', toggleSidebar);
+    if (sortOrderBtn) {
+        sortOrderBtn.addEventListener('click', toggleSortOrder);
     }
 
-    setupEditionsPagination();
-    setupSidebarOverlay();
-}
-
-// Toggle sidebar visibility
-function toggleSidebar() {
-    const sidebar = document.getElementById('editionsSidebar');
-    if (sidebar) {
-        sidebar.classList.toggle('hidden');
-        document.body.classList.toggle('sidebar-hidden');
-        
-        // Prevent body scroll when sidebar is open on mobile
-        if (window.innerWidth <= 480) {
-            if (sidebar.classList.contains('hidden')) {
-                document.body.style.overflow = '';
-            } else {
-                document.body.style.overflow = 'hidden';
-            }
-        }
-    }
-}
-
-// Close sidebar when clicking overlay on mobile
-function setupSidebarOverlay() {
-    if (window.innerWidth <= 480) {
-        document.body.addEventListener('click', function(e) {
-            const sidebar = document.getElementById('editionsSidebar');
-            const toggleBtn = document.getElementById('toggleSidebarBtn');
-            
-            // If sidebar is open and we clicked outside of it (on the overlay)
-            if (sidebar && !sidebar.classList.contains('hidden') && 
-                !sidebar.contains(e.target) && 
-                toggleBtn && !toggleBtn.contains(e.target)) {
-                toggleSidebar();
+    if (editionsDropdown) {
+        editionsDropdown.addEventListener('change', (e) => {
+            const selectedIndex = parseInt(e.target.value);
+            if (selectedIndex !== -1 && selectedIndex < quizzes.length) {
+                currentIndex = selectedIndex;
+                answersVisible = false;
+                updateUI();
             }
         });
     }
+
+    setupEditionsPagination();
+}
+
+// Toggle sort order (newest/oldest)
+function toggleSortOrder() {
+    sortOrder = sortOrder === 'newest' ? 'oldest' : 'newest';
+    const sortBtn = document.getElementById('sortOrderBtn');
+    if (sortBtn) {
+        sortBtn.innerHTML = sortOrder === 'newest' 
+            ? '<i data-lucide="arrow-down-up" class="icon-inline"></i> Nyeste først'
+            : '<i data-lucide="arrow-down-up" class="icon-inline"></i> Eldste først';
+        lucide.createIcons();
+    }
+    editionsPage = 0; // Reset to first page when sorting
+    updateEditionsSidebar();
 }
 
 // Update UI with current quiz
@@ -194,7 +185,7 @@ function updateUI() {
     const quiz = quizzes[currentIndex];
     const container = document.getElementById('quizContainer');
 
-    // Update sidebar
+    // Update editions grid
     updateEditionsSidebar();
 
     // Display quiz
@@ -202,12 +193,6 @@ function updateUI() {
     
     // Reinitialize icons after rendering
     lucide.createIcons();
-    
-    // Reattach sidebar toggle button listener (since it's now in the quiz content)
-    const toggleSidebarBtn = document.getElementById('toggleSidebarBtn');
-    if (toggleSidebarBtn) {
-        toggleSidebarBtn.addEventListener('click', toggleSidebar);
-    }
     
     // Attach toggle button listeners
     const toggleBtn = document.getElementById('toggleAnswersBtn');
@@ -223,10 +208,20 @@ function updateUI() {
             if (currentIndex > 0) {
                 currentIndex--;
                 answersVisible = false;
-                // Switch to page containing this quiz if needed
-                const quizPage = Math.floor(currentIndex / editionsPerPage);
-                if (quizPage !== editionsPage) {
-                    editionsPage = quizPage;
+                // Find and switch to page containing this quiz in sorted order
+                const sortedQuizzes = [...quizzes];
+                if (sortOrder === 'newest') {
+                    sortedQuizzes.sort((a, b) => new Date(b.date) - new Date(a.date));
+                } else {
+                    sortedQuizzes.sort((a, b) => new Date(a.date) - new Date(b.date));
+                }
+                const currentQuizId = quizzes[currentIndex]?.id;
+                const sortedIndex = sortedQuizzes.findIndex(q => q.id === currentQuizId);
+                if (sortedIndex !== -1) {
+                    const quizPage = Math.floor(sortedIndex / editionsPerPage);
+                    if (quizPage !== editionsPage) {
+                        editionsPage = quizPage;
+                    }
                 }
                 updateUI();
             }
@@ -238,10 +233,20 @@ function updateUI() {
             if (currentIndex < quizzes.length - 1) {
                 currentIndex++;
                 answersVisible = false;
-                // Switch to page containing this quiz if needed
-                const quizPage = Math.floor(currentIndex / editionsPerPage);
-                if (quizPage !== editionsPage) {
-                    editionsPage = quizPage;
+                // Find and switch to page containing this quiz in sorted order
+                const sortedQuizzes = [...quizzes];
+                if (sortOrder === 'newest') {
+                    sortedQuizzes.sort((a, b) => new Date(b.date) - new Date(a.date));
+                } else {
+                    sortedQuizzes.sort((a, b) => new Date(a.date) - new Date(b.date));
+                }
+                const currentQuizId = quizzes[currentIndex]?.id;
+                const sortedIndex = sortedQuizzes.findIndex(q => q.id === currentQuizId);
+                if (sortedIndex !== -1) {
+                    const quizPage = Math.floor(sortedIndex / editionsPerPage);
+                    if (quizPage !== editionsPage) {
+                        editionsPage = quizPage;
+                    }
                 }
                 updateUI();
             }
@@ -250,16 +255,42 @@ function updateUI() {
 }
 
 
-// Update editions sidebar
+// Update editions grid and dropdown
 function updateEditionsSidebar() {
     const editionsList = document.getElementById('editionsList');
-    if (!editionsList) return;
+    const editionsDropdown = document.getElementById('editionsDropdown');
+    if (!editionsList || !editionsDropdown) return;
 
-    // Calculate pagination
-    const totalPages = Math.ceil(quizzes.length / editionsPerPage);
+    // Sort quizzes based on sort order
+    const sortedQuizzes = [...quizzes];
+    if (sortOrder === 'newest') {
+        sortedQuizzes.sort((a, b) => new Date(b.date) - new Date(a.date));
+    } else {
+        sortedQuizzes.sort((a, b) => new Date(a.date) - new Date(b.date));
+    }
+
+    // Find current quiz index in sorted array
+    const currentQuizId = quizzes[currentIndex]?.id;
+    const sortedCurrentIndex = sortedQuizzes.findIndex(q => q.id === currentQuizId);
+
+    // Update dropdown for mobile
+    editionsDropdown.innerHTML = '';
+    sortedQuizzes.forEach((quiz, index) => {
+        const originalIndex = quizzes.findIndex(q => q.id === quiz.id);
+        const option = document.createElement('option');
+        option.value = originalIndex;
+        option.textContent = `Utgave ${quiz.edition} - ${formatDate(quiz.date)}`;
+        if (originalIndex === currentIndex) {
+            option.selected = true;
+        }
+        editionsDropdown.appendChild(option);
+    });
+
+    // Calculate pagination for desktop grid
+    const totalPages = Math.ceil(sortedQuizzes.length / editionsPerPage);
     const startIndex = editionsPage * editionsPerPage;
-    const endIndex = Math.min(startIndex + editionsPerPage, quizzes.length);
-    const currentPageQuizzes = quizzes.slice(startIndex, endIndex);
+    const endIndex = Math.min(startIndex + editionsPerPage, sortedQuizzes.length);
+    const currentPageQuizzes = sortedQuizzes.slice(startIndex, endIndex);
 
     // Update page info
     const pageInfo = document.getElementById('editionsPageInfo');
@@ -278,12 +309,15 @@ function updateEditionsSidebar() {
         nextPageBtn.disabled = editionsPage >= totalPages - 1;
     }
 
-    // Render current page items
+    // Render current page items for desktop grid
     editionsList.innerHTML = '';
     currentPageQuizzes.forEach((quiz, localIndex) => {
         const globalIndex = startIndex + localIndex;
+        const originalIndex = quizzes.findIndex(q => q.id === quiz.id);
+        const isActive = originalIndex === currentIndex;
+        
         const item = document.createElement('div');
-        item.className = `edition-item ${globalIndex === currentIndex ? 'active' : ''}`;
+        item.className = `edition-item ${isActive ? 'active' : ''}`;
         item.innerHTML = `
             <div>
                 <span class="edition-item-number">Utgave ${quiz.edition}</span>
@@ -291,7 +325,7 @@ function updateEditionsSidebar() {
             <div class="edition-item-date">${formatDate(quiz.date)}</div>
         `;
         item.addEventListener('click', () => {
-            currentIndex = globalIndex;
+            currentIndex = originalIndex;
             answersVisible = false;
             updateUI();
             // Switch to page containing this quiz if needed
@@ -304,7 +338,7 @@ function updateEditionsSidebar() {
         editionsList.appendChild(item);
     });
     
-    // Reinitialize icons after updating sidebar
+    // Reinitialize icons after updating grid
     lucide.createIcons();
 }
 
@@ -383,27 +417,29 @@ function renderQuiz(quiz) {
     
     return `
         <div class="quiz-newspaper">
-            <div class="quiz-header">
+            <div class="quiz-header desktop-header">
                 <div class="quiz-header-top">
                     <h2>${titleDate}</h2>
-                    <button id="toggleSidebarBtn" class="toggle-sidebar-btn" aria-label="Toggle editions sidebar">
-                        <i data-lucide="menu" class="icon-inline sidebar-icon-open"></i>
-                        <i data-lucide="x" class="icon-inline sidebar-icon-close"></i>
-                    </button>
                 </div>
                 <div class="quiz-meta">
                     <span class="edition">Utgave ${quiz.edition}</span>
                 </div>
             </div>
             
+            <div class="quiz-header mobile-header">
+                <h2>${titleDate}</h2>
+                <span class="edition">Utgave ${quiz.edition}</span>
+            </div>
+            
             <div class="quiz-content">
-                <div class="quiz-columns-header">
+                <div class="quiz-columns-header desktop-header">
                     <h3 class="questions-header">Spørsmål</h3>
                     <h3 class="answers-header ${answersVisible ? '' : 'hidden'}">Svar</h3>
                 </div>
                 
                 <div class="quiz-columns">
                     <div class="questions-column">
+                        <h3 class="questions-header-mobile mobile-header">Spørsmål</h3>
                         <ol class="questions-list">
                             ${quiz.questions.map(q => `
                                 <li>
@@ -413,7 +449,7 @@ function renderQuiz(quiz) {
                             `).join('')}
                         </ol>
                         <div class="quiz-actions">
-                            <button id="prevBtn" class="nav-btn" ${currentIndex === 0 ? 'disabled' : ''}>
+                            <button id="prevBtn" class="nav-btn desktop-nav" ${currentIndex === 0 ? 'disabled' : ''}>
                                 <i data-lucide="chevron-left" class="icon-inline"></i>
                                 Forrige
                             </button>
@@ -421,14 +457,16 @@ function renderQuiz(quiz) {
                                 <i data-lucide="${answersVisible ? 'eye-off' : 'eye'}" class="icon-inline"></i>
                                 ${answersVisible ? 'Skjul svar' : 'Svar'}
                             </button>
-                            <button id="nextBtn" class="nav-btn" ${currentIndex === quizzes.length - 1 ? 'disabled' : ''}>
+                            <button id="nextBtn" class="nav-btn desktop-nav" ${currentIndex === quizzes.length - 1 ? 'disabled' : ''}>
                                 Neste
                                 <i data-lucide="chevron-right" class="icon-inline"></i>
                             </button>
                         </div>
                     </div>
                     
-                    <ol class="answers-list ${answersVisible ? '' : 'hidden'}">
+                    ${answersVisible ? `
+                    <ol class="answers-list">
+                        <h3 class="answers-header-mobile mobile-header">Svar</h3>
                         ${quiz.questions.map(q => `
                             <li>
                                 <span class="answer-number">${q.number}.</span>
@@ -436,6 +474,7 @@ function renderQuiz(quiz) {
                             </li>
                         `).join('')}
                     </ol>
+                    ` : ''}
                 </div>
             </div>
         </div>
@@ -448,3 +487,9 @@ if (document.readyState === 'loading') {
 } else {
     init();
 }
+
+// Set current year in footer
+document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+// Initialize Lucide icons
+lucide.createIcons();

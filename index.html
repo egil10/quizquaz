@@ -43,14 +43,21 @@
             </main>
         </div>
 
-        <aside class="editions-sidebar" id="editionsSidebar">
-            <div class="sidebar-header">
+        <section class="editions-section" id="editionsSection">
+            <div class="editions-header">
                 <h3>
                     <i data-lucide="book-open" class="icon-inline"></i>
                     Utgaver
                 </h3>
+                <button id="sortOrderBtn" class="sort-order-btn" aria-label="Sorter utgaver">
+                    <i data-lucide="arrow-down-up" class="icon-inline"></i>
+                    Nyeste først
+                </button>
             </div>
-            <div id="editionsList" class="editions-list">
+            <select id="editionsDropdown" class="editions-dropdown">
+                <!-- Options will be populated here -->
+            </select>
+            <div id="editionsList" class="editions-grid">
                 <!-- Editions will be populated here -->
             </div>
             <div class="editions-pagination">
@@ -62,7 +69,7 @@
                     <i data-lucide="chevron-right" class="icon-inline"></i>
                 </button>
             </div>
-        </aside>
+        </section>
     </div>
 
     <footer>
@@ -85,17 +92,5 @@
 
     <!-- Main App -->
     <script src="js/app.js"></script>
-    <script>
-        // Ensure page starts at top
-        window.addEventListener('load', function() {
-            window.scrollTo(0, 0);
-        });
-        
-        // Set current year in footer
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
-        
-        // Initialize Lucide icons
-        lucide.createIcons();
-    </script>
 </body>
 </html>
