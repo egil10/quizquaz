@@ -38,6 +38,8 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    zoom: 0.9;
+    transform-origin: top left;
 }
 
 /* Starry background for dark mode */
