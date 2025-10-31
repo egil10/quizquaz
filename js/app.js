@@ -2,7 +2,7 @@ let quizzes = [];
 let currentIndex = 0;
 let answersVisible = false;
 let editionsPage = 0;
-const editionsPerPage = 9; // 3 columns x 3 rows
+const editionsPerPage = 12; // 4 columns x 3 rows
 let sortOrder = 'newest'; // 'newest' or 'oldest'
 
 // Initialize app
@@ -466,7 +466,6 @@ function renderQuiz(quiz) {
                     
                     ${answersVisible ? `
                     <ol class="answers-list">
-                        <h3 class="answers-header-mobile mobile-header">Svar</h3>
                         ${quiz.questions.map(q => `
                             <li>
                                 <span class="answer-number">${q.number}.</span>
@@ -474,7 +473,16 @@ function renderQuiz(quiz) {
                             </li>
                         `).join('')}
                     </ol>
-                    ` : ''}
+                    ` : `
+                    <ol class="answers-list hidden">
+                        ${quiz.questions.map(q => `
+                            <li>
+                                <span class="answer-number">${q.number}.</span>
+                                <span class="answer-text">${q.answer}</span>
+                            </li>
+                        `).join('')}
+                    </ol>
+                    `}
                 </div>
             </div>
         </div>
