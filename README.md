@@ -1,31 +1,67 @@
-# QuizQuaz
+# QuizQuaz 📰
 
-A weekly quiz publication system with calendar and edition navigation. Display quizzes in a clean, newspaper-style format with numbered questions and answers.
+**[🌐 View Live Site](https://egil10.github.io/quizquaz/)**
 
-## Features
+A weekly quiz publication system with calendar and edition navigation. Display quizzes in a clean, newspaper-style format with numbered questions and answers—perfect for daily or weekly quiz challenges.
 
-- **Calendar Navigation**: Browse quizzes by date using a date picker
-- **Edition Navigation**: Navigate between quiz editions using a dropdown
-- **Previous/Next Navigation**: Quick navigation buttons to move between quizzes
-- **Newspaper Style**: Classic newspaper aesthetic with numbered questions and answers
-- **12 Questions Per Quiz**: Each quiz contains exactly 12 questions
+---
 
-## Structure
+## ✨ Features
+
+- **📅 Calendar Navigation**: Browse quizzes by date using an intuitive date picker
+- **📚 Edition Navigation**: Navigate between quiz editions using a dropdown menu
+- **⬅️➡️ Previous/Next Navigation**: Quick navigation buttons to move between quizzes seamlessly
+- **📰 Newspaper Style**: Classic newspaper aesthetic with numbered questions and answers
+- **🔢 12 Questions Standard**: Each quiz contains exactly 12 numbered questions
+- **📱 Responsive Design**: Works beautifully on desktop, tablet, and mobile devices
+- **🎨 Clean Interface**: Simple, distraction-free reading experience
+
+---
+
+## 🚀 Quick Start
+
+### View Online
+Simply visit **[https://egil10.github.io/quizquaz/](https://egil10.github.io/quizquaz/)** to start browsing quizzes!
+
+### Run Locally
+
+1. Clone or download this repository
+2. Start a local server (required for JSON loading):
+
+```bash
+# Using Python (recommended)
+python -m http.server 8000
+
+# Using Node.js (http-server)
+npx http-server
+
+# Using PHP
+php -S localhost:8000
+```
+
+3. Open your browser and navigate to `http://localhost:8000`
+
+---
+
+## 📁 Project Structure
 
 ```
 quizquaz/
-├── index.html          # Main page
+├── index.html          # Main application page
 ├── styles/
 │   └── main.css       # Newspaper-style styling
 ├── js/
-│   └── app.js         # Application logic
-└── data/
-    └── quizzes.json   # Quiz data storage
+│   └── app.js         # Application logic and navigation
+├── data/
+│   └── quizzes.json   # Quiz data storage (JSON format)
+└── README.md          # This file
 ```
 
-## Adding a New Quiz
+---
 
-To add a new quiz edition, edit `data/quizzes.json` and add a new quiz object:
+## 📝 Adding a New Quiz
+
+To add a new quiz edition, simply edit `data/quizzes.json` and add a new quiz object to the `quizzes` array:
 
 ```json
 {
@@ -36,52 +72,88 @@ To add a new quiz edition, edit `data/quizzes.json` and add a new quiz object:
   "questions": [
     {
       "number": 1,
-      "question": "Your question here?",
-      "answer": "Your answer here"
+      "question": "What is the capital of France?",
+      "answer": "Paris"
     },
-    // ... add 12 questions total (numbered 1-12)
+    {
+      "number": 2,
+      "question": "Who wrote Romeo and Juliet?",
+      "answer": "William Shakespeare"
+    },
+    // ... continue with questions 3-12
   ]
 }
 ```
 
 ### Quiz Format Requirements
 
-- **id**: Unique identifier (typically matches the date)
-- **date**: Date in YYYY-MM-DD format
-- **title**: Display title for the quiz
-- **edition**: Sequential edition number (1, 2, 3, etc.)
-- **questions**: Array of exactly 12 question objects
-  - **number**: Question number (1-12)
-  - **question**: The question text
-  - **answer**: The answer text
+| Field | Type | Description | Example |
+|-------|------|-------------|---------|
+| `id` | string | Unique identifier (typically matches the date) | `"2024-01-15"` |
+| `date` | string | Quiz date in YYYY-MM-DD format | `"2024-01-15"` |
+| `title` | string | Display title for the quiz | `"Weekly Quiz - January 15, 2024"` |
+| `edition` | number | Sequential edition number | `3` |
+| `questions` | array | Array of exactly 12 question objects | See below |
 
-## Running the Application
+Each question object must have:
+- `number`: Question number (1-12)
+- `question`: The question text
+- `answer`: The answer text
 
-Simply open `index.html` in a web browser. For local development, you may need to run a local server to avoid CORS issues:
+**Important**: Each quiz must contain exactly 12 questions numbered 1 through 12.
 
-```bash
-# Using Python
-python -m http.server 8000
+---
 
-# Using Node.js (http-server)
-npx http-server
+## 🎨 Design Philosophy
 
-# Using PHP
-php -S localhost:8000
-```
+QuizQuaz is designed with simplicity and readability in mind:
 
-Then navigate to `http://localhost:8000` in your browser.
+- **📖 Newspaper Aesthetic**: Inspired by traditional print media, with clean typography and a classic layout
+- **🚫 No Interactive Elements**: Questions and answers are displayed as static text—no clicking, no multiple choice forms, just pure reading
+- **📱 Mobile-Friendly**: Responsive design ensures a great experience on all devices
+- **♿ Accessible**: Semantic HTML and clear structure for screen readers and accessibility tools
+- **🎯 Focused**: Distraction-free interface that lets you focus on the content
 
-## Design Philosophy
+---
 
-- **No Interactive Elements**: Questions and answers are displayed as static text (no clicking, no multiple choice)
-- **Newspaper Style**: Clean, readable format inspired by traditional newspapers
-- **Simple Navigation**: Easy-to-use controls for browsing different editions
-- **12 Questions Standard**: Each quiz follows a consistent 12-question format
+## 🛠️ Technology Stack
 
-## Browser Support
+- **HTML5**: Semantic markup
+- **CSS3**: Modern styling with flexbox and responsive design
+- **Vanilla JavaScript**: No frameworks, just pure ES6+ JavaScript
+- **JSON**: Simple data storage format
 
-Works in all modern browsers that support:
+---
+
+## 🌐 Browser Support
+
+QuizQuaz works in all modern browsers that support:
 - ES6 JavaScript (async/await, fetch API)
-- CSS Grid and Flexbox
+- CSS Flexbox and modern CSS features
 - HTML5 date input
+
+Tested and working on:
+- ✅ Chrome/Edge (latest)
+- ✅ Firefox (latest)
+- ✅ Safari (latest)
+- ✅ Opera (latest)
+
+---
+
+## 📄 License
+
+This project is open source and available for personal and educational use.
+
+---
+
+## 🤝 Contributing
+
+Found a bug or have a suggestion? Feel free to open an issue or submit a pull request!
+
+---
+
+## 📧 Questions?
+
+Visit the **[live site](https://egil10.github.io/quizquaz/)** to see QuizQuaz in action, or check out the code to understand how it works.
+
+Happy quizzing! 🎯

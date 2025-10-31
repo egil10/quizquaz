@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuizQuaz Admin - Add New Quiz</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/admin.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>QuizQuaz Admin</h1>
+            <a href="index.html" class="back-link">
+                <i data-lucide="arrow-left" class="icon-inline"></i>
+                Back to Site
+            </a>
+        </div>
+        <p class="tagline">Add New Quiz Edition</p>
+    </header>
+
+    <div class="stars-container" id="starsContainer"></div>
+
+    <div class="admin-container">
+        <div id="apiKeyScreen" class="admin-section">
+            <div class="admin-card">
+                <h2>
+                    <i data-lucide="lock" class="icon-inline"></i>
+                    Admin Access
+                </h2>
+                <p>Enter your API key to access the admin panel:</p>
+                <div class="form-group">
+                    <input type="password" id="apiKeyInput" placeholder="Enter 16-character API key" maxlength="16" class="form-input">
+                    <button id="apiKeySubmit" class="btn btn-primary">
+                        <i data-lucide="key" class="icon-inline"></i>
+                        Authenticate
+                    </button>
+                </div>
+                <div id="apiKeyError" class="error-message" style="display: none;"></div>
+            </div>
+        </div>
+
+        <div id="firebaseSetup" class="admin-section" style="display: none;">
+            <div class="admin-card">
+                <h2>
+                    <i data-lucide="database" class="icon-inline"></i>
+                    Firebase Setup (One-Time)
+                </h2>
+                <p>Set up Firebase to publish quizzes instantly without GitHub commits! This only needs to be done once.</p>
+                
+                <div class="info-box">
+                    <i data-lucide="info" class="icon-inline"></i>
+                    <div>
+                        <p><strong>Steps to set up:</strong></p>
+                        <ol style="margin-left: 20px; margin-top: 10px;">
+                            <li>Go to <a href="https://console.firebase.google.com/" target="_blank">Firebase Console</a></li>
+                            <li>Create a new project (or use existing)</li>
+                            <li>Enable Firestore Database</li>
+                            <li>Go to Project Settings > Your apps > Web app</li>
+                            <li>Copy the config values</li>
+                            <li>Edit <code>js/firebase-config.js</code> with your values</li>
+                            <li>Refresh this page</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="info-box" style="background-color: #fff3cd; border-left-color: #ffc107;">
+                    <i data-lucide="zap" class="icon-inline"></i>
+                    <p><strong>Why Firebase?</strong> No GitHub commits needed! Quizzes publish instantly and work from anywhere. Free tier is generous for this use case.</p>
+                </div>
+                
+                <div id="firebaseStatus" class="status-message" style="display: none;"></div>
+            </div>
+        </div>
+
+        <div id="adminForm" class="admin-section" style="display: none;">
+            <div class="admin-card">
+                <h2>
+                    <i data-lucide="plus-circle" class="icon-inline"></i>
+                    Add New Quiz
+                </h2>
+                
+                <div id="firebaseConnected" class="success-box" style="display: none;">
+                    <i data-lucide="check-circle" class="icon-inline"></i>
+                    <span>Connected to Firebase - Quiz will publish instantly!</span>
+                </div>
+                
+                <form id="quizForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="quizDate">Date <span class="required">*</span></label>
+                            <input type="date" id="quizDate" required class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="quizTitle">Title <span class="required">*</span></label>
+                            <input type="text" id="quizTitle" placeholder="Weekly Quiz - January 1, 2024" required class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="quizEdition">Edition Number <span class="required">*</span></label>
+                            <input type="number" id="quizEdition" min="1" required class="form-input">
+                        </div>
+                    </div>
+
+                    <div class="questions-container">
+                        <h3>Questions (12 required)</h3>
+                        <div id="questionsList"></div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary btn-large">
+                            <i data-lucide="send" class="icon-inline"></i>
+                            <span id="submitText">Publish to Firebase</span>
+                        </button>
+                        <button type="button" id="saveDraftBtn" class="btn btn-secondary">
+                            <i data-lucide="save" class="icon-inline"></i>
+                            Save Draft
+                        </button>
+                        <button type="button" id="loadDraftBtn" class="btn btn-secondary" style="display: none;">
+                            <i data-lucide="download" class="icon-inline"></i>
+                            Load Draft
+                        </button>
+                    </div>
+                    <div class="info-box">
+                        <i data-lucide="smartphone" class="icon-inline"></i>
+                        <p><strong>Mobile-Friendly:</strong> Fill out the form on your phone, hit publish, and your quiz goes live instantly! Auto-saves drafts so you can finish later.</p>
+                    </div>
+                </form>
+
+                <div id="successMessage" class="success-message" style="display: none;">
+                    <i data-lucide="check-circle" class="icon-inline"></i>
+                    <span>Quiz published successfully!</span>
+                </div>
+                
+                <div id="errorMessage" class="error-message" style="display: none;">
+                    <i data-lucide="alert-circle" class="icon-inline"></i>
+                    <span></span>
+                </div>
+
+                <div id="loadingIndicator" class="loading-indicator" style="display: none;">
+                    <i data-lucide="loader-2" class="icon-inline spinning"></i>
+                        <span>Publishing to Firebase...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    
+    <!-- Firebase Config -->
+    <script src="js/firebase-config.js"></script>
+    <script src="js/firebase.js"></script>
+    
+    <!-- Admin Script -->
+    <script src="js/admin.js"></script>
+    <script>
+        // Set current year in footer
+        document.getElementById('currentYear')?.textContent = new Date().getFullYear();
+        
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
+
