@@ -289,12 +289,12 @@ body.dark-mode .moon-icon {
 }
 
 .edition-item {
-    padding: 8px 14px;
+    padding: 6px 10px;
     cursor: pointer;
     border: 2px solid var(--border-color);
     border-radius: 2px;
     transition: all 0.2s ease;
-    font-size: 0.85em;
+    font-size: 0.9em;
     background-color: #fff;
     color: var(--text-color);
     display: flex;
@@ -302,7 +302,7 @@ body.dark-mode .moon-icon {
     justify-content: center;
     align-items: center;
     text-align: center;
-    min-height: 45px;
+    min-height: 40px;
     height: auto;
 }
 
@@ -324,12 +324,12 @@ body.dark-mode .moon-icon {
 
 .edition-item-number {
     font-weight: bold;
-    margin-bottom: 4px;
-    font-size: 0.95em;
+    margin-bottom: 3px;
+    font-size: 1.05em;
 }
 
 .edition-item-date {
-    font-size: 0.75em;
+    font-size: 0.9em;
     color: var(--meta-color);
     margin-top: 0;
 }
@@ -965,17 +965,22 @@ body.dark-mode .sort-order-btn:hover {
         text-align: left;
     }
     
-    header h1 {
-        font-size: 1.6em;
-        margin-bottom: 5px;
-        text-align: left;
-    }
-    
     .header-content {
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
         gap: 10px;
+        margin-bottom: 8px;
+        width: 100%;
+    }
+    
+    header h1 {
+        font-size: 1.6em;
+        margin-bottom: 0;
+        text-align: left;
+        display: block;
+        width: auto;
+        flex: 1;
     }
     
     .theme-toggle {
@@ -984,12 +989,16 @@ body.dark-mode .sort-order-btn:hover {
         width: 44px;
         height: 44px;
         flex-shrink: 0;
+        margin-left: auto;
     }
     
     .tagline {
         font-size: 0.85em;
-        margin-top: 3px;
+        margin-top: 8px;
         text-align: left;
+        display: block;
+        width: 100%;
+        line-height: 1.5;
     }
     
     /* Loading screen - Mobile optimized */
@@ -1119,25 +1128,47 @@ body.dark-mode .sort-order-btn:hover {
     
     .footer-content {
         text-align: left;
+        width: 100%;
     }
     
     .footer-left,
     .footer-right {
         text-align: left;
         align-items: flex-start;
+        width: 100%;
+        display: block;
+    }
+    
+    .footer-right {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
     }
     
     .footer-title,
     .footer-tagline {
         text-align: left;
+        display: block;
+        width: 100%;
     }
     
     .footer-links {
         align-items: flex-start;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
     }
     
     .footer-links a {
         justify-content: flex-start;
+        width: 100%;
+    }
+    
+    .footer-copyright {
+        text-align: left;
+        display: block;
+        width: 100%;
     }
 }
 
@@ -1279,30 +1310,48 @@ body.dark-mode .sort-order-btn:hover {
     
     .footer-content {
         flex-direction: column;
-        gap: 18px;
+        gap: 20px;
         text-align: left;
+        width: 100%;
     }
     
-    .footer-left,
+    .footer-left {
+        width: 100%;
+        display: block;
+    }
+    
     .footer-right {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
         text-align: left;
         align-items: flex-start;
+        gap: 12px;
     }
     
     .footer-title {
         font-size: 1.2em;
         text-align: left;
+        margin-bottom: 8px;
+        display: block;
+        width: 100%;
     }
     
     .footer-tagline {
         font-size: 0.85em;
         text-align: left;
+        display: block;
+        width: 100%;
+        margin-top: 4px;
+        line-height: 1.5;
     }
     
     .footer-links {
         flex-direction: column;
         gap: 12px;
         align-items: flex-start;
+        width: 100%;
+        margin-bottom: 8px;
     }
     
     .footer-link-separator {
@@ -1316,6 +1365,14 @@ body.dark-mode .sort-order-btn:hover {
         display: flex;
         align-items: center;
         justify-content: flex-start;
+        width: 100%;
+    }
+    
+    .footer-copyright {
+        text-align: left;
+        display: block;
+        width: 100%;
+        line-height: 1.5;
     }
     
     /* Quiz header adjustments */
