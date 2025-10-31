@@ -3,73 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QuizQuaz - Weekly Quiz Editions</title>
+    <title>QuizQuaz - Quiz Editions</title>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="stylesheet" href="styles/main.css">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
     <header>
         <div class="header-content">
-            <h1>QuizQuaz</h1>
+            <h1><a href="https://egil10.github.io/quizquaz/" class="header-title-link">QuizQuaz</a></h1>
             <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
                 <i data-lucide="sun" class="theme-icon sun-icon"></i>
                 <i data-lucide="moon" class="theme-icon moon-icon"></i>
             </button>
         </div>
-        <p class="tagline">Weekly Quiz Editions</p>
+        <p class="tagline">Quiz Editions</p>
     </header>
 
     <div class="stars-container" id="starsContainer"></div>
 
     <div class="layout-container">
         <div class="main-content">
-            <nav class="edition-nav">
-                <div class="nav-controls">
-                    <button id="prevBtn" class="nav-btn">
-                        <i data-lucide="chevron-left" class="icon-inline"></i>
-                        Previous
-                    </button>
-                    <button id="nextBtn" class="nav-btn">
-                        Next
-                        <i data-lucide="chevron-right" class="icon-inline"></i>
-                    </button>
-                </div>
-            </nav>
+            <button id="toggleSidebarBtn" class="toggle-sidebar-btn">
+                <i data-lucide="menu" class="icon-inline sidebar-icon-open"></i>
+                <i data-lucide="x" class="icon-inline sidebar-icon-close"></i>
+            </button>
 
             <main id="quizContainer">
                 <div class="loading">Loading quiz...</div>
             </main>
-
-            <footer>
-                <div class="footer-content">
-                    <p class="footer-title">QuizQuaz</p>
-                    <p class="footer-tagline">Weekly Quiz Editions - Test Your Knowledge</p>
-                    <div class="footer-links">
-                        <a href="https://egil10.github.io/quizquaz/" target="_blank">
-                            <i data-lucide="external-link" class="icon-inline"></i>
-                            Visit Live Site
-                        </a>
-                        <span class="separator">•</span>
-                        <a href="https://github.com/egil10/quizquaz" target="_blank">
-                            <i data-lucide="github" class="icon-inline"></i>
-                            GitHub
-                        </a>
-                    </div>
-                    <p class="footer-copyright">© <span id="currentYear">2024</span> QuizQuaz. All rights reserved.</p>
-                </div>
-            </footer>
         </div>
 
-        <aside class="editions-sidebar">
-            <h3>
-                <i data-lucide="book-open" class="icon-inline"></i>
-                Editions
-            </h3>
+        <aside class="editions-sidebar" id="editionsSidebar">
+            <div class="sidebar-header">
+                <h3>
+                    <i data-lucide="book-open" class="icon-inline"></i>
+                    Editions
+                </h3>
+            </div>
             <div id="editionsList" class="editions-list">
                 <!-- Editions will be populated here -->
             </div>
+            <div class="editions-pagination">
+                <button id="editionsPrevPage" class="pagination-btn">
+                    <i data-lucide="chevron-left" class="icon-inline"></i>
+                </button>
+                <span id="editionsPageInfo" class="page-info">1 / 1</span>
+                <button id="editionsNextPage" class="pagination-btn">
+                    <i data-lucide="chevron-right" class="icon-inline"></i>
+                </button>
+            </div>
         </aside>
     </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-left">
+                <p class="footer-title">QuizQuaz</p>
+                <p class="footer-tagline">Quiz Editions - Test Your Knowledge</p>
+            </div>
+            <div class="footer-right">
+                <div class="footer-links">
+                    <a href="admin.html">
+                        <i data-lucide="settings" class="icon-inline"></i>
+                        Admin
+                    </a>
+                    <span class="footer-link-separator">•</span>
+                    <a href="https://github.com/egil10/quizquaz" target="_blank">
+                        <i data-lucide="github" class="icon-inline"></i>
+                        GitHub
+                    </a>
+                </div>
+                <p class="footer-copyright">© <span id="currentYear">2024</span> QuizQuaz. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
     <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>

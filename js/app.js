@@ -1,6 +1,8 @@
 let quizzes = [];
 let currentIndex = 0;
 let answersVisible = false;
+let editionsPage = 0;
+const editionsPerPage = 8;
 
 // Initialize app
 async function init() {
@@ -98,32 +100,26 @@ function createStars() {
 
 // Setup event listeners
 function setupEventListeners() {
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
     const themeToggle = document.getElementById('themeToggle');
-
-    if (prevBtn) {
-        prevBtn.addEventListener('click', () => {
-            if (currentIndex > 0) {
-                currentIndex--;
-                answersVisible = false;
-                updateUI();
-            }
-        });
-    }
-
-    if (nextBtn) {
-        nextBtn.addEventListener('click', () => {
-            if (currentIndex < quizzes.length - 1) {
-                currentIndex++;
-                answersVisible = false;
-                updateUI();
-            }
-        });
-    }
+    const toggleSidebarBtn = document.getElementById('toggleSidebarBtn');
 
     if (themeToggle) {
         themeToggle.addEventListener('click', toggleTheme);
+    }
+
+    if (toggleSidebarBtn) {
+        toggleSidebarBtn.addEventListener('click', toggleSidebar);
+    }
+
+    setupEditionsPagination();
+}
+
+// Toggle sidebar visibility
+function toggleSidebar() {
+    const sidebar = document.getElementById('editionsSidebar');
+    if (sidebar) {
+        sidebar.classList.toggle('hidden');
+        document.body.classList.toggle('sidebar-hidden');
     }
 }
 
@@ -133,12 +129,6 @@ function updateUI() {
 
     const quiz = quizzes[currentIndex];
     const container = document.getElementById('quizContainer');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-
-    // Update navigation buttons
-    if (prevBtn) prevBtn.disabled = currentIndex === 0;
-    if (nextBtn) nextBtn.disabled = currentIndex === quizzes.length - 1;
 
     // Update sidebar
     updateEditionsSidebar();
@@ -149,10 +139,58 @@ function updateUI() {
     // Reinitialize icons after rendering
     lucide.createIcons();
     
-    // Attach toggle button listener
+    // Sync sidebar height with main content
+    syncSidebarHeight();
+    
+    // Attach toggle button listeners
     const toggleBtn = document.getElementById('toggleAnswersBtn');
     if (toggleBtn) {
         toggleBtn.addEventListener('click', toggleAnswers);
+    }
+
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                answersVisible = false;
+                // Switch to page containing this quiz if needed
+                const quizPage = Math.floor(currentIndex / editionsPerPage);
+                if (quizPage !== editionsPage) {
+                    editionsPage = quizPage;
+                }
+                updateUI();
+            }
+        });
+    }
+
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            if (currentIndex < quizzes.length - 1) {
+                currentIndex++;
+                answersVisible = false;
+                // Switch to page containing this quiz if needed
+                const quizPage = Math.floor(currentIndex / editionsPerPage);
+                if (quizPage !== editionsPage) {
+                    editionsPage = quizPage;
+                }
+                updateUI();
+            }
+        });
+    }
+}
+
+// Sync sidebar height with main content
+function syncSidebarHeight() {
+    const mainContent = document.querySelector('main');
+    const sidebar = document.getElementById('editionsSidebar');
+    
+    if (mainContent && sidebar && !sidebar.classList.contains('hidden')) {
+        // Remove dynamic height - let sticky positioning handle it naturally
+        sidebar.style.height = '';
+        sidebar.style.maxHeight = 'calc(100vh - 40px)';
     }
 }
 
@@ -161,10 +199,35 @@ function updateEditionsSidebar() {
     const editionsList = document.getElementById('editionsList');
     if (!editionsList) return;
 
+    // Calculate pagination
+    const totalPages = Math.ceil(quizzes.length / editionsPerPage);
+    const startIndex = editionsPage * editionsPerPage;
+    const endIndex = Math.min(startIndex + editionsPerPage, quizzes.length);
+    const currentPageQuizzes = quizzes.slice(startIndex, endIndex);
+
+    // Update page info
+    const pageInfo = document.getElementById('editionsPageInfo');
+    const prevPageBtn = document.getElementById('editionsPrevPage');
+    const nextPageBtn = document.getElementById('editionsNextPage');
+
+    if (pageInfo) {
+        pageInfo.textContent = `${editionsPage + 1} / ${totalPages || 1}`;
+    }
+
+    if (prevPageBtn) {
+        prevPageBtn.disabled = editionsPage === 0;
+    }
+
+    if (nextPageBtn) {
+        nextPageBtn.disabled = editionsPage >= totalPages - 1;
+    }
+
+    // Render current page items
     editionsList.innerHTML = '';
-    quizzes.forEach((quiz, index) => {
+    currentPageQuizzes.forEach((quiz, localIndex) => {
+        const globalIndex = startIndex + localIndex;
         const item = document.createElement('div');
-        item.className = `edition-item ${index === currentIndex ? 'active' : ''}`;
+        item.className = `edition-item ${globalIndex === currentIndex ? 'active' : ''}`;
         item.innerHTML = `
             <div>
                 <span class="edition-item-number">Edition ${quiz.edition}</span>
@@ -172,9 +235,15 @@ function updateEditionsSidebar() {
             <div class="edition-item-date">${formatDate(quiz.date)}</div>
         `;
         item.addEventListener('click', () => {
-            currentIndex = index;
+            currentIndex = globalIndex;
             answersVisible = false;
             updateUI();
+            // Switch to page containing this quiz if needed
+            const quizPage = Math.floor(globalIndex / editionsPerPage);
+            if (quizPage !== editionsPage) {
+                editionsPage = quizPage;
+                updateEditionsSidebar();
+            }
         });
         editionsList.appendChild(item);
     });
@@ -183,13 +252,48 @@ function updateEditionsSidebar() {
     lucide.createIcons();
 }
 
+// Pagination event listeners
+function setupEditionsPagination() {
+    const prevPageBtn = document.getElementById('editionsPrevPage');
+    const nextPageBtn = document.getElementById('editionsNextPage');
+
+    if (prevPageBtn) {
+        prevPageBtn.addEventListener('click', () => {
+            if (editionsPage > 0) {
+                editionsPage--;
+                updateEditionsSidebar();
+            }
+        });
+    }
+
+    if (nextPageBtn) {
+        nextPageBtn.addEventListener('click', () => {
+            const totalPages = Math.ceil(quizzes.length / editionsPerPage);
+            if (editionsPage < totalPages - 1) {
+                editionsPage++;
+                updateEditionsSidebar();
+            }
+        });
+    }
+}
+
 // Format date for display
 function formatDate(dateString) {
     const date = new Date(dateString);
     return date.toLocaleDateString('en-US', { 
         year: 'numeric', 
-        month: 'short', 
-        day: 'numeric' 
+        month: 'long', 
+        day: 'numeric'
+    });
+}
+
+// Format date for quiz title (Monthname dd, yyyy)
+function formatDateForTitle(dateString) {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', { 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric'
     });
 }
 
@@ -211,20 +315,23 @@ function toggleAnswers() {
             toggleBtn.innerHTML = '<i data-lucide="eye" class="icon-inline"></i> Show Answers';
         }
         lucide.createIcons(); // Reinitialize icons
+        
+        // Resync sidebar height after content changes
+        setTimeout(() => syncSidebarHeight(), 100);
     }
 }
 
 // Render quiz in newspaper style
 function renderQuiz(quiz) {
     const dateFormatted = formatDate(quiz.date);
+    const titleDate = formatDateForTitle(quiz.date);
     
     return `
         <div class="quiz-newspaper">
             <div class="quiz-header">
-                <h2>${quiz.title || `Weekly Quiz - ${dateFormatted}`}</h2>
+                <h2>${titleDate}</h2>
                 <div class="quiz-meta">
                     <span class="edition">Edition ${quiz.edition}</span>
-                    <span class="date">${dateFormatted}</span>
                 </div>
             </div>
             
@@ -244,10 +351,20 @@ function renderQuiz(quiz) {
                                 </li>
                             `).join('')}
                         </ol>
-                        <button id="toggleAnswersBtn" class="toggle-answers-btn">
-                            <i data-lucide="${answersVisible ? 'eye-off' : 'eye'}" class="icon-inline"></i>
-                            ${answersVisible ? 'Hide Answers' : 'Show Answers'}
-                        </button>
+                        <div class="quiz-actions">
+                            <button id="prevBtn" class="nav-btn" ${currentIndex === 0 ? 'disabled' : ''}>
+                                <i data-lucide="chevron-left" class="icon-inline"></i>
+                                Previous
+                            </button>
+                            <button id="toggleAnswersBtn" class="toggle-answers-btn">
+                                <i data-lucide="${answersVisible ? 'eye-off' : 'eye'}" class="icon-inline"></i>
+                                ${answersVisible ? 'Hide Answers' : 'Show Answers'}
+                            </button>
+                            <button id="nextBtn" class="nav-btn" ${currentIndex === quizzes.length - 1 ? 'disabled' : ''}>
+                                Next
+                                <i data-lucide="chevron-right" class="icon-inline"></i>
+                            </button>
+                        </div>
                     </div>
                     
                     <ol class="answers-list ${answersVisible ? '' : 'hidden'}">

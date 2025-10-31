@@ -118,4 +118,3 @@ If you already have quizzes in `data/quizzes.json`, you can:
 - **Scalable** - Can handle thousands of quizzes
 
 That's it! Much simpler than GitHub commits! 🎉
-
