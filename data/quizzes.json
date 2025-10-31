@@ -543,6 +543,550 @@
           "answer": "1966"
         }
       ]
+    },
+    {
+      "id": "2025-11-06",
+      "date": "2025-11-06",
+      "title": "6. november 2025",
+      "edition": 9,
+      "questions": [
+        {
+          "number": 1,
+          "question": "Hva heter Norges største øygruppe?",
+          "answer": "Lofoten"
+        },
+        {
+          "number": 2,
+          "question": "Hvilken norsk forfatter skrev 'Growth of the Soil'?",
+          "answer": "Knut Hamsun"
+        },
+        {
+          "number": 3,
+          "question": "Hva kalles den tradisjonelle norske spekemat?",
+          "answer": "Spekemat"
+        },
+        {
+          "number": 4,
+          "question": "Hvilken by er kjent for sin universitetsby?",
+          "answer": "Trondheim"
+        },
+        {
+          "number": 5,
+          "question": "Hva heter Norges største kraftverk?",
+          "answer": "Kvilldal"
+        },
+        {
+          "number": 6,
+          "question": "Hvilket år ble Norges første norsk-språklige avis grunnlagt?",
+          "answer": "1815"
+        },
+        {
+          "number": 7,
+          "question": "Hva kalles den tradisjonelle norske brunosten?",
+          "answer": "Brunost"
+        },
+        {
+          "number": 8,
+          "question": "Hvilken norsk oppdager nådde Sydpolen først?",
+          "answer": "Roald Amundsen"
+        },
+        {
+          "number": 9,
+          "question": "Hva heter Norges lengste strand?",
+          "answer": "Jæren"
+        },
+        {
+          "number": 10,
+          "question": "Hvilken by er hovedstaden i Agder?",
+          "answer": "Kristiansand"
+        },
+        {
+          "number": 11,
+          "question": "Hva kalles den tradisjonelle norske lefsekaka?",
+          "answer": "Lefse"
+        },
+        {
+          "number": 12,
+          "question": "Hvilket år ble Norges første oljefelt i produksjon?",
+          "answer": "1971"
+        }
+      ]
+    },
+    {
+      "id": "2025-11-07",
+      "date": "2025-11-07",
+      "title": "7. november 2025",
+      "edition": 10,
+      "questions": [
+        {
+          "number": 1,
+          "question": "Hva heter Norges største fjellovergang?",
+          "answer": "Sognefjell"
+        },
+        {
+          "number": 2,
+          "question": "Hvilken norsk komponist skrev 'Bryllupsdag på Troldhaugen'?",
+          "answer": "Edvard Grieg"
+        },
+        {
+          "number": 3,
+          "question": "Hva kalles den tradisjonelle norske komle?",
+          "answer": "Komle"
+        },
+        {
+          "number": 4,
+          "question": "Hvilken by er kjent for sin seilingstradition?",
+          "answer": "Sandefjord"
+        },
+        {
+          "number": 5,
+          "question": "Hva heter Norges største vassdrag etter lengde?",
+          "answer": "Glomma"
+        },
+        {
+          "number": 6,
+          "question": "Hvilket år ble Norges første universitet i Bergen grunnlagt?",
+          "answer": "1946"
+        },
+        {
+          "number": 7,
+          "question": "Hva kalles den tradisjonelle norske kransekakene?",
+          "answer": "Kransekake"
+        },
+        {
+          "number": 8,
+          "question": "Hvilken norsk forfatter skrev 'Jenny'?",
+          "answer": "Sigrid Undset"
+        },
+        {
+          "number": 9,
+          "question": "Hva heter Norges største by etter folketall?",
+          "answer": "Oslo"
+        },
+        {
+          "number": 10,
+          "question": "Hvilken by er kjent for sin Olaf-festival?",
+          "answer": "Stiklestad"
+        },
+        {
+          "number": 11,
+          "question": "Hva kalles den tradisjonelle norske pepperkakene?",
+          "answer": "Pepperkake"
+        },
+        {
+          "number": 12,
+          "question": "Hvilket år ble Norges første oljeraffineri åpnet?",
+          "answer": "1966"
+        }
+      ]
+    },
+    {
+      "id": "2025-11-08",
+      "date": "2025-11-08",
+      "title": "8. november 2025",
+      "edition": 11,
+      "questions": [
+        {
+          "number": 1,
+          "question": "Hva heter Norges største nasjonalpark?",
+          "answer": "Hardangervidda nasjonalpark"
+        },
+        {
+          "number": 2,
+          "question": "Hvilken norsk maler malte 'Døden i sykeværelset'?",
+          "answer": "Edvard Munch"
+        },
+        {
+          "number": 3,
+          "question": "Hva kalles den tradisjonelle norske bløtkakene?",
+          "answer": "Bløtkake"
+        },
+        {
+          "number": 4,
+          "question": "Hvilken by er kjent for sin Olaf-festival?",
+          "answer": "Stiklestad"
+        },
+        {
+          "number": 5,
+          "question": "Hva heter Norges største vassdrag etter lengde?",
+          "answer": "Glomma"
+        },
+        {
+          "number": 6,
+          "question": "Hvilket år ble Norges første universitet i Bergen grunnlagt?",
+          "answer": "1946"
+        },
+        {
+          "number": 7,
+          "question": "Hva kalles den tradisjonelle norske kransekakene?",
+          "answer": "Kransekake"
+        },
+        {
+          "number": 8,
+          "question": "Hvilken norsk forfatter skrev 'Sult'?",
+          "answer": "Knut Hamsun"
+        },
+        {
+          "number": 9,
+          "question": "Hva heter Norges største by etter folketall?",
+          "answer": "Oslo"
+        },
+        {
+          "number": 10,
+          "question": "Hvilken by er kjent for sin Olaf-festival?",
+          "answer": "Stiklestad"
+        },
+        {
+          "number": 11,
+          "question": "Hva kalles den tradisjonelle norske pepperkakene?",
+          "answer": "Pepperkake"
+        },
+        {
+          "number": 12,
+          "question": "Hvilket år ble Norges første oljeraffineri åpnet?",
+          "answer": "1966"
+        }
+      ]
+    },
+    {
+      "id": "2025-11-09",
+      "date": "2025-11-09",
+      "title": "9. november 2025",
+      "edition": 12,
+      "questions": [
+        {
+          "number": 1,
+          "question": "Hva heter Norges største fastlandsslette?",
+          "answer": "Jæren"
+        },
+        {
+          "number": 2,
+          "question": "Hvilken norsk maler malte 'Døden i sykeværelset'?",
+          "answer": "Edvard Munch"
+        },
+        {
+          "number": 3,
+          "question": "Hva kalles den tradisjonelle norske bløtkakene?",
+          "answer": "Bløtkake"
+        },
+        {
+          "number": 4,
+          "question": "Hvilken by er kjent for sin Olaf-festival?",
+          "answer": "Stiklestad"
+        },
+        {
+          "number": 5,
+          "question": "Hva heter Norges største vassdrag etter lengde?",
+          "answer": "Glomma"
+        },
+        {
+          "number": 6,
+          "question": "Hvilket år ble Norges første universitet i Bergen grunnlagt?",
+          "answer": "1946"
+        },
+        {
+          "number": 7,
+          "question": "Hva kalles den tradisjonelle norske kransekakene?",
+          "answer": "Kransekake"
+        },
+        {
+          "number": 8,
+          "question": "Hvilken norsk forfatter skrev 'Sult'?",
+          "answer": "Knut Hamsun"
+        },
+        {
+          "number": 9,
+          "question": "Hva heter Norges største by etter folketall?",
+          "answer": "Oslo"
+        },
+        {
+          "number": 10,
+          "question": "Hvilken by er kjent for sin Olaf-festival?",
+          "answer": "Stiklestad"
+        },
+        {
+          "number": 11,
+          "question": "Hva kalles den tradisjonelle norske pepperkakene?",
+          "answer": "Pepperkake"
+        },
+        {
+          "number": 12,
+          "question": "Hvilket år ble Norges første oljeraffineri åpnet?",
+          "answer": "1966"
+        }
+      ]
+    },
+    {
+      "id": "2025-11-10",
+      "date": "2025-11-10",
+      "title": "10. november 2025",
+      "edition": 13,
+      "questions": [
+        {
+          "number": 1,
+          "question": "Hva heter Norges største fastlandsslette?",
+          "answer": "Jæren"
+        },
+        {
+          "number": 2,
+          "question": "Hvilken norsk maler malte 'Døden i sykeværelset'?",
+          "answer": "Edvard Munch"
+        },
+        {
+          "number": 3,
+          "question": "Hva kalles den tradisjonelle norske bløtkakene?",
+          "answer": "Bløtkake"
+        },
+        {
+          "number": 4,
+          "question": "Hvilken by er kjent for sin Olaf-festival?",
+          "answer": "Stiklestad"
+        },
+        {
+          "number": 5,
+          "question": "Hva heter Norges største vassdrag etter lengde?",
+          "answer": "Glomma"
+        },
+        {
+          "number": 6,
+          "question": "Hvilket år ble Norges første universitet i Bergen grunnlagt?",
+          "answer": "1946"
+        },
+        {
+          "number": 7,
+          "question": "Hva kalles den tradisjonelle norske kransekakene?",
+          "answer": "Kransekake"
+        },
+        {
+          "number": 8,
+          "question": "Hvilken norsk forfatter skrev 'Sult'?",
+          "answer": "Knut Hamsun"
+        },
+        {
+          "number": 9,
+          "question": "Hva heter Norges største by etter folketall?",
+          "answer": "Oslo"
+        },
+        {
+          "number": 10,
+          "question": "Hvilken by er kjent for sin Olaf-festival?",
+          "answer": "Stiklestad"
+        },
+        {
+          "number": 11,
+          "question": "Hva kalles den tradisjonelle norske pepperkakene?",
+          "answer": "Pepperkake"
+        },
+        {
+          "number": 12,
+          "question": "Hvilket år ble Norges første oljeraffineri åpnet?",
+          "answer": "1966"
+        }
+      ]
+    },
+    {
+      "id": "2025-11-11",
+      "date": "2025-11-11",
+      "title": "11. november 2025",
+      "edition": 14,
+      "questions": [
+        {
+          "number": 1,
+          "question": "Hva heter Norges største fastlandsslette?",
+          "answer": "Jæren"
+        },
+        {
+          "number": 2,
+          "question": "Hvilken norsk maler malte 'Døden i sykeværelset'?",
+          "answer": "Edvard Munch"
+        },
+        {
+          "number": 3,
+          "question": "Hva kalles den tradisjonelle norske bløtkakene?",
+          "answer": "Bløtkake"
+        },
+        {
+          "number": 4,
+          "question": "Hvilken by er kjent for sin Olaf-festival?",
+          "answer": "Stiklestad"
+        },
+        {
+          "number": 5,
+          "question": "Hva heter Norges største vassdrag etter lengde?",
+          "answer": "Glomma"
+        },
+        {
+          "number": 6,
+          "question": "Hvilket år ble Norges første universitet i Bergen grunnlagt?",
+          "answer": "1946"
+        },
+        {
+          "number": 7,
+          "question": "Hva kalles den tradisjonelle norske kransekakene?",
+          "answer": "Kransekake"
+        },
+        {
+          "number": 8,
+          "question": "Hvilken norsk forfatter skrev 'Sult'?",
+          "answer": "Knut Hamsun"
+        },
+        {
+          "number": 9,
+          "question": "Hva heter Norges største by etter folketall?",
+          "answer": "Oslo"
+        },
+        {
+          "number": 10,
+          "question": "Hvilken by er kjent for sin Olaf-festival?",
+          "answer": "Stiklestad"
+        },
+        {
+          "number": 11,
+          "question": "Hva kalles den tradisjonelle norske pepperkakene?",
+          "answer": "Pepperkake"
+        },
+        {
+          "number": 12,
+          "question": "Hvilket år ble Norges første oljeraffineri åpnet?",
+          "answer": "1966"
+        }
+      ]
+    },
+    {
+      "id": "2025-11-12",
+      "date": "2025-11-12",
+      "title": "12. november 2025",
+      "edition": 15,
+      "questions": [
+        {
+          "number": 1,
+          "question": "Hva heter Norges største fastlandsslette?",
+          "answer": "Jæren"
+        },
+        {
+          "number": 2,
+          "question": "Hvilken norsk maler malte 'Døden i sykeværelset'?",
+          "answer": "Edvard Munch"
+        },
+        {
+          "number": 3,
+          "question": "Hva kalles den tradisjonelle norske bløtkakene?",
+          "answer": "Bløtkake"
+        },
+        {
+          "number": 4,
+          "question": "Hvilken by er kjent for sin Olaf-festival?",
+          "answer": "Stiklestad"
+        },
+        {
+          "number": 5,
+          "question": "Hva heter Norges største vassdrag etter lengde?",
+          "answer": "Glomma"
+        },
+        {
+          "number": 6,
+          "question": "Hvilket år ble Norges første universitet i Bergen grunnlagt?",
+          "answer": "1946"
+        },
+        {
+          "number": 7,
+          "question": "Hva kalles den tradisjonelle norske kransekakene?",
+          "answer": "Kransekake"
+        },
+        {
+          "number": 8,
+          "question": "Hvilken norsk forfatter skrev 'Sult'?",
+          "answer": "Knut Hamsun"
+        },
+        {
+          "number": 9,
+          "question": "Hva heter Norges største by etter folketall?",
+          "answer": "Oslo"
+        },
+        {
+          "number": 10,
+          "question": "Hvilken by er kjent for sin Olaf-festival?",
+          "answer": "Stiklestad"
+        },
+        {
+          "number": 11,
+          "question": "Hva kalles den tradisjonelle norske pepperkakene?",
+          "answer": "Pepperkake"
+        },
+        {
+          "number": 12,
+          "question": "Hvilket år ble Norges første oljeraffineri åpnet?",
+          "answer": "1966"
+        }
+      ]
+    },
+    {
+      "id": "2025-11-13",
+      "date": "2025-11-13",
+      "title": "13. november 2025",
+      "edition": 16,
+      "questions": [
+        {
+          "number": 1,
+          "question": "Hva heter Norges største fastlandsslette?",
+          "answer": "Jæren"
+        },
+        {
+          "number": 2,
+          "question": "Hvilken norsk maler malte 'Døden i sykeværelset'?",
+          "answer": "Edvard Munch"
+        },
+        {
+          "number": 3,
+          "question": "Hva kalles den tradisjonelle norske bløtkakene?",
+          "answer": "Bløtkake"
+        },
+        {
+          "number": 4,
+          "question": "Hvilken by er kjent for sin Olaf-festival?",
+          "answer": "Stiklestad"
+        },
+        {
+          "number": 5,
+          "question": "Hva heter Norges største vassdrag etter lengde?",
+          "answer": "Glomma"
+        },
+        {
+          "number": 6,
+          "question": "Hvilket år ble Norges første universitet i Bergen grunnlagt?",
+          "answer": "1946"
+        },
+        {
+          "number": 7,
+          "question": "Hva kalles den tradisjonelle norske kransekakene?",
+          "answer": "Kransekake"
+        },
+        {
+          "number": 8,
+          "question": "Hvilken norsk forfatter skrev 'Sult'?",
+          "answer": "Knut Hamsun"
+        },
+        {
+          "number": 9,
+          "question": "Hva heter Norges største by etter folketall?",
+          "answer": "Oslo"
+        },
+        {
+          "number": 10,
+          "question": "Hvilken by er kjent for sin Olaf-festival?",
+          "answer": "Stiklestad"
+        },
+        {
+          "number": 11,
+          "question": "Hva kalles den tradisjonelle norske pepperkakene?",
+          "answer": "Pepperkake"
+        },
+        {
+          "number": 12,
+          "question": "Hvilket år ble Norges første oljeraffineri åpnet?",
+          "answer": "1966"
+        }
+      ]
     }
   ]
 }
