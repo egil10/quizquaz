@@ -251,14 +251,19 @@ function formatDate(dateString) {
     });
 }
 
-// Format date for quiz title (Monthname dd, yyyy)
+// Format date for quiz title (Weekday, dd. monthname yyyy)
 function formatDateForTitle(dateString) {
     const date = new Date(dateString);
-    return date.toLocaleDateString('nb-NO', { 
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric'
-    });
+    const weekdays = ['søndag', 'mandag', 'tirsdag', 'onsdag', 'torsdag', 'fredag', 'lørdag'];
+    const months = ['januar', 'februar', 'mars', 'april', 'mai', 'juni', 'juli', 'august', 'september', 'oktober', 'november', 'desember'];
+    
+    const weekday = weekdays[date.getDay()];
+    const day = date.getDate();
+    const month = months[date.getMonth()];
+    const year = date.getFullYear();
+    
+    // Format: "FREDAG, 28. OKTOBER 2025" (all caps)
+    return `${weekday.toUpperCase()}, ${day}. ${month.toUpperCase()} ${year}`;
 }
 
 // Toggle answers visibility
@@ -296,13 +301,13 @@ function renderQuiz(quiz) {
                     <h2>${titleDate}</h2>
                 </div>
                 <div class="quiz-meta">
-                    <span class="edition">Utgave ${quiz.edition}</span>
+                    <span class="edition">Utgave ${quiz.edition} / ${quizzes.length}</span>
                 </div>
             </div>
             
             <div class="quiz-header mobile-header">
                 <h2>${titleDate}</h2>
-                <span class="edition">Utgave ${quiz.edition}</span>
+                <span class="edition">Utgave ${quiz.edition} / ${quizzes.length}</span>
             </div>
             
             <div class="quiz-content">
@@ -376,18 +381,20 @@ document.getElementById('currentYear').textContent = new Date().getFullYear();
 // Set today's date in footer
 function setTodayDate() {
     const today = new Date();
-    const options = { 
-        weekday: 'long', 
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric' 
-    };
-    const formattedDate = today.toLocaleDateString('nb-NO', options);
-    // Format: "fredag, 28. oktober 2025" -> "Fredag, 28. oktober 2025"
-    const capitalizedDate = formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
+    const weekdays = ['søndag', 'mandag', 'tirsdag', 'onsdag', 'torsdag', 'fredag', 'lørdag'];
+    const months = ['januar', 'februar', 'mars', 'april', 'mai', 'juni', 'juli', 'august', 'september', 'oktober', 'november', 'desember'];
+    
+    const weekday = weekdays[today.getDay()];
+    const day = today.getDate();
+    const month = months[today.getMonth()];
+    const year = today.getFullYear();
+    
+    // Format: "LØRDAG, 1. NOVEMBER 2025" (all caps)
+    const formattedDate = `${weekday.toUpperCase()}, ${day}. ${month.toUpperCase()} ${year}`;
+    
     const todayDateElement = document.getElementById('todayDate');
     if (todayDateElement) {
-        todayDateElement.textContent = capitalizedDate;
+        todayDateElement.textContent = formattedDate;
     }
 }
 
