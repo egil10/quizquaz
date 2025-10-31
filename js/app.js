@@ -71,6 +71,7 @@ async function loadFunFact() {
 }
 
 // Load quizzes from JSON file
+// Only shows quizzes with dates <= today (scheduled publication)
 async function loadQuizzes() {
     try {
         const response = await fetch('data/quizzes.json');
@@ -78,13 +79,61 @@ async function loadQuizzes() {
             throw new Error('Failed to load quizzes');
         }
         const data = await response.json();
-        quizzes = data.quizzes.sort((a, b) => new Date(a.date) - new Date(b.date));
-        console.log('Loaded quizzes from JSON file');
+        
+        // Get today's date (midnight) for comparison
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        
+        // Filter out quizzes with future dates (not yet published)
+        const allQuizzes = data.quizzes || [];
+        quizzes = allQuizzes
+            .filter(quiz => {
+                const quizDate = new Date(quiz.date);
+                quizDate.setHours(0, 0, 0, 0);
+                return quizDate <= today;
+            })
+            .sort((a, b) => new Date(a.date) - new Date(b.date));
+        
+        const hiddenCount = allQuizzes.length - quizzes.length;
+        if (hiddenCount > 0) {
+            console.log(`Loaded ${quizzes.length} published quizzes, ${hiddenCount} scheduled for future publication`);
+        } else {
+            console.log(`Loaded ${quizzes.length} quizzes from JSON file`);
+        }
+        
+        // Ensure currentIndex is valid after filtering
+        if (currentIndex >= quizzes.length && quizzes.length > 0) {
+            currentIndex = quizzes.length - 1; // Go to last available quiz
+        } else if (quizzes.length === 0) {
+            currentIndex = 0;
+        }
     } catch (error) {
         console.error('Error loading quizzes:', error);
         document.getElementById('quizContainer').innerHTML = 
             '<div class="error">Kunne ikke laste quizzer. Vennligst sjekk tilkoblingen eller datafilen.</div>';
     }
+}
+
+// Helper function to generate future publication dates
+// Example: generateWeeklyDates('2025-01-06', 12) generates 12 dates starting from Jan 6, 2025 (every Monday)
+// Usage: Add quizzes with these dates to quizzes.json, and they'll automatically appear when their date arrives
+function generateWeeklyDates(startDate, numberOfWeeks = 52, dayOfWeek = 1) {
+    // dayOfWeek: 0 = Sunday, 1 = Monday, 2 = Tuesday, etc.
+    const dates = [];
+    const start = new Date(startDate);
+    
+    // Find the next occurrence of the specified day of week
+    const dayDiff = (dayOfWeek - start.getDay() + 7) % 7;
+    const firstDate = new Date(start);
+    firstDate.setDate(start.getDate() + dayDiff);
+    
+    for (let i = 0; i < numberOfWeeks; i++) {
+        const date = new Date(firstDate);
+        date.setDate(firstDate.getDate() + (i * 7));
+        dates.push(date.toISOString().split('T')[0]); // Format as YYYY-MM-DD
+    }
+    
+    return dates;
 }
 
 // Theme management
@@ -180,7 +229,24 @@ function toggleSortOrder() {
 
 // Update UI with current quiz
 function updateUI() {
-    if (quizzes.length === 0) return;
+    if (quizzes.length === 0) {
+        const container = document.getElementById('quizContainer');
+        if (container) {
+            container.innerHTML = '<div class="error">Ingen quizutgaver er tilgjengelige akkurat nå. Sjekk tilbake senere!</div>';
+        }
+        // Hide editions section if no quizzes
+        const editionsSection = document.getElementById('editionsSection');
+        if (editionsSection) {
+            editionsSection.style.display = 'none';
+        }
+        return;
+    }
+
+    // Show editions section if it was hidden
+    const editionsSection = document.getElementById('editionsSection');
+    if (editionsSection) {
+        editionsSection.style.display = '';
+    }
 
     const quiz = quizzes[currentIndex];
     const container = document.getElementById('quizContainer');
@@ -498,6 +564,26 @@ if (document.readyState === 'loading') {
 
 // Set current year in footer
 document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+// Set today's date in footer
+function setTodayDate() {
+    const today = new Date();
+    const options = { 
+        weekday: 'long', 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+    };
+    const formattedDate = today.toLocaleDateString('nb-NO', options);
+    // Format: "fredag, 28. oktober 2025" -> "Fredag, 28. oktober 2025"
+    const capitalizedDate = formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
+    const todayDateElement = document.getElementById('todayDate');
+    if (todayDateElement) {
+        todayDateElement.textContent = capitalizedDate;
+    }
+}
+
+setTodayDate();
 
 // Initialize Lucide icons
 lucide.createIcons();

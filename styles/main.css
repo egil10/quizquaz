@@ -850,6 +850,13 @@ footer.loaded {
     opacity: 0.8;
 }
 
+.footer-date {
+    font-size: 1em;
+    color: var(--meta-color);
+    margin: 8px 0 0 0;
+    font-style: normal;
+}
+
 .footer-tagline {
     font-style: italic;
     color: var(--meta-color);
@@ -1172,6 +1179,13 @@ body.dark-mode .sort-order-btn:hover {
         width: 100%;
     }
     
+    .footer-date {
+        text-align: left;
+        display: block;
+        width: 100%;
+        margin-top: 4px;
+    }
+    
     .footer-links {
         align-items: flex-start;
         width: 100%;
@@ -1358,6 +1372,15 @@ body.dark-mode .sort-order-btn:hover {
         margin-bottom: 8px;
         display: block;
         width: 100%;
+    }
+    
+    .footer-date {
+        font-size: 0.9em;
+        text-align: left;
+        display: block;
+        width: 100%;
+        margin-top: 4px;
+        line-height: 1.5;
     }
     
     .footer-tagline {
