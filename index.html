@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuizQuaz - Weekly Quiz Editions</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <header>
+        <h1>QuizQuaz</h1>
+        <p class="tagline">Weekly Quiz Editions</p>
+    </header>
+
+    <nav class="edition-nav">
+        <div class="nav-controls">
+            <button id="prevBtn" class="nav-btn">← Previous</button>
+            <div class="edition-selector">
+                <label for="editionSelect">Select Edition:</label>
+                <select id="editionSelect"></select>
+            </div>
+            <div class="calendar-selector">
+                <label for="dateSelect">Select Date:</label>
+                <input type="date" id="dateSelect">
+            </div>
+            <button id="nextBtn" class="nav-btn">Next →</button>
+        </div>
+    </nav>
+
+    <main id="quizContainer">
+        <div class="loading">Loading quiz...</div>
+    </main>
+
+    <footer>
+        <p>© QuizQuaz - Test Your Knowledge Weekly</p>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
+

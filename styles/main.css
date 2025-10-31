@@ -1,0 +1,256 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f5f0;
+    padding: 20px;
+}
+
+/* Header */
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 3px double #333;
+}
+
+header h1 {
+    font-size: 3em;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.tagline {
+    font-style: italic;
+    color: #666;
+    font-size: 1.1em;
+}
+
+/* Navigation */
+.edition-nav {
+    margin-bottom: 30px;
+    padding: 15px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.nav-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.nav-btn {
+    padding: 10px 20px;
+    font-size: 1em;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-family: 'Georgia', serif;
+    transition: background-color 0.3s;
+}
+
+.nav-btn:hover:not(:disabled) {
+    background-color: #555;
+}
+
+.nav-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.edition-selector,
+.calendar-selector {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.edition-selector label,
+.calendar-selector label {
+    font-weight: bold;
+}
+
+.edition-selector select,
+.calendar-selector input {
+    padding: 8px;
+    font-size: 1em;
+    font-family: 'Georgia', serif;
+    border: 1px solid #ddd;
+}
+
+/* Main content */
+main {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 40px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Quiz newspaper style */
+.quiz-newspaper {
+    font-size: 1.1em;
+}
+
+.quiz-header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #333;
+}
+
+.quiz-header h2 {
+    font-size: 2em;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.quiz-meta {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    font-size: 0.9em;
+    color: #666;
+}
+
+.quiz-content {
+    margin-top: 30px;
+}
+
+.questions-section,
+.answers-section {
+    margin-bottom: 40px;
+}
+
+.questions-section h3,
+.answers-section h3 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.questions-list,
+.answers-list {
+    list-style: none;
+    counter-reset: question-counter;
+}
+
+.questions-list li,
+.answers-list li {
+    margin-bottom: 15px;
+    padding-left: 30px;
+    position: relative;
+    counter-increment: question-counter;
+}
+
+.question-number,
+.answer-number {
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+.question-text,
+.answer-text {
+    display: block;
+    margin-left: 5px;
+}
+
+.separator {
+    height: 2px;
+    background-color: #333;
+    margin: 40px 0;
+    position: relative;
+}
+
+.separator::before,
+.separator::after {
+    content: '◆';
+    position: absolute;
+    top: -8px;
+    color: #333;
+    font-size: 1.2em;
+}
+
+.separator::before {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Loading and error states */
+.loading,
+.error {
+    text-align: center;
+    padding: 40px;
+    font-size: 1.2em;
+    color: #666;
+}
+
+.error {
+    color: #d32f2f;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+    color: #666;
+    font-size: 0.9em;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    header h1 {
+        font-size: 2em;
+    }
+
+    main {
+        padding: 20px;
+    }
+
+    .nav-controls {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-btn {
+        width: 100%;
+    }
+
+    .edition-selector,
+    .calendar-selector {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .edition-selector select,
+    .calendar-selector input {
+        width: 100%;
+    }
+}
+

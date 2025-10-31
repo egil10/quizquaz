@@ -1,0 +1,141 @@
+{
+  "quizzes": [
+    {
+      "id": "2024-01-01",
+      "date": "2024-01-01",
+      "title": "Weekly Quiz - January 1, 2024",
+      "edition": 1,
+      "questions": [
+        {
+          "number": 1,
+          "question": "What is the capital of France?",
+          "answer": "Paris"
+        },
+        {
+          "number": 2,
+          "question": "What is 2 + 2?",
+          "answer": "4"
+        },
+        {
+          "number": 3,
+          "question": "Who wrote Romeo and Juliet?",
+          "answer": "William Shakespeare"
+        },
+        {
+          "number": 4,
+          "question": "What is the largest planet in our solar system?",
+          "answer": "Jupiter"
+        },
+        {
+          "number": 5,
+          "question": "In what year did World War II end?",
+          "answer": "1945"
+        },
+        {
+          "number": 6,
+          "question": "What is the chemical symbol for gold?",
+          "answer": "Au"
+        },
+        {
+          "number": 7,
+          "question": "How many continents are there?",
+          "answer": "7"
+        },
+        {
+          "number": 8,
+          "question": "What is the speed of light in a vacuum?",
+          "answer": "299,792,458 meters per second"
+        },
+        {
+          "number": 9,
+          "question": "Who painted the Mona Lisa?",
+          "answer": "Leonardo da Vinci"
+        },
+        {
+          "number": 10,
+          "question": "What is the smallest prime number?",
+          "answer": "2"
+        },
+        {
+          "number": 11,
+          "question": "What is the longest river in the world?",
+          "answer": "The Nile River"
+        },
+        {
+          "number": 12,
+          "question": "In what year did the Berlin Wall fall?",
+          "answer": "1989"
+        }
+      ]
+    },
+    {
+      "id": "2024-01-08",
+      "date": "2024-01-08",
+      "title": "Weekly Quiz - January 8, 2024",
+      "edition": 2,
+      "questions": [
+        {
+          "number": 1,
+          "question": "What is the smallest country in the world?",
+          "answer": "Vatican City"
+        },
+        {
+          "number": 2,
+          "question": "What is the capital of Australia?",
+          "answer": "Canberra"
+        },
+        {
+          "number": 3,
+          "question": "Who invented the telephone?",
+          "answer": "Alexander Graham Bell"
+        },
+        {
+          "number": 4,
+          "question": "What is the largest ocean on Earth?",
+          "answer": "Pacific Ocean"
+        },
+        {
+          "number": 5,
+          "question": "What is the square root of 144?",
+          "answer": "12"
+        },
+        {
+          "number": 6,
+          "question": "Who wrote '1984'?",
+          "answer": "George Orwell"
+        },
+        {
+          "number": 7,
+          "question": "What is the hardest natural substance on Earth?",
+          "answer": "Diamond"
+        },
+        {
+          "number": 8,
+          "question": "How many sides does a hexagon have?",
+          "answer": "6"
+        },
+        {
+          "number": 9,
+          "question": "What is the capital of Japan?",
+          "answer": "Tokyo"
+        },
+        {
+          "number": 10,
+          "question": "What is the chemical symbol for water?",
+          "answer": "H2O"
+        },
+        {
+          "number": 11,
+          "question": "Who was the first person to walk on the moon?",
+          "answer": "Neil Armstrong"
+        },
+        {
+          "number": 12,
+          "question": "What is the largest mammal in the world?",
+          "answer": "Blue whale"
+        }
+      ]
+    }
+  ]
+}
+
