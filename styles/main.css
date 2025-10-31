@@ -962,11 +962,13 @@ body.dark-mode .sort-order-btn:hover {
     header {
         padding: 12px 10px;
         margin-bottom: 12px;
+        text-align: left;
     }
     
     header h1 {
         font-size: 1.6em;
         margin-bottom: 5px;
+        text-align: left;
     }
     
     .header-content {
@@ -987,6 +989,7 @@ body.dark-mode .sort-order-btn:hover {
     .tagline {
         font-size: 0.85em;
         margin-top: 3px;
+        text-align: left;
     }
     
     /* Loading screen - Mobile optimized */
@@ -1003,6 +1006,19 @@ body.dark-mode .sort-order-btn:hover {
 }
 
 @media (max-width: 768px) {
+    /* Header - Left align on mobile */
+    header {
+        text-align: left;
+    }
+    
+    header h1 {
+        text-align: left;
+    }
+    
+    .tagline {
+        text-align: left;
+    }
+    
     .quiz-columns {
         grid-template-columns: 1fr;
         min-height: auto;
@@ -1033,7 +1049,7 @@ body.dark-mode .sort-order-btn:hover {
     
     .quiz-header.mobile-header {
         display: block !important;
-        text-align: center;
+        text-align: left;
         padding: 15px 0;
         margin-bottom: 15px;
         border-bottom: 2px solid var(--accent-color);
@@ -1094,6 +1110,34 @@ body.dark-mode .sort-order-btn:hover {
     .editions-section {
         padding: 15px;
         margin-bottom: 15px;
+    }
+    
+    /* Footer - Left align on mobile */
+    footer {
+        text-align: left;
+    }
+    
+    .footer-content {
+        text-align: left;
+    }
+    
+    .footer-left,
+    .footer-right {
+        text-align: left;
+        align-items: flex-start;
+    }
+    
+    .footer-title,
+    .footer-tagline {
+        text-align: left;
+    }
+    
+    .footer-links {
+        align-items: flex-start;
+    }
+    
+    .footer-links a {
+        justify-content: flex-start;
     }
 }
 
@@ -1236,26 +1280,29 @@ body.dark-mode .sort-order-btn:hover {
     .footer-content {
         flex-direction: column;
         gap: 18px;
-        text-align: center;
+        text-align: left;
     }
     
     .footer-left,
     .footer-right {
-        text-align: center;
-        align-items: center;
+        text-align: left;
+        align-items: flex-start;
     }
     
     .footer-title {
         font-size: 1.2em;
+        text-align: left;
     }
     
     .footer-tagline {
         font-size: 0.85em;
+        text-align: left;
     }
     
     .footer-links {
         flex-direction: column;
         gap: 12px;
+        align-items: flex-start;
     }
     
     .footer-link-separator {
@@ -1263,12 +1310,12 @@ body.dark-mode .sort-order-btn:hover {
     }
     
     .footer-links a {
-        padding: 10px;
+        padding: 10px 0;
         font-size: 1em;
         min-height: 44px;
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
     }
     
     /* Quiz header adjustments */
