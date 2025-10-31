@@ -189,8 +189,8 @@ body.dark-mode .moon-icon {
 
 /* Icon styling */
 .icon-inline {
-    width: 16px;
-    height: 16px;
+    width: 20px;
+    height: 20px;
     vertical-align: middle;
     margin: 0 4px;
 }
@@ -257,7 +257,7 @@ body.dark-mode .moon-icon {
     font-size: 0.9em;
     background-color: #fff;
     color: #000;
-    border: 2px solid #000;
+    border: none;
     border-radius: 2px;
     cursor: pointer;
     font-family: 'Georgia', serif;
@@ -297,7 +297,7 @@ body.dark-mode .moon-icon {
     border: 2px solid var(--border-color);
     border-radius: 2px;
     transition: all 0.2s ease;
-    font-size: 0.9em;
+    font-size: 1.05em;
     background-color: #fff;
     color: var(--text-color);
     display: flex;
@@ -328,11 +328,11 @@ body.dark-mode .moon-icon {
 .edition-item-number {
     font-weight: bold;
     margin-bottom: 3px;
-    font-size: 1.05em;
+    font-size: 1.2em;
 }
 
 .edition-item-date {
-    font-size: 0.9em;
+    font-size: 1.05em;
     color: var(--meta-color);
     margin-top: 0;
 }
@@ -583,7 +583,7 @@ main {
     width: 100%;
     box-sizing: border-box;
     flex: 1;
-    min-height: 600px;
+    min-height: 700px;
     display: flex;
     flex-direction: column;
 }
@@ -617,8 +617,8 @@ main {
     grid-template-columns: 1fr 1fr;
     gap: 30px;
     align-items: start;
-    min-height: 600px;
-    height: 600px;
+    min-height: 700px;
+    height: 700px;
     width: 100%;
     box-sizing: border-box;
 }
@@ -634,8 +634,8 @@ main {
 .questions-column {
     display: flex;
     flex-direction: column;
-    min-height: 600px;
-    height: 600px;
+    min-height: 700px;
+    height: 700px;
     width: 100%;
     box-sizing: border-box;
     overflow-y: auto;
@@ -654,11 +654,12 @@ main {
     padding-left: 30px;
     margin-bottom: 15px;
     line-height: 1.6;
+    font-size: 1.15em;
 }
 
 .answers-list {
-    min-height: 600px;
-    height: 600px;
+    min-height: 700px;
+    height: 700px;
     transition: visibility 0.3s, opacity 0.3s;
     width: 100%;
     box-sizing: border-box;
@@ -673,8 +674,8 @@ main {
 .answers-list.hidden {
     visibility: hidden;
     opacity: 0;
-    min-height: 600px;
-    height: 600px;
+    min-height: 700px;
+    height: 700px;
 }
 
 .answers-list:not(.hidden) {
@@ -934,7 +935,7 @@ body.dark-mode .pagination-btn:disabled {
 body.dark-mode .sort-order-btn {
     background-color: #fff;
     color: #000;
-    border-color: #000;
+    border: none;
 }
 
 body.dark-mode .sort-order-btn:hover {
