@@ -16,11 +16,20 @@ async function init() {
     setTimeout(() => {
         const loadingScreen = document.getElementById('loadingScreen');
         const layoutContainer = document.querySelector('.layout-container');
+        const header = document.querySelector('header');
+        const footer = document.querySelector('footer');
+        
         if (loadingScreen) {
             loadingScreen.classList.add('hidden');
         }
         if (layoutContainer) {
             layoutContainer.classList.add('loaded');
+        }
+        if (header) {
+            header.classList.add('loaded');
+        }
+        if (footer) {
+            footer.classList.add('loaded');
         }
     }, 500);
 }
@@ -57,7 +66,7 @@ async function loadQuizzes() {
     } catch (error) {
         console.error('Error loading quizzes:', error);
         document.getElementById('quizContainer').innerHTML = 
-            '<div class="error">Failed to load quizzes. Please check your connection or data file.</div>';
+            '<div class="error">Kunne ikke laste quizzer. Vennligst sjekk tilkoblingen eller datafilen.</div>';
     }
 }
 
@@ -82,7 +91,7 @@ function updateThemeToggle() {
     const isDark = document.body.classList.contains('dark-mode');
     const themeToggle = document.getElementById('themeToggle');
     if (themeToggle) {
-        themeToggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+        themeToggle.setAttribute('aria-label', isDark ? 'Bytt til lys modus' : 'Bytt til mørk modus');
     }
 }
 
@@ -124,6 +133,7 @@ function setupEventListeners() {
     }
 
     setupEditionsPagination();
+    setupSidebarOverlay();
 }
 
 // Toggle sidebar visibility
@@ -132,6 +142,32 @@ function toggleSidebar() {
     if (sidebar) {
         sidebar.classList.toggle('hidden');
         document.body.classList.toggle('sidebar-hidden');
+        
+        // Prevent body scroll when sidebar is open on mobile
+        if (window.innerWidth <= 480) {
+            if (sidebar.classList.contains('hidden')) {
+                document.body.style.overflow = '';
+            } else {
+                document.body.style.overflow = 'hidden';
+            }
+        }
+    }
+}
+
+// Close sidebar when clicking overlay on mobile
+function setupSidebarOverlay() {
+    if (window.innerWidth <= 480) {
+        document.body.addEventListener('click', function(e) {
+            const sidebar = document.getElementById('editionsSidebar');
+            const toggleBtn = document.getElementById('toggleSidebarBtn');
+            
+            // If sidebar is open and we clicked outside of it (on the overlay)
+            if (sidebar && !sidebar.classList.contains('hidden') && 
+                !sidebar.contains(e.target) && 
+                toggleBtn && !toggleBtn.contains(e.target)) {
+                toggleSidebar();
+            }
+        });
     }
 }
 
@@ -228,7 +264,7 @@ function updateEditionsSidebar() {
         item.className = `edition-item ${globalIndex === currentIndex ? 'active' : ''}`;
         item.innerHTML = `
             <div>
-                <span class="edition-item-number">Edition ${quiz.edition}</span>
+                <span class="edition-item-number">Utgave ${quiz.edition}</span>
             </div>
             <div class="edition-item-date">${formatDate(quiz.date)}</div>
         `;
@@ -278,7 +314,7 @@ function setupEditionsPagination() {
 // Format date for display
 function formatDate(dateString) {
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', { 
+    return date.toLocaleDateString('nb-NO', { 
         year: 'numeric', 
         month: 'long', 
         day: 'numeric'
@@ -288,7 +324,7 @@ function formatDate(dateString) {
 // Format date for quiz title (Monthname dd, yyyy)
 function formatDateForTitle(dateString) {
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', { 
+    return date.toLocaleDateString('nb-NO', { 
         year: 'numeric', 
         month: 'long', 
         day: 'numeric'
@@ -306,11 +342,11 @@ function toggleAnswers() {
         if (answersVisible) {
             answersList.classList.remove('hidden');
             if (answersHeader) answersHeader.classList.remove('hidden');
-            toggleBtn.innerHTML = '<i data-lucide="eye-off" class="icon-inline"></i> Hide Answers';
+            toggleBtn.innerHTML = '<i data-lucide="eye-off" class="icon-inline"></i> Skjul svar';
         } else {
             answersList.classList.add('hidden');
             if (answersHeader) answersHeader.classList.add('hidden');
-            toggleBtn.innerHTML = '<i data-lucide="eye" class="icon-inline"></i> Show Answers';
+            toggleBtn.innerHTML = '<i data-lucide="eye" class="icon-inline"></i> Svar';
         }
         lucide.createIcons(); // Reinitialize icons
         
@@ -328,14 +364,14 @@ function renderQuiz(quiz) {
             <div class="quiz-header">
                 <h2>${titleDate}</h2>
                 <div class="quiz-meta">
-                    <span class="edition">Edition ${quiz.edition}</span>
+                    <span class="edition">Utgave ${quiz.edition}</span>
                 </div>
             </div>
             
             <div class="quiz-content">
                 <div class="quiz-columns-header">
-                    <h3 class="questions-header">Questions</h3>
-                    <h3 class="answers-header ${answersVisible ? '' : 'hidden'}">Answers</h3>
+                    <h3 class="questions-header">Spørsmål</h3>
+                    <h3 class="answers-header ${answersVisible ? '' : 'hidden'}">Svar</h3>
                 </div>
                 
                 <div class="quiz-columns">
@@ -351,14 +387,14 @@ function renderQuiz(quiz) {
                         <div class="quiz-actions">
                             <button id="prevBtn" class="nav-btn" ${currentIndex === 0 ? 'disabled' : ''}>
                                 <i data-lucide="chevron-left" class="icon-inline"></i>
-                                Previous
+                                Forrige
                             </button>
                             <button id="toggleAnswersBtn" class="toggle-answers-btn">
                                 <i data-lucide="${answersVisible ? 'eye-off' : 'eye'}" class="icon-inline"></i>
-                                ${answersVisible ? 'Hide Answers' : 'Show Answers'}
+                                ${answersVisible ? 'Skjul svar' : 'Svar'}
                             </button>
                             <button id="nextBtn" class="nav-btn" ${currentIndex === quizzes.length - 1 ? 'disabled' : ''}>
-                                Next
+                                Neste
                                 <i data-lucide="chevron-right" class="icon-inline"></i>
                             </button>
                         </div>

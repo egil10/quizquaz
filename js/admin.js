@@ -158,15 +158,15 @@ function generateQuestionInputs() {
         questionDiv.className = 'question-item';
         questionDiv.innerHTML = `
             <div class="question-header">
-                <span class="question-number">Question ${i}</span>
+                <span class="question-number">Spørsmål ${i}</span>
             </div>
             <div class="form-group">
-                <label>Question Text</label>
-                <input type="text" class="form-input question-input" data-q="${i}" placeholder="Enter question ${i}" required>
+                <label>Spørsmålstekst</label>
+                <input type="text" class="form-input question-input" data-q="${i}" placeholder="Skriv inn spørsmål ${i}" required>
             </div>
             <div class="form-group">
-                <label>Answer</label>
-                <input type="text" class="form-input answer-input" data-q="${i}" placeholder="Enter answer ${i}" required>
+                <label>Svar</label>
+                <input type="text" class="form-input answer-input" data-q="${i}" placeholder="Skriv inn svar ${i}" required>
             </div>
         `;
         questionsList.appendChild(questionDiv);
@@ -222,7 +222,7 @@ function saveDraft(silent = false) {
     localStorage.setItem('quizquaz_draft', JSON.stringify(formData));
     
     if (!silent) {
-        showSuccessMessage('Draft saved! You can continue later.');
+        showSuccessMessage('Utkast lagret! Du kan fortsette senere.');
     }
     
     const loadDraftBtn = document.getElementById('loadDraftBtn');
@@ -247,7 +247,7 @@ function loadDraft() {
         if (answerInput) answerInput.value = q.answer;
     });
     
-    showSuccessMessage('Draft loaded!');
+    showSuccessMessage('Utkast lastet!');
 }
 
 // Check for draft
@@ -294,7 +294,7 @@ async function handleFormSubmit(e) {
     }
     
     if (!valid || questions.length !== 12) {
-        showError('Please fill in all 12 questions and answers.');
+        showError('Vennligst fyll ut alle 12 spørsmål og svar.');
         return;
     }
     
@@ -308,7 +308,7 @@ async function handleFormSubmit(e) {
     
     // Show loading
     document.getElementById('loadingIndicator').style.display = 'flex';
-    document.getElementById('submitText').textContent = 'Publishing...';
+    document.getElementById('submitText').textContent = 'Publiserer...';
     
     try {
         // Try to publish to Firebase
@@ -316,7 +316,7 @@ async function handleFormSubmit(e) {
             await saveQuizToFirestore(quiz);
             // Clear draft on success
             localStorage.removeItem('quizquaz_draft');
-            showSuccess('Quiz published successfully to Firebase! It\'s live now!');
+            showSuccess('Quiz publisert til Firebase! Den er live nå!');
         } else {
             // Fallback: download file
             const updatedJSON = await generateUpdatedQuizzesJSON(quiz);
@@ -328,7 +328,7 @@ async function handleFormSubmit(e) {
         showError('Failed to publish: ' + error.message);
     } finally {
         document.getElementById('loadingIndicator').style.display = 'none';
-        document.getElementById('submitText').textContent = 'Publish to Firebase';
+        document.getElementById('submitText').textContent = 'Publiser til Firebase';
     }
     
     // Reset form after delay

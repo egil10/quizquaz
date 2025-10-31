@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="no">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QuizQuaz - Quiz Editions</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>QuizQuaz - Quizutgaver</title>
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="stylesheet" href="styles/main.css">
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -17,14 +20,13 @@
                 <i data-lucide="moon" class="theme-icon moon-icon"></i>
             </button>
         </div>
-        <p class="tagline">Quiz Editions</p>
+        <p class="tagline">Quizutgaver</p>
     </header>
 
     <div class="stars-container" id="starsContainer"></div>
 
     <div id="loadingScreen" class="loading-screen">
         <div class="loading-content">
-            <div class="loading-logo">Qq</div>
             <div class="loading-text">QuizQuaz</div>
             <div class="loading-spinner">
                 <div class="spinner-dot"></div>
@@ -37,7 +39,7 @@
     <div class="layout-container">
         <div class="main-content">
             <main id="quizContainer">
-                <div class="loading">Loading quiz...</div>
+                <div class="loading">Laster quiz...</div>
             </main>
         </div>
 
@@ -45,7 +47,7 @@
             <div class="sidebar-header">
                 <h3>
                     <i data-lucide="book-open" class="icon-inline"></i>
-                    Editions
+                    Utgaver
                 </h3>
                 <button id="toggleSidebarBtn" class="toggle-sidebar-btn">
                     <i data-lucide="x" class="icon-inline sidebar-icon-close"></i>
@@ -71,7 +73,7 @@
         <div class="footer-content">
             <div class="footer-left">
                 <p class="footer-title">QuizQuaz</p>
-                <p class="footer-tagline">Quiz Editions - Test Your Knowledge</p>
+                <p class="footer-tagline">Quizutgaver - Test din kunnskap</p>
             </div>
             <div class="footer-right">
                 <div class="footer-links">
@@ -85,7 +87,7 @@
                         GitHub
                     </a>
                 </div>
-                <p class="footer-copyright">© <span id="currentYear">2024</span> QuizQuaz. All rights reserved.</p>
+                <p class="footer-copyright">© <span id="currentYear">2024</span> QuizQuaz. Alle rettigheter forbeholdt.</p>
             </div>
         </div>
     </footer>

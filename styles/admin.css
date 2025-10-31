@@ -301,23 +301,157 @@ body.dark-mode .error-message {
     color: #ff6b6b;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .admin-card {
-        padding: 20px;
+/* Responsive - Mobile optimized */
+@media (max-width: 480px) {
+    body {
+        padding: 0;
     }
+    
+    .admin-simple {
+        padding: 30px 20px;
+        margin: 10px;
+        max-width: calc(100% - 20px);
+    }
+    
+    .admin-simple h1 {
+        font-size: 1.6em;
+        margin-bottom: 25px;
+    }
+    
+    .admin-simple input {
+        padding: 16px;
+        font-size: 16px;
+        min-height: 48px;
+        letter-spacing: 1px;
+    }
+    
+    .admin-simple button {
+        padding: 16px;
+        font-size: 1.05em;
+        min-height: 48px;
+    }
+    
+    .admin-simple a {
+        padding: 12px;
+        font-size: 1em;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    header {
+        padding: 12px 10px;
+    }
+    
+    header h1 {
+        font-size: 1.6em;
+    }
+    
+    .back-link {
+        padding: 10px 14px;
+        font-size: 0.95em;
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+    }
+    
+    .admin-container {
+        padding: 15px 10px;
+    }
+    
+    .admin-card {
+        padding: 20px 15px;
+    }
+    
+    .admin-card h2 {
+        font-size: 1.5em;
+        margin-bottom: 20px;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .form-group {
+        margin-bottom: 18px;
+    }
+    
+    .form-input {
+        padding: 14px;
+        font-size: 16px;
+        min-height: 48px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .question-item {
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+    
+    .question-header {
+        margin-bottom: 12px;
+    }
+    
+    .question-number {
+        font-size: 1.05em;
+    }
+    
+    .questions-container h3 {
+        font-size: 1.2em;
+        margin-bottom: 18px;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 25px;
+    }
+    
+    .btn {
+        width: 100%;
+        min-height: 48px;
+        padding: 14px 24px;
+        font-size: 1.05em;
+        justify-content: center;
+        touch-action: manipulation;
+    }
+    
+    .btn-large {
+        padding: 16px 24px;
+        font-size: 1.1em;
+    }
+    
+    .success-message,
+    .error-message {
+        padding: 14px;
+        font-size: 0.95em;
+    }
+    
+    .info-box {
+        padding: 12px;
+        font-size: 0.9em;
+    }
+}
 
+@media (min-width: 481px) and (max-width: 768px) {
+    .admin-card {
+        padding: 25px;
+    }
+    
     .form-row {
         grid-template-columns: 1fr;
     }
-
+    
     .form-actions {
         flex-direction: column;
     }
-
+    
     .btn {
         width: 100%;
-        justify-content: center;
+        min-height: 48px;
     }
 }
 

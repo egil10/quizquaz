@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="no">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <title>QuizQuaz Admin</title>
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="stylesheet" href="styles/main.css">
@@ -12,11 +14,11 @@
 <body>
     <div id="loginScreen" style="display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px;">
         <div class="admin-simple">
-            <h1>Admin Access</h1>
-            <input type="password" id="apiKeyInput" placeholder="Enter 16-character API key" maxlength="16" autocomplete="off">
-            <button id="apiKeySubmit">Authenticate</button>
+            <h1>Admin-tilgang</h1>
+            <input type="password" id="apiKeyInput" placeholder="Skriv inn 16-tegns API-nøkkel" maxlength="16" autocomplete="off">
+            <button id="apiKeySubmit">Autentiser</button>
             <div id="apiKeyError" class="error-message" style="display: none;"></div>
-            <a href="https://egil10.github.io/quizquaz/">Home</a>
+            <a href="https://egil10.github.io/quizquaz/">Hjem</a>
         </div>
     </div>
 
@@ -24,9 +26,9 @@
         <header>
             <div class="header-content">
                 <h1>QuizQuaz Admin</h1>
-                <a href="https://egil10.github.io/quizquaz/" class="back-link">Home</a>
+                <a href="https://egil10.github.io/quizquaz/" class="back-link">Hjem</a>
             </div>
-            <p class="tagline">Add New Quiz Edition</p>
+            <p class="tagline">Legg til ny quizutgave</p>
         </header>
 
         <div class="stars-container" id="starsContainer"></div>
@@ -34,48 +36,48 @@
         <div class="admin-container">
             <div id="adminForm" class="admin-section">
                 <div class="admin-card">
-                    <h2>Add New Quiz</h2>
+                    <h2>Legg til ny quiz</h2>
                     
                     <div id="firebaseConnected" class="success-box" style="display: none;">
-                        Connected to Firebase - Quiz will publish instantly!
+                        Tilkoblet Firebase - Quiz publiseres umiddelbart!
                     </div>
                     
                     <form id="quizForm">
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="quizDate">Date <span class="required">*</span></label>
+                                <label for="quizDate">Dato <span class="required">*</span></label>
                                 <input type="date" id="quizDate" required class="form-input">
                             </div>
                             <div class="form-group">
-                                <label for="quizTitle">Title <span class="required">*</span></label>
-                                <input type="text" id="quizTitle" placeholder="January 1, 2024" required class="form-input">
+                                <label for="quizTitle">Tittel <span class="required">*</span></label>
+                                <input type="text" id="quizTitle" placeholder="1. januar 2024" required class="form-input">
                             </div>
                             <div class="form-group">
-                                <label for="quizEdition">Edition Number <span class="required">*</span></label>
+                                <label for="quizEdition">Utgavenummer <span class="required">*</span></label>
                                 <input type="number" id="quizEdition" min="1" required class="form-input">
                             </div>
                         </div>
 
                         <div class="questions-container">
-                            <h3>Questions (12 required)</h3>
+                            <h3>Spørsmål (12 påkrevd)</h3>
                             <div id="questionsList"></div>
                         </div>
 
                         <div class="form-actions">
                             <button type="submit" class="btn btn-primary btn-large">
-                                <span id="submitText">Publish to Firebase</span>
+                                <span id="submitText">Publiser til Firebase</span>
                             </button>
                             <button type="button" id="saveDraftBtn" class="btn btn-secondary">
-                                Save Draft
+                                Lagre utkast
                             </button>
                             <button type="button" id="loadDraftBtn" class="btn btn-secondary" style="display: none;">
-                                Load Draft
+                                Last utkast
                             </button>
                         </div>
                     </form>
 
                     <div id="successMessage" class="success-message" style="display: none;">
-                        Quiz published successfully!
+                        Quiz publisert!
                     </div>
                     
                     <div id="errorMessage" class="error-message" style="display: none;">
@@ -83,7 +85,7 @@
                     </div>
 
                     <div id="loadingIndicator" class="loading-indicator" style="display: none;">
-                        Publishing to Firebase...
+                        Publiserer til Firebase...
                     </div>
                 </div>
             </div>
@@ -110,7 +112,7 @@
         .admin-simple input {
             width: 100%;
             padding: 12px;
-            font-size: 1em;
+            font-size: 16px;
             border: 2px solid var(--border-color);
             border-radius: 6px;
             margin-bottom: 20px;
@@ -118,6 +120,7 @@
             text-align: center;
             letter-spacing: 2px;
             box-sizing: border-box;
+            min-height: 48px;
         }
         
         .admin-simple input:focus {
@@ -137,6 +140,8 @@
             font-family: 'Georgia', serif;
             font-weight: 500;
             transition: all 0.2s ease;
+            min-height: 48px;
+            touch-action: manipulation;
         }
         
         .admin-simple button:hover {
@@ -222,7 +227,7 @@
                 const enteredKey = input.value.trim();
                 
                 if (enteredKey.length !== 16) {
-                    errorDiv.textContent = 'API key must be 16 characters';
+                    errorDiv.textContent = 'API-nøkkel må være 16 tegn';
                     errorDiv.style.display = 'block';
                     return;
                 }
@@ -235,7 +240,7 @@
                         initAdmin();
                     }
                 } else {
-                    errorDiv.textContent = 'Invalid API key';
+                    errorDiv.textContent = 'Ugyldig API-nøkkel';
                     errorDiv.style.display = 'block';
                     input.value = '';
                 }
