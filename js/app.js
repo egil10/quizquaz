@@ -294,16 +294,6 @@ function toggleAnswers() {
     
     // Re-render the quiz to show/hide answers section
     updateUI();
-    
-    // Scroll to top of answers section when showing
-    if (answersVisible) {
-        setTimeout(() => {
-            const answersSection = document.querySelector('.answers-section');
-            if (answersSection) {
-                answersSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        }, 100);
-    }
 }
 
 // Render quiz in newspaper style

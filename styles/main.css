@@ -448,7 +448,7 @@ body.dark-mode .editions-dropdown {
     gap: 15px;
     margin-top: 20px;
     margin-bottom: 0;
-    padding: 15px 0;
+    padding: 15px 0 5px 0;
     flex-wrap: wrap;
 }
 
@@ -548,7 +548,7 @@ main {
     background-color: var(--card-bg);
     padding: 30px;
     box-shadow: 0 4px 8px var(--shadow);
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
     flex: 1;
     width: 100%;
@@ -1348,7 +1348,7 @@ body.dark-mode .sort-order-btn:hover {
         flex-wrap: wrap;
         gap: 8px;
         margin-top: 20px;
-        padding: 15px 0;
+        padding: 15px 0 5px 0;
         justify-content: space-between;
     }
     
@@ -1577,7 +1577,7 @@ body.dark-mode .sort-order-btn:hover {
         flex-wrap: wrap;
         gap: 8px;
         margin-top: 20px;
-        padding: 15px 0;
+        padding: 15px 0 5px 0;
         justify-content: space-between;
     }
     
