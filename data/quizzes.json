@@ -84,7 +84,7 @@
         {
           "number": 2,
           "question": "De syv fjell er en betegnelse på Byfjellene som omkranser Bergen sentrum, men hvilket av de syv fjell er høyest og hvilket er lavest?",
-          "answer": "Ulriken er høyest og Damsgårdsfjellet er lavest."
+          "answer": "Ulriken (643 moh.) er høyest og Damsgårdsfjellet (317 moh.) er lavest."
         },
         {
           "number": 3,
@@ -133,7 +133,7 @@
         },
         {
           "number": 12,
-          "question": "I nederlandsk barokkunst brukes begrepet «tronie» om en spesiell type maleri, men hva er et «tronie»?",
+          "question": "I nederlandsk barokkunst brukes begrepet «tronie» om en spesiell type maleri, men hva er et «tronie»? Som hint, er «Jenta med perleøredobb» et tronie.",
           "answer": "En «tronie» er et maleri som viser et karakteristisk ansikt eller uttrykk, ofte brukt som studie av mennesketyper eller følelser, ikke som et egentlig portrett."
         }
       ],
