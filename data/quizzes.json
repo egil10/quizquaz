@@ -98,7 +98,7 @@
         },
         {
           "number": 5,
-          "question": "Bare to land i verden er dobbelt landlåste – altså omgitt utelukkende av land som selv ikke har kystlinje. Hvilke to land er det?",
+          "question": "Bare to land i verden er dobbelt landlåste – altså er de to landene uten kystlinje og omgitt utelukkende av land som selv ikke har kystlinje. Hvilke to land er det?",
           "answer": "Liechtenstein og Usbekistan."
         },
         {
@@ -138,7 +138,7 @@
         }
       ],
       "introImage": "https://upload.wikimedia.org/wikipedia/commons/4/49/%22The_School_of_Athens%22_by_Raffaello_Sanzio_da_Urbino.jpg",
-      "midImage": "https://upload.wikimedia.org/wikipedia/commons/0/0f/1665_Girl_with_a_Pearl_Earring.jpg"
+      "midImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/1665_Girl_with_a_Pearl_Earring.jpg/800px-1665_Girl_with_a_Pearl_Earring.jpg"
     }
   ]
 }
