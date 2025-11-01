@@ -269,23 +269,26 @@ function formatDateForTitle(dateString) {
 // Toggle answers visibility
 function toggleAnswers() {
     answersVisible = !answersVisible;
-    const answersList = document.querySelector('.answers-list');
-    const answersHeader = document.querySelector('.answers-header');
     const toggleBtn = document.getElementById('toggleAnswersBtn');
     
-    if (answersList && toggleBtn) {
-        if (answersVisible) {
-            answersList.classList.remove('hidden');
-            if (answersHeader) answersHeader.classList.remove('hidden');
-            toggleBtn.innerHTML = '<i data-lucide="eye-off" class="icon-inline"></i> Skjul svar';
-        } else {
-            answersList.classList.add('hidden');
-            if (answersHeader) answersHeader.classList.add('hidden');
-            toggleBtn.innerHTML = '<i data-lucide="eye" class="icon-inline"></i> Svar';
-        }
-        lucide.createIcons(); // Reinitialize icons
-        
-        // No need to sync height - sidebar has fixed height
+    if (toggleBtn) {
+        toggleBtn.innerHTML = answersVisible 
+            ? '<i data-lucide="eye-off" class="icon-inline"></i> Skjul svar'
+            : '<i data-lucide="eye" class="icon-inline"></i> Svar';
+        lucide.createIcons();
+    }
+    
+    // Re-render the quiz to show/hide answers section
+    updateUI();
+    
+    // Scroll to top of answers section when showing
+    if (answersVisible) {
+        setTimeout(() => {
+            const answersSection = document.querySelector('.answers-section');
+            if (answersSection) {
+                answersSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }, 100);
     }
 }
 
@@ -313,76 +316,92 @@ function renderQuiz(quiz) {
             <div class="quiz-content">
                 <div class="quiz-columns-header desktop-header">
                     <h3 class="questions-header">Spørsmål</h3>
-                    <h3 class="answers-header ${answersVisible ? '' : 'hidden'}">Svar</h3>
+                    ${answersVisible ? '<h3 class="answers-header">Svar</h3>' : ''}
                 </div>
                 
-                <div class="quiz-columns">
-                    <div class="questions-column">
-                        <h3 class="questions-header-mobile mobile-header">Spørsmål</h3>
-                        <ol class="questions-list">
-                            ${quiz.introImage ? `
-                            <li class="quiz-image-container intro-image">
-                                <img src="${quiz.introImage}" alt="Quiz intro image" class="quiz-image-positioned" loading="lazy">
-                            </li>
-                            ` : ''}
-                            ${quiz.questions.slice(0, 6).map(q => `
-                                <li>
-                                    <span class="question-number">${q.number}.</span>
-                                    <span class="question-text">${q.question}</span>
-                                </li>
-                            `).join('')}
+                <div class="questions-section">
+                    <h3 class="questions-header-mobile mobile-header">Spørsmål</h3>
+                    ${quiz.introImage ? `
+                    <div class="quiz-intro-image-container">
+                        <img src="${quiz.introImage}" alt="Quiz intro image" class="quiz-image-positioned" loading="lazy">
+                    </div>
+                    ` : ''}
+                    
+                    <div class="questions-two-columns">
+                        <div class="questions-column-left">
+                            <ol class="questions-list">
+                                ${quiz.questions.slice(0, 6).map(q => `
+                                    <li>
+                                        <span class="question-number">${q.number}.</span>
+                                        <span class="question-text">${q.question}</span>
+                                    </li>
+                                `).join('')}
+                            </ol>
+                        </div>
+                        <div class="questions-column-right">
                             ${quiz.midImage ? `
-                            <li class="quiz-image-container mid-image">
+                            <div class="quiz-mid-image-container">
                                 <img src="${quiz.midImage}" alt="Quiz mid image" class="quiz-image-positioned" loading="lazy">
-                            </li>
-                            ` : ''}
-                            ${quiz.questions.slice(6).map(q => `
-                                <li>
-                                    <span class="question-number">${q.number}.</span>
-                                    <span class="question-text">${q.question}</span>
-                                </li>
-                            `).join('')}
-                        </ol>
-                        <div class="quiz-actions">
-                            <button id="prevBtn" class="nav-btn desktop-nav" ${currentIndex === quizzes.length - 1 ? 'disabled' : ''}>
-                                <i data-lucide="chevron-left" class="icon-inline"></i>
-                                Forrige
-                            </button>
-                            <button id="toggleAnswersBtn" class="toggle-answers-btn">
-                                <i data-lucide="${answersVisible ? 'eye-off' : 'eye'}" class="icon-inline"></i>
-                                ${answersVisible ? 'Skjul svar' : 'Svar'}
-                            </button>
-                            <button id="nextBtn" class="nav-btn desktop-nav" ${currentIndex === 0 ? 'disabled' : ''}>
-                                Neste
-                                <i data-lucide="chevron-right" class="icon-inline"></i>
-                            </button>
-                            <div class="quiz-actions-info">
-                                <span class="quiz-actions-date">${titleDate}</span>
-                                <span class="quiz-actions-edition">Utgave ${quiz.edition} / ${quizzes.length}</span>
                             </div>
+                            ` : ''}
+                            <ol class="questions-list">
+                                ${quiz.questions.slice(6).map(q => `
+                                    <li>
+                                        <span class="question-number">${q.number}.</span>
+                                        <span class="question-text">${q.question}</span>
+                                    </li>
+                                `).join('')}
+                            </ol>
                         </div>
                     </div>
                     
-                    ${answersVisible ? `
-                    <ol class="answers-list">
-                        ${quiz.questions.map(q => `
-                            <li>
-                                <span class="answer-number">${q.number}.</span>
-                                <span class="answer-text">${q.answer}</span>
-                            </li>
-                        `).join('')}
-                    </ol>
-                    ` : `
-                    <ol class="answers-list hidden">
-                        ${quiz.questions.map(q => `
-                            <li>
-                                <span class="answer-number">${q.number}.</span>
-                                <span class="answer-text">${q.answer}</span>
-                            </li>
-                        `).join('')}
-                    </ol>
-                    `}
+                    <div class="quiz-actions">
+                        <button id="prevBtn" class="nav-btn desktop-nav" ${currentIndex === quizzes.length - 1 ? 'disabled' : ''}>
+                            <i data-lucide="chevron-left" class="icon-inline"></i>
+                            Forrige
+                        </button>
+                        <button id="toggleAnswersBtn" class="toggle-answers-btn">
+                            <i data-lucide="${answersVisible ? 'eye-off' : 'eye'}" class="icon-inline"></i>
+                            ${answersVisible ? 'Skjul svar' : 'Svar'}
+                        </button>
+                        <button id="nextBtn" class="nav-btn desktop-nav" ${currentIndex === 0 ? 'disabled' : ''}>
+                            Neste
+                            <i data-lucide="chevron-right" class="icon-inline"></i>
+                        </button>
+                        <div class="quiz-actions-info">
+                            <span class="quiz-actions-date">${titleDate}</span>
+                            <span class="quiz-actions-edition">Utgave ${quiz.edition} / ${quizzes.length}</span>
+                        </div>
+                    </div>
                 </div>
+                
+                ${answersVisible ? `
+                <div class="answers-section">
+                    <h3 class="answers-header-mobile mobile-header">Svar</h3>
+                    <div class="answers-two-columns">
+                        <div class="answers-column-left">
+                            <ol class="answers-list">
+                                ${quiz.questions.slice(0, 6).map(q => `
+                                    <li>
+                                        <span class="answer-number">${q.number}.</span>
+                                        <span class="answer-text">${q.answer}</span>
+                                    </li>
+                                `).join('')}
+                            </ol>
+                        </div>
+                        <div class="answers-column-right">
+                            <ol class="answers-list">
+                                ${quiz.questions.slice(6).map(q => `
+                                    <li>
+                                        <span class="answer-number">${q.number}.</span>
+                                        <span class="answer-text">${q.answer}</span>
+                                    </li>
+                                `).join('')}
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                ` : ''}
             </div>
         </div>
     `;
