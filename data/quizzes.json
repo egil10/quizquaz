@@ -1,9 +1,9 @@
 {
   "quizzes": [
     {
-      "id": "2025-11-01",
-      "date": "2025-11-01",
-      "title": "Lørdag, 1. november 2025",
+      "id": "2025-10-31",
+      "date": "2025-10-31",
+      "title": "Fredag, 31. oktober 2025",
       "edition": 1,
       "questions": [
         {
@@ -71,9 +71,9 @@
       "midImage": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Cour_Napol%C3%A9on_du_Louvre_%28228021559%29.jpg"
     },
     {
-      "id": "2025-11-02",
-      "date": "2025-11-02",
-      "title": "Søndag, 2. november 2025",
+      "id": "2025-11-01",
+      "date": "2025-11-01",
+      "title": "Lørdag, 1. november 2025",
       "edition": 2,
       "questions": [
         {
