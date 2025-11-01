@@ -357,8 +357,8 @@ function renderQuiz(quiz) {
                                 <i data-lucide="chevron-right" class="icon-inline"></i>
                             </button>
                             <div class="quiz-actions-info">
-                                <div class="quiz-actions-date">${titleDate}</div>
-                                <div class="quiz-actions-edition">Utgave ${quiz.edition} / ${quizzes.length}</div>
+                                <span class="quiz-actions-date">${titleDate}</span>
+                                <span class="quiz-actions-edition">Utgave ${quiz.edition} / ${quizzes.length}</span>
                             </div>
                         </div>
                     </div>
