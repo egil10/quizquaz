@@ -621,7 +621,7 @@ main {
 }
 
 .quiz-content {
-    margin-top: 20px;
+    margin-top: 10px;
     width: 100%;
     box-sizing: border-box;
     flex: 1;
@@ -638,6 +638,7 @@ main {
     margin-top: 0;
     border-bottom: 1px solid var(--border-color);
     padding-bottom: 8px;
+    padding-top: 0;
     width: 100%;
     box-sizing: border-box;
 }
@@ -698,7 +699,7 @@ main {
 .answers-header {
     margin-top: 0;
     margin-bottom: 12px;
-    padding-top: 15px;
+    padding-top: 8px;
     padding-bottom: 8px;
     border-top: 2px solid var(--border-color);
     border-bottom: 1px solid var(--border-color);
@@ -757,12 +758,16 @@ main {
     font-size: 1.4em;
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin: 20px 0 12px 0;
+    margin: 0 0 12px 0;
 }
 
 .answers-header {
-    margin-top: 20px;
+    margin-top: 0;
     margin-bottom: 12px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-top: 2px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
 }
 
 .quiz-columns {
