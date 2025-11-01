@@ -69,6 +69,76 @@
       ],
       "introImage": "https://upload.wikimedia.org/wikipedia/commons/0/05/Ridolfo_del_Ghirlandaio_-_Ritratto_di_Cristoforo_Colombo_%281520%29.jpg",
       "midImage": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Cour_Napol%C3%A9on_du_Louvre_%28228021559%29.jpg"
+    },
+    {
+      "id": "2025-11-02",
+      "date": "2025-11-02",
+      "title": "Søndag, 2. november 2025",
+      "edition": 2,
+      "questions": [
+        {
+          "number": 1,
+          "question": "I Rafaels berømte maleri «Skolen i Athen» er en rekke store filosofer og vitenskapsmenn fra antikken avbildet. Nevn tre av de ti mest kjente skikkelsene i maleriet.",
+          "answer": "Platon (avbildet som Leonardo da Vinci), Aristoteles, Sokrates, Pythagoras, Diogenes, Heraklit (avbildet som Michelangelo), Parmenides, Anaximander, Zeno fra Kition, og Alexander den store."
+        },
+        {
+          "number": 2,
+          "question": "De syv fjell er en betegnelse på Byfjellene som omkranser Bergen sentrum, men hvilket av de syv fjell er høyest og hvilket er lavest?",
+          "answer": "Ulriken er høyest og Damsgårdsfjellet er lavest."
+        },
+        {
+          "number": 3,
+          "question": "Hvilket årstall følger etter navnet i det kjente franske ølmerket Kronenbourg …?",
+          "answer": "1664."
+        },
+        {
+          "number": 4,
+          "question": "Blant alle land i verden som er mindre enn alle sine naboland, hvilket land er det største i areal?",
+          "answer": "Mongolia – landet er enormt (over 1,5 millioner kvadratkilometer), men likevel mindre enn begge sine naboer, Kina og Russland."
+        },
+        {
+          "number": 5,
+          "question": "Bare to land i verden er dobbelt landlåste – altså omgitt utelukkende av land som selv ikke har kystlinje. Hvilke to land er det?",
+          "answer": "Liechtenstein og Usbekistan."
+        },
+        {
+          "number": 6,
+          "question": "Elon Musks xAI publiserte i november 2023 den første versjonen av deres store språkmodell, men under hvilket navn? Den fjerde versjonen av denne modellen ble publisert i juli 2025.",
+          "answer": "Grok."
+        },
+        {
+          "number": 7,
+          "question": "Både Nvidia-sjef Jensen Huang og AMD-sjef Lisa Su har røtter fra den samme øya, som i dag er et globalt sentrum for halvleder- og superledningsteknologi. Hvilken nasjonalitet deler de?",
+          "answer": "De er begge taiwansk-amerikanske, født på Taiwan og oppvokst i USA."
+        },
+        {
+          "number": 8,
+          "question": "Hvem er nevø av en tidligere amerikansk president og sønn av en tidligere justisminister, og samtidig nåværende amerikansk helseminister?",
+          "answer": "Robert Francis Kennedy Jr. (RFK Jr.)."
+        },
+        {
+          "number": 9,
+          "question": "Hvilken tidligere amerikansk president var tidligere utsending til Beijing, leder for CIA, og far til en senere president?",
+          "answer": "George H. W. Bush (president 1989–1993)."
+        },
+        {
+          "number": 10,
+          "question": "I Douglas Adams' kultklassiker «Haikerens guide til galaksen» får man vite svaret på det ultimate spørsmålet om livet, universet og alt er hva?",
+          "answer": "42."
+        },
+        {
+          "number": 11,
+          "question": "Hvilken nederlandsk maler fra 1600-tallet malte det berømte maleriet «Jenta med perleøredobb»?",
+          "answer": "Johannes Vermeer."
+        },
+        {
+          "number": 12,
+          "question": "I nederlandsk barokkunst brukes begrepet «tronie» om en spesiell type maleri, men hva er et «tronie»?",
+          "answer": "En «tronie» er et maleri som viser et karakteristisk ansikt eller uttrykk, ofte brukt som studie av mennesketyper eller følelser, ikke som et egentlig portrett."
+        }
+      ],
+      "introImage": "https://upload.wikimedia.org/wikipedia/commons/4/49/%22The_School_of_Athens%22_by_Raffaello_Sanzio_da_Urbino.jpg",
+      "midImage": "https://upload.wikimedia.org/wikipedia/commons/0/0f/1665_Girl_with_a_Pearl_Earring.jpg"
     }
   ]
 }
