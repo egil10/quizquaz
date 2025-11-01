@@ -592,6 +592,14 @@ main {
     display: none;
 }
 
+.nav-btn.mobile-nav {
+    display: none;
+}
+
+.nav-btn.desktop-nav {
+    display: inline-flex;
+}
+
 .quiz-header h2 {
     font-size: 1.8em;
     margin: 0;
@@ -1295,29 +1303,82 @@ body.dark-mode .sort-order-btn:hover {
     .questions-header-mobile,
     .answers-header-mobile {
         display: block !important;
-        font-size: 1.1em;
+        font-size: 1.2em;
         text-transform: uppercase;
         letter-spacing: 1px;
-        margin: 20px 0 12px 0;
+        margin: 15px 0 12px 0;
         padding-bottom: 8px;
         border-bottom: 1px solid var(--border-color);
+    }
+    
+    .quiz-content {
+        margin-top: 5px;
+    }
+    
+    .questions-section {
+        margin-bottom: 20px;
+    }
+    
+    .quiz-header.mobile-header {
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+    }
+    
+    .quiz-header.mobile-header h2 {
+        font-size: 1.4em;
+        margin-bottom: 6px;
+    }
+    
+    .quiz-header.mobile-header .edition {
+        font-size: 1.1em;
+    }
+    
+    .answers-section {
+        margin-top: 10px;
+    }
+    
+    .answers-header {
+        padding-top: 10px;
+    }
+    
+    .quiz-intro-image-container,
+    .quiz-mid-image-container {
+        margin-bottom: 12px;
+        margin-top: 8px;
     }
     
     .nav-btn.desktop-nav {
         display: none !important;
     }
     
+    .nav-btn.mobile-nav {
+        display: inline-flex !important;
+    }
+    
     .quiz-actions {
         position: relative;
         flex-direction: column;
         gap: 12px;
-        margin-top: 25px;
+        margin-top: 20px;
         padding: 15px 0;
     }
     
     .quiz-actions-info {
         width: 100%;
         justify-content: center;
+        font-size: 0.9em;
+        padding: 12px 14px;
+        height: auto;
+        min-height: 48px;
+        white-space: normal;
+        text-align: center;
+        flex-wrap: wrap;
+    }
+    
+    .quiz-actions-date,
+    .quiz-actions-edition {
+        display: block;
+        width: 100%;
     }
     
     .toggle-answers-btn {

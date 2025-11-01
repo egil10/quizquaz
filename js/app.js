@@ -218,25 +218,39 @@ function updateUI() {
 
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
+    const prevBtnMobile = document.getElementById('prevBtnMobile');
+    const nextBtnMobile = document.getElementById('nextBtnMobile');
+    
+    const handlePrev = () => {
+        if (currentIndex < quizzes.length - 1) {
+            currentIndex++; // Go to older quiz (back in time)
+            answersVisible = false;
+            updateUI();
+        }
+    };
+    
+    const handleNext = () => {
+        if (currentIndex > 0) {
+            currentIndex--; // Go to newer quiz (forward in time)
+            answersVisible = false;
+            updateUI();
+        }
+    };
     
     if (prevBtn) {
-        prevBtn.addEventListener('click', () => {
-            if (currentIndex < quizzes.length - 1) {
-                currentIndex++; // Go to older quiz (back in time)
-                answersVisible = false;
-                updateUI();
-            }
-        });
+        prevBtn.addEventListener('click', handlePrev);
     }
-
+    
     if (nextBtn) {
-        nextBtn.addEventListener('click', () => {
-            if (currentIndex > 0) {
-                currentIndex--; // Go to newer quiz (forward in time)
-                answersVisible = false;
-                updateUI();
-            }
-        });
+        nextBtn.addEventListener('click', handleNext);
+    }
+    
+    if (prevBtnMobile) {
+        prevBtnMobile.addEventListener('click', handlePrev);
+    }
+    
+    if (nextBtnMobile) {
+        nextBtnMobile.addEventListener('click', handleNext);
     }
 }
 
@@ -359,11 +373,19 @@ function renderQuiz(quiz) {
                             <i data-lucide="chevron-left" class="icon-inline"></i>
                             Forrige
                         </button>
+                        <button id="prevBtnMobile" class="nav-btn mobile-nav" ${currentIndex === quizzes.length - 1 ? 'disabled' : ''}>
+                            <i data-lucide="chevron-left" class="icon-inline"></i>
+                            Forrige
+                        </button>
                         <button id="toggleAnswersBtn" class="toggle-answers-btn">
                             <i data-lucide="${answersVisible ? 'eye-off' : 'eye'}" class="icon-inline"></i>
                             ${answersVisible ? 'Skjul svar' : 'Svar'}
                         </button>
                         <button id="nextBtn" class="nav-btn desktop-nav" ${currentIndex === 0 ? 'disabled' : ''}>
+                            Neste
+                            <i data-lucide="chevron-right" class="icon-inline"></i>
+                        </button>
+                        <button id="nextBtnMobile" class="nav-btn mobile-nav" ${currentIndex === 0 ? 'disabled' : ''}>
                             Neste
                             <i data-lucide="chevron-right" class="icon-inline"></i>
                         </button>
