@@ -440,7 +440,7 @@ body.dark-mode .editions-dropdown {
 .quiz-actions {
     display: flex;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
     gap: 15px;
     position: absolute;
     bottom: 0;
@@ -448,6 +448,26 @@ body.dark-mode .editions-dropdown {
     width: 100%;
     padding: 15px 0;
     flex-wrap: wrap;
+}
+
+.quiz-actions-info {
+    width: 100%;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.75em;
+    color: var(--meta-color);
+    line-height: 1.4;
+    order: 999;
+}
+
+.quiz-actions-date {
+    font-weight: 500;
+    margin-bottom: 2px;
+}
+
+.quiz-actions-edition {
+    font-size: 0.9em;
 }
 
 /* Buttons - Modern consistent style */
@@ -617,7 +637,7 @@ main {
 .quiz-image-container {
     list-style: none;
     padding: 0 !important;
-    margin: 25px 0 !important;
+    margin: 10px 0 !important;
     display: flex;
     justify-content: center;
     align-items: center;
