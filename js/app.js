@@ -212,6 +212,15 @@ function updateUI() {
     // Display quiz
     container.innerHTML = renderQuiz(quiz);
     
+    // Track quiz view in Google Analytics (if gtag is available)
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'quiz_view', {
+            'quiz_edition': quiz.edition,
+            'quiz_date': quiz.date,
+            'quiz_title': quiz.title
+        });
+    }
+    
     // Reinitialize icons after rendering
     lucide.createIcons();
     
@@ -230,6 +239,15 @@ function updateUI() {
         if (currentIndex < quizzes.length - 1) {
             currentIndex++; // Go to older quiz (back in time)
             answersVisible = false;
+            
+            // Track navigation in Google Analytics
+            if (typeof gtag !== 'undefined' && quizzes[currentIndex]) {
+                gtag('event', 'quiz_navigation', {
+                    'direction': 'prev',
+                    'quiz_edition': quizzes[currentIndex].edition
+                });
+            }
+            
             updateUI();
         }
     };
@@ -238,6 +256,15 @@ function updateUI() {
         if (currentIndex > 0) {
             currentIndex--; // Go to newer quiz (forward in time)
             answersVisible = false;
+            
+            // Track navigation in Google Analytics
+            if (typeof gtag !== 'undefined' && quizzes[currentIndex]) {
+                gtag('event', 'quiz_navigation', {
+                    'direction': 'next',
+                    'quiz_edition': quizzes[currentIndex].edition
+                });
+            }
+            
             updateUI();
         }
     };
@@ -295,6 +322,16 @@ function toggleAnswers() {
             ? '<i data-lucide="eye-off" class="icon-inline"></i> Skjul svar'
             : '<i data-lucide="eye" class="icon-inline"></i> Svar';
         lucide.createIcons();
+    }
+    
+    // Track answer toggle in Google Analytics (if gtag is available)
+    if (typeof gtag !== 'undefined' && quizzes[currentIndex]) {
+        const quiz = quizzes[currentIndex];
+        gtag('event', 'answers_toggled', {
+            'quiz_edition': quiz.edition,
+            'quiz_date': quiz.date,
+            'answers_visible': answersVisible
+        });
     }
     
     // Re-render the quiz to show/hide answers section
