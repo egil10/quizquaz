@@ -704,15 +704,6 @@ main {
     margin-top: 15px;
 }
 
-.answers-header {
-    margin-top: 0;
-    margin-bottom: 12px;
-    padding-top: 8px;
-    padding-bottom: 8px;
-    border-top: 2px solid var(--border-color);
-    border-bottom: 1px solid var(--border-color);
-}
-
 .answers-two-columns {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -1306,7 +1297,7 @@ body.dark-mode .sort-order-btn:hover {
         font-size: 1.2em;
         text-transform: uppercase;
         letter-spacing: 1px;
-        margin: 15px 0 12px 0;
+        margin: 15px 0 0 0;
         padding-bottom: 8px;
         border-bottom: 1px solid var(--border-color);
     }
@@ -1335,10 +1326,6 @@ body.dark-mode .sort-order-btn:hover {
     
     .answers-header.desktop-header {
         display: none !important;
-    }
-    
-    .answers-header-mobile {
-        display: block !important;
     }
     
     .quiz-intro-image-container,
@@ -1396,9 +1383,8 @@ body.dark-mode .sort-order-btn:hover {
     }
     
     .answers-list {
-        margin-top: 25px;
-        padding-top: 20px;
-        border-top: 2px solid var(--border-color);
+        margin-top: 0;
+        padding-top: 0;
     }
     
     /* Simplify main content */
@@ -1573,7 +1559,6 @@ body.dark-mode .sort-order-btn:hover {
         min-height: 48px;
         padding: 14px 16px;
         font-size: 1.05em;
-        min-width: 100%;
         touch-action: manipulation;
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
         border-radius: 2px;
@@ -1588,16 +1573,19 @@ body.dark-mode .sort-order-btn:hover {
     
     .quiz-actions {
         position: relative;
-        flex-direction: column;
-        gap: 12px;
-        margin-top: 25px;
-        padding: 0;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 20px;
+        padding: 15px 0;
+        justify-content: space-between;
     }
     
     .quiz-actions .nav-btn,
     .quiz-actions .toggle-answers-btn {
-        width: 100%;
-        min-width: 100%;
+        flex: 1;
+        min-width: 0;
+        min-width: calc(33.333% - 6px);
     }
     
     /* Pagination - Larger on mobile */

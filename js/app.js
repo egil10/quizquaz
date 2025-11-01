@@ -400,28 +400,14 @@ function renderQuiz(quiz) {
                 <div class="answers-section">
                     <h3 class="answers-header desktop-header">Svar</h3>
                     <h3 class="answers-header-mobile mobile-header">Svar</h3>
-                    <div class="answers-two-columns">
-                        <div class="answers-column-left">
-                            <ol class="answers-list">
-                                ${quiz.questions.slice(0, 6).map(q => `
-                                    <li>
-                                        <span class="answer-number">${q.number}.</span>
-                                        <span class="answer-text">${q.answer}</span>
-                                    </li>
-                                `).join('')}
-                            </ol>
-                        </div>
-                        <div class="answers-column-right">
-                            <ol class="answers-list">
-                                ${quiz.questions.slice(6).map(q => `
-                                    <li>
-                                        <span class="answer-number">${q.number}.</span>
-                                        <span class="answer-text">${q.answer}</span>
-                                    </li>
-                                `).join('')}
-                            </ol>
-                        </div>
-                    </div>
+                    <ol class="answers-list">
+                        ${quiz.questions.map(q => `
+                            <li>
+                                <span class="answer-number">${q.number}.</span>
+                                <span class="answer-text">${q.answer}</span>
+                            </li>
+                        `).join('')}
+                    </ol>
                 </div>
                 ` : ''}
             </div>
