@@ -188,7 +188,7 @@
         },
         {
           "number": 9,
-          "question": "I matematikk beskriver π (pi) forholdet mellom en sirkel sin omkrets og diameter. Noen matematikere mener likevel at τ (tau) er et bedre valg – hva representerer τ?",
+          "question": "I matematikk beskriver π (pi) forholdet mellom en sirkel sin omkrets og diameter. Noen matematikere mener likevel at τ (tau) er bedre å bruke når man snakker om sirkler, men hva representerer τ?",
           "answer": "τ (tau) beskriver forholdet mellom en sirkel sin omkrets og radius, og er derfor τ = 2π ≈ 6,283."
         },
         {
