@@ -453,15 +453,21 @@ body.dark-mode .editions-dropdown {
 }
 
 .quiz-actions-info {
-    width: 100%;
-    margin-top: 8px;
-    font-size: 0.75em;
-    color: var(--meta-color);
-    line-height: 1.4;
-    order: 999;
-    display: flex;
+    padding: 10px 16px;
+    font-size: 1.1em;
+    background-color: #fff;
+    color: #000;
+    border: 2px solid #000;
+    border-radius: 2px;
+    font-family: 'Georgia', serif;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     gap: 8px;
-    align-items: baseline;
+    min-width: auto;
+    height: 40px;
+    cursor: default;
+    white-space: nowrap;
 }
 
 .quiz-actions-date {
@@ -469,7 +475,7 @@ body.dark-mode .editions-dropdown {
 }
 
 .quiz-actions-edition {
-    font-size: 0.9em;
+    font-size: 1em;
 }
 
 /* Buttons - Modern consistent style */
@@ -1080,6 +1086,12 @@ body.dark-mode .pagination-btn {
     border-color: #000;
 }
 
+body.dark-mode .quiz-actions-info {
+    background-color: #fff;
+    color: #000;
+    border-color: #000;
+}
+
 body.dark-mode .nav-btn:hover:not(:disabled),
 body.dark-mode .toggle-answers-btn:hover,
 body.dark-mode .pagination-btn:hover:not(:disabled) {
@@ -1296,6 +1308,11 @@ body.dark-mode .sort-order-btn:hover {
         gap: 12px;
         margin-top: 25px;
         padding: 15px 0;
+    }
+    
+    .quiz-actions-info {
+        width: 100%;
+        justify-content: center;
     }
     
     .toggle-answers-btn {
