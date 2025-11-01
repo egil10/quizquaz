@@ -447,6 +447,7 @@ body.dark-mode .editions-dropdown {
     align-items: flex-start;
     gap: 15px;
     margin-top: 20px;
+    margin-bottom: 0;
     padding: 15px 0;
     flex-wrap: wrap;
 }
@@ -561,7 +562,7 @@ main {
 
 .quiz-header {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     padding-bottom: 15px;
     border-bottom: 2px solid var(--accent-color);
     flex-shrink: 0;
@@ -628,6 +629,7 @@ main {
     grid-template-columns: 1fr 1fr;
     gap: 30px;
     margin-bottom: 12px;
+    margin-top: 0;
     border-bottom: 1px solid var(--border-color);
     padding-bottom: 8px;
     width: 100%;
@@ -684,13 +686,13 @@ main {
 /* Answers section */
 .answers-section {
     width: 100%;
-    margin-top: 30px;
+    margin-top: 15px;
 }
 
 .answers-header {
     margin-top: 0;
     margin-bottom: 12px;
-    padding-top: 30px;
+    padding-top: 15px;
     padding-bottom: 8px;
     border-top: 2px solid var(--border-color);
     border-bottom: 1px solid var(--border-color);
