@@ -91,7 +91,7 @@ async function loadQuizzes() {
                 quizDate.setHours(0, 0, 0, 0);
                 return quizDate <= today;
             })
-            .sort((a, b) => new Date(b.date) - new Date(a.date)); // Newest first
+            .sort((a, b) => b.edition - a.edition); // Highest edition number first (3/3, then 2/3, then 1/3)
         
         const hiddenCount = allQuizzes.length - quizzes.length;
         if (hiddenCount > 0) {
@@ -100,12 +100,8 @@ async function loadQuizzes() {
             console.log(`Loaded ${quizzes.length} quizzes from JSON file`);
         }
         
-        // Ensure currentIndex is valid after filtering
-        if (currentIndex >= quizzes.length && quizzes.length > 0) {
-            currentIndex = quizzes.length - 1; // Go to last available quiz
-        } else if (quizzes.length === 0) {
-            currentIndex = 0;
-        }
+        // Start with the first quiz (highest edition number)
+        currentIndex = 0;
     } catch (error) {
         console.error('Error loading quizzes:', error);
         document.getElementById('quizContainer').innerHTML = 
