@@ -316,19 +316,18 @@ function renderQuiz(quiz) {
             <div class="quiz-content">
                 <div class="quiz-columns-header desktop-header">
                     <h3 class="questions-header">Spørsmål</h3>
-                    ${answersVisible ? '<h3 class="answers-header">Svar</h3>' : ''}
                 </div>
                 
                 <div class="questions-section">
                     <h3 class="questions-header-mobile mobile-header">Spørsmål</h3>
-                    ${quiz.introImage ? `
-                    <div class="quiz-intro-image-container">
-                        <img src="${quiz.introImage}" alt="Quiz intro image" class="quiz-image-positioned" loading="lazy">
-                    </div>
-                    ` : ''}
                     
                     <div class="questions-two-columns">
                         <div class="questions-column-left">
+                            ${quiz.introImage ? `
+                            <div class="quiz-intro-image-container">
+                                <img src="${quiz.introImage}" alt="Quiz intro image" class="quiz-image-positioned" loading="lazy">
+                            </div>
+                            ` : ''}
                             <ol class="questions-list">
                                 ${quiz.questions.slice(0, 6).map(q => `
                                     <li>
@@ -339,11 +338,6 @@ function renderQuiz(quiz) {
                             </ol>
                         </div>
                         <div class="questions-column-right">
-                            ${quiz.midImage ? `
-                            <div class="quiz-mid-image-container">
-                                <img src="${quiz.midImage}" alt="Quiz mid image" class="quiz-image-positioned" loading="lazy">
-                            </div>
-                            ` : ''}
                             <ol class="questions-list">
                                 ${quiz.questions.slice(6).map(q => `
                                     <li>
@@ -352,6 +346,11 @@ function renderQuiz(quiz) {
                                     </li>
                                 `).join('')}
                             </ol>
+                            ${quiz.midImage ? `
+                            <div class="quiz-mid-image-container">
+                                <img src="${quiz.midImage}" alt="Quiz mid image" class="quiz-image-positioned" loading="lazy">
+                            </div>
+                            ` : ''}
                         </div>
                     </div>
                     
@@ -373,6 +372,8 @@ function renderQuiz(quiz) {
                             <span class="quiz-actions-edition">Utgave ${quiz.edition} / ${quizzes.length}</span>
                         </div>
                     </div>
+                    
+                    <h3 class="answers-header desktop-header">Svar</h3>
                 </div>
                 
                 ${answersVisible ? `

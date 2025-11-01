@@ -649,7 +649,8 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+    margin-top: 5px;
 }
 
 .quiz-mid-image-container {
@@ -657,7 +658,8 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 20px;
+    margin-top: 15px;
+    margin-bottom: 5px;
 }
 
 .questions-two-columns {
@@ -740,12 +742,12 @@ main {
     font-size: 1.4em;
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin: 0;
+    margin: 20px 0 12px 0;
 }
 
-.answers-header.hidden {
-    visibility: hidden;
-    opacity: 0;
+.answers-header {
+    margin-top: 20px;
+    margin-bottom: 12px;
 }
 
 .quiz-columns {
