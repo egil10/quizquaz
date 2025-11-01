@@ -785,12 +785,12 @@ main {
 @media (max-width: 768px) {
     .questions-two-columns {
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 0;
     }
     
     .answers-two-columns {
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 0;
     }
 }
 
@@ -1226,12 +1226,12 @@ body.dark-mode .sort-order-btn:hover {
     
     .questions-two-columns {
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 0;
     }
     
     .answers-two-columns {
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 0;
     }
     
     /* Mobile: Show dropdown, hide grid and pagination */
@@ -1333,12 +1333,12 @@ body.dark-mode .sort-order-btn:hover {
         font-size: 1.1em;
     }
     
-    .answers-section {
-        margin-top: 10px;
+    .answers-header.desktop-header {
+        display: none !important;
     }
     
-    .answers-header {
-        padding-top: 10px;
+    .answers-header-mobile {
+        display: block !important;
     }
     
     .quiz-intro-image-container,
@@ -1357,10 +1357,19 @@ body.dark-mode .sort-order-btn:hover {
     
     .quiz-actions {
         position: relative;
-        flex-direction: column;
-        gap: 12px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 8px;
         margin-top: 20px;
         padding: 15px 0;
+        justify-content: space-between;
+    }
+    
+    .quiz-actions .nav-btn,
+    .quiz-actions .toggle-answers-btn {
+        flex: 1;
+        min-width: 0;
+        min-width: calc(33.333% - 6px);
     }
     
     .quiz-actions-info {
@@ -1370,19 +1379,20 @@ body.dark-mode .sort-order-btn:hover {
         padding: 12px 14px;
         height: auto;
         min-height: 48px;
-        white-space: normal;
+        white-space: nowrap;
         text-align: center;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
+        margin-top: 8px;
     }
     
     .quiz-actions-date,
     .quiz-actions-edition {
-        display: block;
-        width: 100%;
+        display: inline;
+        width: auto;
     }
     
     .toggle-answers-btn {
-        width: 100%;
+        flex: 1;
     }
     
     .answers-list {
@@ -1529,10 +1539,10 @@ body.dark-mode .sort-order-btn:hover {
         font-size: 1em;
         line-height: 1.7;
         margin-bottom: 16px;
-        padding-left: 37px;
+        padding-left: 0;
         min-height: auto;
         display: flex;
-        align-items: flex-start;
+        align-items: baseline;
     }
     
     .question-number,
@@ -1545,13 +1555,16 @@ body.dark-mode .sort-order-btn:hover {
         display: inline-block;
         margin-right: 8px;
         flex-shrink: 0;
-        line-height: inherit;
+        line-height: 1.7;
+        vertical-align: baseline;
     }
     
     .question-text,
     .answer-text {
         flex: 1;
         display: inline-block;
+        line-height: 1.7;
+        vertical-align: baseline;
     }
     
     /* Buttons - Large touch targets (minimum 48px) */
