@@ -7,38 +7,40 @@ async function init() {
     // Scroll to top immediately
     window.scrollTo(0, 0);
     
-    await loadQuizzes();
-    await loadFunFact();
+    // Load quizzes and fun fact in parallel for better performance
+    const [quizzesLoaded, funFactLoaded] = await Promise.all([
+        loadQuizzes(),
+        loadFunFact()
+    ]);
+    
     initTheme();
     setupEventListeners();
     createStars();
     updateUI();
     
-    // Hide loading screen after everything is loaded
-    setTimeout(() => {
-        const loadingScreen = document.getElementById('loadingScreen');
-        const layoutContainer = document.querySelector('.layout-container');
-        const header = document.querySelector('header');
-        const footer = document.querySelector('footer');
-        
-        if (loadingScreen) {
-            loadingScreen.classList.add('hidden');
-        }
-        if (layoutContainer) {
-            layoutContainer.classList.add('loaded');
-        }
-        if (header) {
-            header.classList.add('loaded');
-        }
-        if (footer) {
-            footer.classList.add('loaded');
-        }
-        
-        // Ensure scroll to top after loading screen is hidden
-        setTimeout(() => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }, 100);
-    }, 500);
+    // Hide loading screen immediately after content is ready
+    const loadingScreen = document.getElementById('loadingScreen');
+    const layoutContainer = document.querySelector('.layout-container');
+    const header = document.querySelector('header');
+    const footer = document.querySelector('footer');
+    
+    if (loadingScreen) {
+        loadingScreen.classList.add('hidden');
+    }
+    if (layoutContainer) {
+        layoutContainer.classList.add('loaded');
+    }
+    if (header) {
+        header.classList.add('loaded');
+    }
+    if (footer) {
+        footer.classList.add('loaded');
+    }
+    
+    // Smooth scroll to top
+    requestAnimationFrame(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
 }
 
 // Load and display a random fun fact
@@ -163,8 +165,10 @@ function createStars() {
     const starsContainer = document.getElementById('starsContainer');
     if (!starsContainer) return;
 
-    const numStars = 150;
-    const stars = [];
+    // Reduced number of stars for better performance
+    const numStars = 80;
+    // Use documentFragment to batch DOM operations
+    const fragment = document.createDocumentFragment();
 
     for (let i = 0; i < numStars; i++) {
         const star = document.createElement('div');
@@ -176,10 +180,11 @@ function createStars() {
         star.style.animationDelay = Math.random() * 3 + 's';
         star.style.animationDuration = (Math.random() * 3 + 2) + 's';
         
-        stars.push(star);
+        fragment.appendChild(star);
     }
 
-    stars.forEach(star => starsContainer.appendChild(star));
+    // Single DOM update instead of 80 individual updates
+    starsContainer.appendChild(fragment);
 }
 
 // Setup event listeners
@@ -349,7 +354,7 @@ function renderQuiz(quiz) {
                         <div class="questions-column-left">
                             ${quiz.introImage ? `
                             <div class="quiz-intro-image-container">
-                                <img src="${quiz.introImage}" alt="Quiz intro image" class="quiz-image-positioned" loading="lazy">
+                                <img src="${quiz.introImage}" alt="Quiz intro image" class="quiz-image-positioned" loading="lazy" decoding="async">
                             </div>
                             ` : ''}
                             <ol class="questions-list">
@@ -372,7 +377,7 @@ function renderQuiz(quiz) {
                             </ol>
                             ${quiz.midImage ? `
                             <div class="quiz-mid-image-container">
-                                <img src="${quiz.midImage}" alt="Quiz mid image" class="quiz-image-positioned" loading="lazy">
+                                <img src="${quiz.midImage}" alt="Quiz mid image" class="quiz-image-positioned" loading="lazy" decoding="async">
                             </div>
                             ` : ''}
                         </div>
