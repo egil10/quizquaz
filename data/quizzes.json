@@ -1,9 +1,9 @@
 {
   "quizzes": [
     {
-      "id": "2025-10-31",
-      "date": "2025-10-31",
-      "title": "Fredag, 31. oktober 2025",
+      "id": "2025-10-30",
+      "date": "2025-10-30",
+      "title": "Torsdag, 30. oktober 2025",
       "edition": 1,
       "questions": [
         {
@@ -71,9 +71,9 @@
       "midImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Cour_Napol%C3%A9on_du_Louvre_%28228021559%29.jpg/800px-Cour_Napol%C3%A9on_du_Louvre_%28228021559%29.jpg"
     },
     {
-      "id": "2025-11-01",
-      "date": "2025-11-01",
-      "title": "Lørdag, 1. november 2025",
+      "id": "2025-10-31",
+      "date": "2025-10-31",
+      "title": "Fredag, 31. oktober 2025",
       "edition": 2,
       "questions": [
         {
@@ -139,6 +139,76 @@
       ],
       "introImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/%22The_School_of_Athens%22_by_Raffaello_Sanzio_da_Urbino.jpg/800px-%22The_School_of_Athens%22_by_Raffaello_Sanzio_da_Urbino.jpg",
       "midImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/1665_Girl_with_a_Pearl_Earring.jpg/800px-1665_Girl_with_a_Pearl_Earring.jpg"
+    },
+    {
+      "id": "2025-11-01",
+      "date": "2025-11-01",
+      "title": "Lørdag, 1. november 2025",
+      "edition": 3,
+      "questions": [
+        {
+          "number": 1,
+          "question": "Hvilken norsk maler, tegner og grafiker (1880-1928), som deler navn med en nåværende Høyre-politiker, malte i 1909 «Vårnatt i hagen».",
+          "answer": "Nikolai Astrup."
+        },
+        {
+          "number": 2,
+          "question": "Hvilken britisk statsleder vant også Nobelprisen i litteratur i 1953?",
+          "answer": "Winston Churchill."
+        },
+        {
+          "number": 3,
+          "question": "Hvilket afrikansk land het tidligere Rhodesia, oppkalt etter den britiske kolonisten Cecil Rhodes, før det fikk sitt nåværende navn i 1980?",
+          "answer": "Zimbabwe."
+        },
+        {
+          "number": 4,
+          "question": "Hvilke tre naboland er landene i verden med flest, nest flest og tredje flest øyer, med totalt over 760 000 øyer til sammen?",
+          "answer": "Norge (320 000), Sverige (267 000) og Finland (178 000)."
+        },
+        {
+          "number": 5,
+          "question": "Hvilken amerikansk delstat i sørøst deler navn med et land i Sør-Kaukasus?",
+          "answer": "Georgia."
+        },
+        {
+          "number": 6,
+          "question": "Siden år 2000 har Norge hatt 7 landslagstrenere i herrefotball, nevn 3 av dem.",
+          "answer": "Nils Johan Semb (1998–2003), Åge Hareide (2004–2008), Egil \"Drillo\" Olsen (2009–2013), Per-Mathias Høgmo (2013–2016), Lars Lagerbäck (2017–2020), Leif Gunnar Smerud (2020) og Ståle Solbakken (2020–)."
+        },
+        {
+          "number": 7,
+          "question": "FNs årlige klimatoppmøte, Conference of the Parties (COP), samler tilnærmet alle verdens land for å forhandle tiltak mot global oppvarming. Neste COP avholdes i Belém i Brasil fra 10.–21. november 2025 — men hvilket nummer COP er det?",
+          "answer": "COP 30."
+        },
+        {
+          "number": 8,
+          "question": "Hva står GPT for i ChatGPT?",
+          "answer": "Generative Pre-trained Transformer."
+        },
+        {
+          "number": 9,
+          "question": "I matematikk beskriver π (pi) forholdet mellom en sirkel sin omkrets og diameter. Noen matematikere mener likevel at τ (tau) er et bedre valg – hva representerer τ?",
+          "answer": "τ (tau) beskriver forholdet mellom en sirkel sin omkrets og radius, og er derfor τ = 2π ≈ 6,283."
+        },
+        {
+          "number": 10,
+          "question": "Hvor høy er de syv byfjellene i Bergen til sammen (Ulriken, Fløyfjellet, Rundemanen, Sandviksfjellet, Løvstakken, Damsgårdsfjellet og Lyderhorn)? (A) ~2100 moh., (B) ~3200 moh., (C) ~4300 moh., eller (D) ~5400 moh.?",
+          "answer": "3218 meter over havet tilsvarer omtrent 3200 moh."
+        },
+        {
+          "number": 11,
+          "question": "Bergen er kjent som byen mellom de syv fjell, men dette gjelder også hundrevis av byer. Hvilke to europeiske byer er bygget på høydene Palatino, Aventino og Kapitol, samt São Jorge, São Vicente og Santa Catarina?",
+          "answer": "Roma og Lisboa."
+        },
+        {
+          "number": 12,
+          "question": "Hvilket fjell i Narvik (på lulesamisk: Stáddá) på 1393 meter over havet ble i 2002 kåret til Norges nasjonalfjell?",
+          "answer": "Stetinden."
+        }
+      ],
+      "introImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/%27Night_in_Spring%27_by_Nikolai_Astrup%2C_1909%2C_Bergen_Kunstmuseum.JPG/800px-%27Night_in_Spring%27_by_Nikolai_Astrup%2C_1909%2C_Bergen_Kunstmuseum.JPG",
+      "midImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Stetind_2009_2.JPG/800px-Stetind_2009_2.JPG"
     }
   ]
 }
