@@ -622,6 +622,8 @@ main {
     justify-content: center;
     align-items: center;
     width: 100%;
+    min-height: 300px;
+    aspect-ratio: 4 / 3;
 }
 
 .quiz-image-positioned {
@@ -630,22 +632,15 @@ main {
     height: auto;
     max-height: 300px;
     object-fit: contain;
-    border: 2px solid var(--border-color);
-    border-radius: 4px;
-    box-shadow: 0 2px 8px var(--shadow);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
     display: block;
     margin: 0 auto;
     background-color: var(--card-bg);
-}
-
-.quiz-image-positioned:hover {
-    transform: scale(1.02);
-    box-shadow: 0 4px 12px var(--shadow);
-}
-
-body.dark-mode .quiz-image-positioned {
-    border-color: var(--border-color);
+    user-select: none;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    pointer-events: none;
 }
 
 .questions-header,
@@ -734,11 +729,13 @@ body.dark-mode .quiz-image-positioned {
 .answer-number {
     position: absolute;
     left: 0;
+    top: 0;
     font-weight: bold;
     width: 35px;
     text-align: right;
     white-space: nowrap;
     display: inline-block;
+    line-height: inherit;
 }
 
 .question-text,
@@ -1164,6 +1161,11 @@ body.dark-mode .sort-order-btn:hover {
         max-height: 250px;
     }
     
+    .quiz-image-container {
+        min-height: 250px;
+        aspect-ratio: 4 / 3;
+    }
+    
     .quiz-columns-header.desktop-header {
         display: none !important;
     }
@@ -1341,14 +1343,26 @@ body.dark-mode .sort-order-btn:hover {
         margin-bottom: 16px;
         padding-left: 37px;
         min-height: auto;
+        display: flex;
+        align-items: flex-start;
     }
     
     .question-number,
     .answer-number {
+        position: static;
         font-size: 1.15em;
-        width: 32px;
+        width: auto;
         text-align: right;
         white-space: nowrap;
+        display: inline-block;
+        margin-right: 8px;
+        flex-shrink: 0;
+        line-height: inherit;
+    }
+    
+    .question-text,
+    .answer-text {
+        flex: 1;
         display: inline-block;
     }
     
