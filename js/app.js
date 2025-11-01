@@ -304,8 +304,18 @@ function renderQuiz(quiz) {
     return `
         <div class="quiz-newspaper">
             <div class="quiz-header desktop-header">
-                <div class="quiz-header-top">
-                    <h2>${titleDate}</h2>
+                <div class="quiz-header-nav">
+                    <button id="prevBtn" class="nav-btn desktop-nav" ${currentIndex === quizzes.length - 1 ? 'disabled' : ''}>
+                        <i data-lucide="chevron-left" class="icon-inline"></i>
+                        Forrige
+                    </button>
+                    <div class="quiz-header-top">
+                        <h2>${titleDate}</h2>
+                    </div>
+                    <button id="nextBtn" class="nav-btn desktop-nav" ${currentIndex === 0 ? 'disabled' : ''}>
+                        Neste
+                        <i data-lucide="chevron-right" class="icon-inline"></i>
+                    </button>
                 </div>
                 <div class="quiz-meta">
                     <span class="edition">Utgave ${quiz.edition} / ${quizzes.length}</span>
@@ -313,7 +323,17 @@ function renderQuiz(quiz) {
             </div>
             
             <div class="quiz-header mobile-header">
-                <h2>${titleDate}</h2>
+                <div class="quiz-header-nav">
+                    <button id="prevBtnMobile" class="nav-btn mobile-nav" ${currentIndex === quizzes.length - 1 ? 'disabled' : ''}>
+                        <i data-lucide="chevron-left" class="icon-inline"></i>
+                        Forrige
+                    </button>
+                    <h2>${titleDate}</h2>
+                    <button id="nextBtnMobile" class="nav-btn mobile-nav" ${currentIndex === 0 ? 'disabled' : ''}>
+                        Neste
+                        <i data-lucide="chevron-right" class="icon-inline"></i>
+                    </button>
+                </div>
                 <span class="edition">Utgave ${quiz.edition} / ${quizzes.length}</span>
             </div>
             
@@ -359,25 +379,9 @@ function renderQuiz(quiz) {
                     </div>
                     
                     <div class="quiz-actions">
-                        <button id="prevBtn" class="nav-btn desktop-nav" ${currentIndex === quizzes.length - 1 ? 'disabled' : ''}>
-                            <i data-lucide="chevron-left" class="icon-inline"></i>
-                            Forrige
-                        </button>
-                        <button id="prevBtnMobile" class="nav-btn mobile-nav" ${currentIndex === quizzes.length - 1 ? 'disabled' : ''}>
-                            <i data-lucide="chevron-left" class="icon-inline"></i>
-                            Forrige
-                        </button>
                         <button id="toggleAnswersBtn" class="toggle-answers-btn">
                             <i data-lucide="${answersVisible ? 'eye-off' : 'eye'}" class="icon-inline"></i>
                             ${answersVisible ? 'Skjul svar' : 'Svar'}
-                        </button>
-                        <button id="nextBtn" class="nav-btn desktop-nav" ${currentIndex === 0 ? 'disabled' : ''}>
-                            Neste
-                            <i data-lucide="chevron-right" class="icon-inline"></i>
-                        </button>
-                        <button id="nextBtnMobile" class="nav-btn mobile-nav" ${currentIndex === 0 ? 'disabled' : ''}>
-                            Neste
-                            <i data-lucide="chevron-right" class="icon-inline"></i>
                         </button>
                         <div class="quiz-actions-info">
                             <span class="quiz-actions-date">${titleDate}</span>
