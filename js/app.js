@@ -372,12 +372,11 @@ function renderQuiz(quiz) {
                             <span class="quiz-actions-edition">Utgave ${quiz.edition} / ${quizzes.length}</span>
                         </div>
                     </div>
-                    
-                    <h3 class="answers-header desktop-header">Svar</h3>
                 </div>
                 
                 ${answersVisible ? `
                 <div class="answers-section">
+                    <h3 class="answers-header desktop-header">Svar</h3>
                     <h3 class="answers-header-mobile mobile-header">Svar</h3>
                     <div class="answers-two-columns">
                         <div class="answers-column-left">

@@ -685,8 +685,15 @@ main {
 .answers-section {
     width: 100%;
     margin-top: 30px;
+}
+
+.answers-header {
+    margin-top: 0;
+    margin-bottom: 12px;
     padding-top: 30px;
+    padding-bottom: 8px;
     border-top: 2px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
 }
 
 .answers-two-columns {
