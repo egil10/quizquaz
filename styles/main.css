@@ -613,6 +613,41 @@ main {
     box-sizing: border-box;
 }
 
+/* Quiz images positioned in questions list */
+.quiz-image-container {
+    list-style: none;
+    padding: 0 !important;
+    margin: 25px 0 !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.quiz-image-positioned {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    max-height: 300px;
+    object-fit: contain;
+    border: 2px solid var(--border-color);
+    border-radius: 4px;
+    box-shadow: 0 2px 8px var(--shadow);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: block;
+    margin: 0 auto;
+    background-color: var(--card-bg);
+}
+
+.quiz-image-positioned:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+body.dark-mode .quiz-image-positioned {
+    border-color: var(--border-color);
+}
+
 .questions-header,
 .answers-header {
     font-size: 1.4em;
@@ -1111,6 +1146,22 @@ body.dark-mode .sort-order-btn:hover {
         color: var(--meta-color);
         display: block;
         font-weight: 500;
+    }
+    
+    .quiz-images {
+        flex-direction: column;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+    
+    .quiz-images img:not(:only-child) {
+        max-width: 100%;
+        flex: 1 1 100%;
+    }
+    
+    .quiz-image-positioned {
+        max-width: 100%;
+        max-height: 250px;
     }
     
     .quiz-columns-header.desktop-header {

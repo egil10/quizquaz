@@ -320,7 +320,23 @@ function renderQuiz(quiz) {
                     <div class="questions-column">
                         <h3 class="questions-header-mobile mobile-header">Spørsmål</h3>
                         <ol class="questions-list">
-                            ${quiz.questions.map(q => `
+                            ${quiz.introImage ? `
+                            <li class="quiz-image-container intro-image">
+                                <img src="${quiz.introImage}" alt="Quiz intro image" class="quiz-image-positioned" loading="lazy">
+                            </li>
+                            ` : ''}
+                            ${quiz.questions.slice(0, 6).map(q => `
+                                <li>
+                                    <span class="question-number">${q.number}.</span>
+                                    <span class="question-text">${q.question}</span>
+                                </li>
+                            `).join('')}
+                            ${quiz.midImage ? `
+                            <li class="quiz-image-container mid-image">
+                                <img src="${quiz.midImage}" alt="Quiz mid image" class="quiz-image-positioned" loading="lazy">
+                            </li>
+                            ` : ''}
+                            ${quiz.questions.slice(6).map(q => `
                                 <li>
                                     <span class="question-number">${q.number}.</span>
                                     <span class="question-text">${q.question}</span>
