@@ -437,6 +437,13 @@ function renderQuiz(quiz) {
                             <li>
                                 <span class="answer-number">${q.number}.</span>
                                 <span class="answer-text">${q.answer}</span>
+                                ${q.images && q.images.length > 0 ? `
+                                <div class="answer-images">
+                                    ${q.images.map(img => `
+                                        <img src="${img}" alt="Answer image" class="answer-image" loading="lazy" decoding="async">
+                                    `).join('')}
+                                </div>
+                                ` : ''}
                             </li>
                         `).join('')}
                     </ol>

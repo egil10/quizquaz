@@ -218,6 +218,79 @@
       "questions": [
         {
           "number": 1,
+          "question": "Sheikh Hasina ble dømt til døden i november 2025. Hun var statsminister for hvilket asiatisk land i 1996-2001 og 2009-2024?",
+          "answer": "Bangladesh."
+        },
+        {
+          "number": 2,
+          "question": "Hvilket av verdens nasjonalflagg deler ingen farger med det norske?",
+          "answer": "Jamaica."
+        },
+        {
+          "number": 3,
+          "question": "Hvilken fransk konge (1814-1824) hadde det høyeste regentnummeret XVIII?",
+          "answer": "Kong Ludvig/Louis XVIII."
+        },
+        {
+          "number": 4,
+          "question": "Blant de amerikanske presidentene finnes det to far-sønn-par, hvilke? Hint: presidentnummer 2 & 6 og 41 & 43.",
+          "answer": "John Adams (2) & John Quincy Adams (6) og George H. W. Bush (41) og George W. Bush (43)."
+        },
+        {
+          "number": 5,
+          "question": "Elon Musks xAI, som blant annet står bak språkmodellen Grok, lanserte nylig en konkurrent til Wikipedia, som skal gi «sann og ubiaset» informasjon. Hva heter denne siden?",
+          "answer": "Grokipedia."
+        },
+        {
+          "number": 6,
+          "question": "Det har så langt vært 12 astronauter på månens overflate. Nevn tre av dem.",
+          "answer": "Neil Armstrong, Buzz Aldrin, Charles \"Pete\" Conrad, Alan Bean, Alan Shepard, Edgar Mitchell, David Scott, James Irwin, John Young, Charles Duke, Eugene Cernan og Harrison Schmitt."
+        },
+        {
+          "number": 7,
+          "question": "Hvilken tidligere portugisisk øy utenfor Vest-Afrika regnes som landet som var koloni lengst i verden (fra 1400-tallet til 1975)?",
+          "answer": "Kapp Verde (Cape Verde/Cabo Verde)."
+        },
+        {
+          "number": 8,
+          "question": "Hva med nasjonalfargen til Italia?",
+          "answer": "Azzurro (blå)."
+        },
+        {
+          "number": 9,
+          "question": "Hva regnes som nasjonalfargen til Nederland?",
+          "answer": "Oransje."
+        },
+        {
+          "number": 10,
+          "question": "Fire selvstendige stater har Union Jack i flagget sitt, hvilke?",
+          "answer": "Australia, New Zealand, Fiji og Tuvalu."
+        },
+        {
+          "number": 11,
+          "question": "Hvilke tre land grenser til både Russland og Kina?",
+          "answer": "Mongolia, Kasakhstan og Nord-Korea."
+        },
+        {
+          "number": 12,
+          "question": "Hvem var den første personen til å fly solo over Atlanterhavet i 1927, og hvem var den første kvinnen i 1932?",
+          "answer": "Charles Lindbergh (1927) og Amelia Earhart (1932).",
+          "images": [
+            "https://upload.wikimedia.org/wikipedia/commons/b/b3/Charles_Lindbergh_%28Harris_%26_Ewing_photo%2C_cropped%29.jpg",
+            "https://upload.wikimedia.org/wikipedia/commons/7/72/Amelia_Earhart_standing_under_nose_of_her_Lockheed_Model_10-E_Electra%2C_small_%28cropped%29.jpg"
+          ]
+        }
+      ],
+      "introImage": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Sheikh_Hasina_Addresses_Awami_League_Leaders_Ganabhaban_2024-05-17_%283x4_cropped%29.jpg"
+    },
+    {
+      "id": "2025-11-18",
+      "date": "2025-11-18",
+      "title": "Tirsdag, 18. november 2025",
+      "edition": 5,
+      "questions": [
+        {
+          "number": 1,
           "question": "Hvilken tidligere amerikansk finansminister (1999–2001) og Harvard-president (2001–2006) kunngjorde i november 2025 at han trekker seg fra alle verv etter at han ble knyttet til e-postutvekslinger med Jeffrey Epstein?",
           "answer": "Larry Summers (Lawrence Summers)."
         },
@@ -279,6 +352,74 @@
       ],
       "introImage": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Lawrence_Summers_2012.jpg",
       "midImage": "https://upload.wikimedia.org/wikipedia/commons/7/7e/Four_Asian_Tigers_with_flags.svg"
+    },
+    {
+      "id": "2025-11-18",
+      "date": "2025-11-18",
+      "title": "Tirsdag, 18. november 2025",
+      "edition": 6,
+      "questions": [
+        {
+          "number": 1,
+          "question": "Hva regnes som Norges eldste by, ifølge tradisjonell historiefortelling og skriftlige kilder?",
+          "answer": "Tønsberg."
+        },
+        {
+          "number": 2,
+          "question": "Hva heter Norges største øy sør for polarsirkelen – altså den største øya som ikke ligger i Arktis?",
+          "answer": "Hinnøya."
+        },
+        {
+          "number": 3,
+          "question": "I hvilke tre land skal fotball-VM i 2026 arrangeres, det første verdensmesterskapet med 48 lag og delt vertskap?",
+          "answer": "USA, Canada og Mexico."
+        },
+        {
+          "number": 4,
+          "question": "Hva heter sjøområdet som ligger mellom Sørlandet og Jylland, og som binder Nordsjøen sammen med Kattegat?",
+          "answer": "Skagerrak."
+        },
+        {
+          "number": 5,
+          "question": "Hva heter øygruppen som ligger nord for fastlands-Skottland, kjent for sin norrøne historie og steder som Kirkwall og Skara Brae?",
+          "answer": "Orknøyene."
+        },
+        {
+          "number": 6,
+          "question": "Hva heter hovedstaden i Canada?",
+          "answer": "Ottawa."
+        },
+        {
+          "number": 7,
+          "question": "Hvem skrev den norske romanen Sult, først utgitt i 1890 og regnet som et tidlig modernistisk verk?",
+          "answer": "Knut Hamsun."
+        },
+        {
+          "number": 8,
+          "question": "I hvilket land ligger størstedelen av fjellet Mont Blanc, som er Vest-Europas høyeste fjell?",
+          "answer": "Frankrike."
+        },
+        {
+          "number": 9,
+          "question": "Hvilket år overtok Harald V som konge av Norge, etter kong Olav Vs død?",
+          "answer": "1991."
+        },
+        {
+          "number": 10,
+          "question": "Hva heter den største øya i Middelhavet, både i areal og befolkning?",
+          "answer": "Sicilia."
+        },
+        {
+          "number": 11,
+          "question": "Hvilket land vant Eurovision Song Contest i 2024 med låten «The Code»?",
+          "answer": "Sveits."
+        },
+        {
+          "number": 12,
+          "question": "Hva heter sundet som skiller Sjælland i Danmark fra Skåne i Sverige?",
+          "answer": "Øresund."
+        }
+      ]
     }
   ]
 }
