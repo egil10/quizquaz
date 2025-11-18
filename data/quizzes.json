@@ -417,9 +417,13 @@
         {
           "number": 12,
           "question": "Hva heter sundet som skiller Sjælland i Danmark fra Skåne i Sverige?",
-          "answer": "Øresund."
+          "answer": "Øresund.",
+          "images": [
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Oeresund_Bridge.jpg/800px-Oeresund_Bridge.jpg"
+          ]
         }
-      ]
+      ],
+      "introImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Brygga_i_T%C3%B8nsberg.JPG/800px-Brygga_i_T%C3%B8nsberg.JPG"
     }
   ]
 }
