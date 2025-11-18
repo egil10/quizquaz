@@ -274,14 +274,14 @@
         {
           "number": 12,
           "question": "Hvem var den første personen til å fly solo over Atlanterhavet i 1927, og hvem var den første kvinnen i 1932?",
-          "answer": "Charles Lindbergh (1927) og Amelia Earhart (1932).",
-          "images": [
-            "https://upload.wikimedia.org/wikipedia/commons/b/b3/Charles_Lindbergh_%28Harris_%26_Ewing_photo%2C_cropped%29.jpg",
-            "https://upload.wikimedia.org/wikipedia/commons/7/72/Amelia_Earhart_standing_under_nose_of_her_Lockheed_Model_10-E_Electra%2C_small_%28cropped%29.jpg"
-          ]
+          "answer": "Charles Lindbergh (1927) og Amelia Earhart (1932)."
         }
       ],
-      "introImage": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Sheikh_Hasina_Addresses_Awami_League_Leaders_Ganabhaban_2024-05-17_%283x4_cropped%29.jpg"
+      "introImage": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Sheikh_Hasina_Addresses_Awami_League_Leaders_Ganabhaban_2024-05-17_%283x4_cropped%29.jpg",
+      "midImages": [
+        "https://upload.wikimedia.org/wikipedia/commons/b/b3/Charles_Lindbergh_%28Harris_%26_Ewing_photo%2C_cropped%29.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/7/72/Amelia_Earhart_standing_under_nose_of_her_Lockheed_Model_10-E_Electra%2C_small_%28cropped%29.jpg"
+      ]
     },
     {
       "id": "2025-11-18",
@@ -417,13 +417,11 @@
         {
           "number": 12,
           "question": "Hva heter sundet som skiller Sjælland i Danmark fra Skåne i Sverige?",
-          "answer": "Øresund.",
-          "images": [
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Oeresund_Bridge.jpg/800px-Oeresund_Bridge.jpg"
-          ]
+          "answer": "Øresund."
         }
       ],
-      "introImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Brygga_i_T%C3%B8nsberg.JPG/800px-Brygga_i_T%C3%B8nsberg.JPG"
+      "introImage": "https://upload.wikimedia.org/wikipedia/commons/4/4e/Brygga_i_T%C3%B8nsberg.JPG",
+      "midImage": "https://upload.wikimedia.org/wikipedia/commons/0/01/%C3%98resund_Bridge_from_the_air_in_September_2015.jpg"
     }
   ]
 }

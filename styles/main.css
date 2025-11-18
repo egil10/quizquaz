@@ -688,6 +688,22 @@ main {
     margin-bottom: 5px;
 }
 
+.quiz-mid-images-container {
+    width: 100%;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    flex-wrap: wrap;
+}
+
+.quiz-mid-images-container .quiz-image-positioned {
+    max-width: 300px;
+    flex: 0 1 auto;
+}
+
 .questions-two-columns {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -1395,6 +1411,18 @@ body.dark-mode .sort-order-btn:hover {
     .quiz-mid-image-container {
         margin-bottom: 12px;
         margin-top: 8px;
+    }
+    
+    .quiz-mid-images-container {
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 12px;
+        margin-top: 8px;
+    }
+    
+    .quiz-mid-images-container .quiz-image-positioned {
+        max-width: 100%;
+        max-height: 250px;
     }
     
     .nav-btn.desktop-nav {

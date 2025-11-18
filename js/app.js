@@ -408,7 +408,13 @@ function renderQuiz(quiz) {
                                     </li>
                                 `).join('')}
                             </ol>
-                            ${quiz.midImage ? `
+                            ${quiz.midImages && quiz.midImages.length > 0 ? `
+                            <div class="quiz-mid-images-container">
+                                ${quiz.midImages.map(img => `
+                                    <img src="${img}" alt="Quiz mid image" class="quiz-image-positioned" loading="lazy" decoding="async">
+                                `).join('')}
+                            </div>
+                            ` : quiz.midImage ? `
                             <div class="quiz-mid-image-container">
                                 <img src="${quiz.midImage}" alt="Quiz mid image" class="quiz-image-positioned" loading="lazy" decoding="async">
                             </div>
